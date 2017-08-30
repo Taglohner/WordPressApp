@@ -11,7 +11,7 @@ import Foundation
 struct WordPressURL {
     
     static let Scheme = "http"
-    static let Host = "http://52.32.244.193"
+    static let Host = "52.32.244.193"
     static let Path = "/wp-json/wp/v2/posts"
     
     struct WordPressParameterKeys {
@@ -23,6 +23,6 @@ struct WordPressURL {
     struct WordPressParameterValues {
         
         static let Page = "1"
-        static let PerPage = "4"
+        static let PerPage = "1"
     }
 }

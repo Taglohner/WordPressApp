@@ -8,20 +8,21 @@
 
 import Foundation
 
-class RequestFlickrData {
+class RequestWordPressData {
     
     let session = URLSession.shared
     
-    func getDataWith(completion: @escaping (Result<[String]>) -> Void) {
+    /* get JSON from WordPress */
+    
+    func getDataWith(completion: @escaping (Result<[[String:Any]]>) -> Void) {
         
         let parameters = [
-            
             WordPressURL.WordPressParameterKeys.Page : WordPressURL.WordPressParameterValues.Page,
             WordPressURL.WordPressParameterKeys.PerPage : WordPressURL.WordPressParameterValues.PerPage
-            
             ] as [String : AnyObject]
         
         let url = self.URLFromParameters(parameters, WordPressURL.Scheme, WordPressURL.Host, WordPressURL.Path)
+        
         self.session.dataTask(with: url) { (data, response, error) in
             
             guard error == nil else {
@@ -31,11 +32,9 @@ class RequestFlickrData {
                 return completion(.Error(error?.localizedDescription ?? "There are no new Items to show"))
             }
             do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [String: AnyObject] {
-                    guard let photos = json["photos"] as? [String] else {
-                        return completion(.Error(error?.localizedDescription ?? "There are no new Items to show."))
-                    }
-                    completion(.Success(photos))
+                if let jsonData = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String: AnyObject]] {
+                    
+                    completion(.Success(jsonData))
                 }
             } catch let error {
                 return completion(.Error(error.localizedDescription))
@@ -43,6 +42,7 @@ class RequestFlickrData {
             }.resume()
     }
     
+    /* get image data from a provided URL */
     
     func imageDataFrom(_ stringURL: String, completion: @escaping (Result<Data>) -> Void) {
         
@@ -71,6 +71,7 @@ class RequestFlickrData {
     }
     
     /* create a URL from parameters */
+    
     func URLFromParameters(_ parameters: [String:AnyObject]?,_ scheme: String,_ host: String,_ path: String) -> URL {
         
         var components = URLComponents()
@@ -88,10 +89,11 @@ class RequestFlickrData {
         return components.url!
     }
     
+    /* singleton for the network tasks */
     
-    class func sharedInstance() -> RequestFlickrData {
+    class func sharedInstance() -> RequestWordPressData {
         struct Singleton {
-            static var sharedInstance = RequestFlickrData()
+            static var sharedInstance = RequestWordPressData()
         }
         return Singleton.sharedInstance
     }
