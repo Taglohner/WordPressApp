@@ -101,9 +101,8 @@
 		12A5CD891F561AF600B98638 /* WordPressBlogApp */ = {
 			isa = PBXGroup;
 			children = (
-				12A5CD8A1F561AF600B98638 /* AppDelegate.swift */,
 				12A5CDBC1F563A0100B98638 /* Network */,
-				12A5CD8C1F561AF600B98638 /* ViewController.swift */,
+				12AA393C1F577E6E00555493 /* Controllers */,
 				12A5CD8E1F561AF600B98638 /* Main.storyboard */,
 				12A5CD911F561AF600B98638 /* Assets.xcassets */,
 				12A5CD931F561AF600B98638 /* LaunchScreen.storyboard */,
@@ -137,6 +136,15 @@
 				12A5CDBA1F561C4800B98638 /* APIService.swift */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		12AA393C1F577E6E00555493 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				12A5CD8A1F561AF600B98638 /* AppDelegate.swift */,
+				12A5CD8C1F561AF600B98638 /* ViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,6 +540,7 @@
 				12A5CDB11F561AF600B98638 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		12A5CDB21F561AF600B98638 /* Build configuration list for PBXNativeTarget "WordPressBlogAppTests" */ = {
 			isa = XCConfigurationList;
@@ -540,6 +549,7 @@
 				12A5CDB41F561AF600B98638 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		12A5CDB51F561AF600B98638 /* Build configuration list for PBXNativeTarget "WordPressBlogAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +558,7 @@
 				12A5CDB71F561AF600B98638 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
