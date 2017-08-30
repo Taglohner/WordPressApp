@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		12A5CD8B1F561AF600B98638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CD8A1F561AF600B98638 /* AppDelegate.swift */; };
-		12A5CD8D1F561AF600B98638 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CD8C1F561AF600B98638 /* ViewController.swift */; };
 		12A5CD901F561AF600B98638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12A5CD8E1F561AF600B98638 /* Main.storyboard */; };
 		12A5CD921F561AF600B98638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A5CD911F561AF600B98638 /* Assets.xcassets */; };
 		12A5CD951F561AF600B98638 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12A5CD931F561AF600B98638 /* LaunchScreen.storyboard */; };
@@ -16,6 +15,9 @@
 		12A5CDAB1F561AF600B98638 /* WordPressBlogAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CDAA1F561AF600B98638 /* WordPressBlogAppUITests.swift */; };
 		12A5CDB91F561C3B00B98638 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CDB81F561C3B00B98638 /* Constants.swift */; };
 		12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CDBA1F561C4800B98638 /* APIService.swift */; };
+		12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA393D1F57804700555493 /* MainTableViewController.swift */; };
+		12AA39401F57813800555493 /* SupportFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA393F1F57813800555493 /* SupportFile.swift */; };
+		12AA39441F57840300555493 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA39431F57840300555493 /* MainTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +40,6 @@
 /* Begin PBXFileReference section */
 		12A5CD871F561AF600B98638 /* WordPressBlogApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressBlogApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A5CD8A1F561AF600B98638 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		12A5CD8C1F561AF600B98638 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		12A5CD8F1F561AF600B98638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12A5CD911F561AF600B98638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12A5CD941F561AF600B98638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +52,9 @@
 		12A5CDAC1F561AF600B98638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12A5CDB81F561C3B00B98638 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		12A5CDBA1F561C4800B98638 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		12AA393D1F57804700555493 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		12AA393F1F57813800555493 /* SupportFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportFile.swift; sourceTree = "<group>"; };
+		12AA39431F57840300555493 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 				12A5CDBC1F563A0100B98638 /* Network */,
 				12AA393C1F577E6E00555493 /* Controllers */,
 				12A5CD8E1F561AF600B98638 /* Main.storyboard */,
+				12A5CD8A1F561AF600B98638 /* AppDelegate.swift */,
 				12A5CD911F561AF600B98638 /* Assets.xcassets */,
 				12A5CD931F561AF600B98638 /* LaunchScreen.storyboard */,
 				12A5CD961F561AF600B98638 /* Info.plist */,
@@ -134,6 +139,7 @@
 			children = (
 				12A5CDB81F561C3B00B98638 /* Constants.swift */,
 				12A5CDBA1F561C4800B98638 /* APIService.swift */,
+				12AA393F1F57813800555493 /* SupportFile.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -141,8 +147,8 @@
 		12AA393C1F577E6E00555493 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				12A5CD8A1F561AF600B98638 /* AppDelegate.swift */,
-				12A5CD8C1F561AF600B98638 /* ViewController.swift */,
+				12AA393D1F57804700555493 /* MainTableViewController.swift */,
+				12AA39431F57840300555493 /* MainTableViewCell.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -284,10 +290,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12A5CD8D1F561AF600B98638 /* ViewController.swift in Sources */,
 				12A5CD8B1F561AF600B98638 /* AppDelegate.swift in Sources */,
 				12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */,
 				12A5CDB91F561C3B00B98638 /* Constants.swift in Sources */,
+				12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */,
+				12AA39441F57840300555493 /* MainTableViewCell.swift in Sources */,
+				12AA39401F57813800555493 /* SupportFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
