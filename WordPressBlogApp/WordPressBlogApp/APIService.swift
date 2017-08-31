@@ -1,8 +1,8 @@
 //
-//  Photo+CoreDataClass.swift
-//  VirtualTourist
+//  APIService.swift
+//  WordPressBlogApp
 //
-//  Created by Steven Taglohner on 13/08/2017.
+//  Created by Steven Taglohner on 31/08/2017.
 //  Copyright © 2017 Steven Taglohner. All rights reserved.
 //
 
@@ -29,11 +29,10 @@ class RequestWordPressData {
                 return completion(.Error(error!.localizedDescription))
             }
             guard let data = data else {
-                return completion(.Error(error?.localizedDescription ?? "There are no new Items to show"))
+                return completion(.Error(error?.localizedDescription ?? "Could not parse data"))
             }
             do {
                 if let jsonData = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String: AnyObject]] {
-                    
                     completion(.Success(jsonData))
                 }
             } catch let error {

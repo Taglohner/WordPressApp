@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="mainTableViewCellID" textLabel="Z5E-gQ-SbH" detailTextLabel="u5Y-UW-WhO" imageView="UHT-gk-4mz" rowHeight="222" style="IBUITableViewCellStyleSubtitle" id="PHJ-ip-P5J" customClass="MainTableViewCell" customModule="WordPressBlogApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="mainTableViewCell" textLabel="Z5E-gQ-SbH" detailTextLabel="u5Y-UW-WhO" imageView="UHT-gk-4mz" rowHeight="222" style="IBUITableViewCellStyleSubtitle" id="PHJ-ip-P5J" customClass="MainTableViewCell" customModule="WordPressBlogApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="222"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PHJ-ip-P5J" id="x3l-wP-79Z">

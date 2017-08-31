@@ -1,8 +1,8 @@
 //
-//  Photo+CoreDataClass.swift
-//  VirtualTourist
+//  URLConstants.swift
+//  WordPressBlogApp
 //
-//  Created by Steven Taglohner on 13/08/2017.
+//  Created by Steven Taglohner on 31/08/2017.
 //  Copyright © 2017 Steven Taglohner. All rights reserved.
 //
 
