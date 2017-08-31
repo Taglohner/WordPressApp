@@ -15,7 +15,7 @@ class MainTableViewController: UITableViewController {
         
         self.clearsSelectionOnViewWillAppear = true
         
-        RequestWordPressData.sharedInstance().getPost{ (result) in
+        RequestWordPressData.sharedInstance().getPosts{ (result) in
             
             switch result {
                 

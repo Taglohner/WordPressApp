@@ -14,7 +14,7 @@ class RequestWordPressData {
     
     /* get JSON from WordPress */
     
-    func getDataWith(completion: @escaping (Result<[[String:Any]]>) -> Void) {
+    func getPosts(completion: @escaping (Result<[Post]>) -> Void) {
         
         let parameters = [
             WordPressURL.WordPressParameterKeys.Page : WordPressURL.WordPressParameterValues.Page,
@@ -28,15 +28,27 @@ class RequestWordPressData {
             guard error == nil else {
                 return completion(.Error(error!.localizedDescription))
             }
+            
             guard let data = data else {
                 return completion(.Error(error?.localizedDescription ?? "Could not parse data"))
             }
+            
             do {
                 if let jsonData = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String: AnyObject]] {
-                    completion(.Success(jsonData))
+                    
+                    var posts = [Post]()
+                    
+                    for object in jsonData {
+                        if let postObject = Post(json: object) {
+                            posts.append(postObject)
+                        } else {
+                            print("Error converting JSON to Post object")
+                        }
+                    }
+                    completion(.Success(posts))
                 }
             } catch let error {
-                return completion(.Error(error.localizedDescription))
+                completion(.Error(error.localizedDescription))
             }
             }.resume()
     }
