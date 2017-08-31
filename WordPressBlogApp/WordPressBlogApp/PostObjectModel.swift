@@ -6,6 +6,8 @@
 //  Copyright © 2017 Steven Taglohner. All rights reserved.
 //
 
+/*
+
 import Foundation
 
 struct Post {
@@ -55,3 +57,5 @@ extension Post {
         self.imageURL = imageURL
     }
 }
+ 
+ */

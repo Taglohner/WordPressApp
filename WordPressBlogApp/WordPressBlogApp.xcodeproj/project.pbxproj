@@ -18,6 +18,12 @@
 		12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA393D1F57804700555493 /* MainTableViewController.swift */; };
 		12AA39441F57840300555493 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA39431F57840300555493 /* MainTableViewCell.swift */; };
 		536BA82B1F58144300DEB552 /* PostObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82A1F58144300DEB552 /* PostObjectModel.swift */; };
+		536BA82E1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */; };
+		536BA8331F58614200DEB552 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82F1F58614200DEB552 /* Post.swift */; };
+		536BA8341F58614200DEB552 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA8301F58614200DEB552 /* Post+CoreDataProperties.swift */; };
+		536BA8351F58614200DEB552 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA8311F58614200DEB552 /* Image.swift */; };
+		536BA8361F58614200DEB552 /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA8321F58614200DEB552 /* Image+CoreDataProperties.swift */; };
+		536BA8391F58633100DEB552 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA8381F58633100DEB552 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +61,12 @@
 		12AA393D1F57804700555493 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		12AA39431F57840300555493 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		536BA82A1F58144300DEB552 /* PostObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostObjectModel.swift; sourceTree = "<group>"; };
+		536BA82D1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WordPressCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		536BA82F1F58614200DEB552 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = ../Post.swift; sourceTree = "<group>"; };
+		536BA8301F58614200DEB552 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Post+CoreDataProperties.swift"; path = "../Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		536BA8311F58614200DEB552 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Image.swift; path = ../Image.swift; sourceTree = "<group>"; };
+		536BA8321F58614200DEB552 /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Image+CoreDataProperties.swift"; path = "../Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		536BA8381F58633100DEB552 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,10 +167,24 @@
 		536BA8291F58142600DEB552 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				536BA8371F58614B00DEB552 /* CoreData */,
 				12A5CDBC1F563A0100B98638 /* Network */,
 				536BA82A1F58144300DEB552 /* PostObjectModel.swift */,
+				536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		536BA8371F58614B00DEB552 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				536BA8381F58633100DEB552 /* CoreDataStack.swift */,
+				536BA82F1F58614200DEB552 /* Post.swift */,
+				536BA8301F58614200DEB552 /* Post+CoreDataProperties.swift */,
+				536BA8311F58614200DEB552 /* Image.swift */,
+				536BA8321F58614200DEB552 /* Image+CoreDataProperties.swift */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,10 +326,16 @@
 			files = (
 				12A5CD8B1F561AF600B98638 /* AppDelegate.swift in Sources */,
 				12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */,
+				536BA8341F58614200DEB552 /* Post+CoreDataProperties.swift in Sources */,
+				536BA8391F58633100DEB552 /* CoreDataStack.swift in Sources */,
 				536BA82B1F58144300DEB552 /* PostObjectModel.swift in Sources */,
 				12A5CDB91F561C3B00B98638 /* URLConstants.swift in Sources */,
 				12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */,
+				536BA8331F58614200DEB552 /* Post.swift in Sources */,
+				536BA82E1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld in Sources */,
 				12AA39441F57840300555493 /* MainTableViewCell.swift in Sources */,
+				536BA8351F58614200DEB552 /* Image.swift in Sources */,
+				536BA8361F58614200DEB552 /* Image+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +609,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				536BA82D1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 536BA82D1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodel */;
+			path = WordPressCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 12A5CD7F1F561AF600B98638 /* Project object */;
 }

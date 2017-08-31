@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Image" representedClassName="Image" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="post" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Post" inverseName="image" inverseEntity="Post" syncable="YES"/>
+    </entity>
+    <entity name="Post" representedClassName="Post" syncable="YES">
+        <attribute name="content" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="date" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="excerpt" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="link" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="modified" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="type" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="image" maxCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="post" inverseEntity="Image" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Post" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="Image" positionX="-54" positionY="63" width="128" height="75"/>
+    </elements>
+</model>

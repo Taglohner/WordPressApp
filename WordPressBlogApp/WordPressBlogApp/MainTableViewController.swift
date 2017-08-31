@@ -26,8 +26,6 @@ class MainTableViewController: UITableViewController {
                     
                     let postContent = object.imageURL
                     print(postContent)
-                    
-                    
                 }
                 
             case .Error(let error):
