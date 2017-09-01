@@ -14,7 +14,7 @@ class RequestWordPressData {
     
     /* get JSON from WordPress */
     
-    func getPosts(completion: @escaping (Result<[PostObject]>) -> Void) {
+    func getPostsFromWordPress(completion: @escaping (Result<[PostObject]>) -> Void) {
         
         let parameters = [
             WordPressURL.WordPressParameterKeys.Page : WordPressURL.WordPressParameterValues.Page,
@@ -35,9 +35,7 @@ class RequestWordPressData {
             
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String: AnyObject]] {
-                    
                     var posts = [PostObject]()
-                    
                     for object in json {
                         let postObject = try PostObject(json: object)
                         posts.append(postObject)
@@ -49,8 +47,6 @@ class RequestWordPressData {
             }
             }.resume()
     }
-    
-    
     
     /* get image data from a provided URL */
     
