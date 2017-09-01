@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    static let stack = CoreDataStack(modelName: "SwiftPadawan")!
+    static let stack = CoreDataStack(modelName: "WordPressCoreDataModel")!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         

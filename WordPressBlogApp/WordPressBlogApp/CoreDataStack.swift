@@ -28,7 +28,7 @@ struct CoreDataStack {
         
         // Assumes the model is in the main bundle
         guard let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd") else {
-            print("Unable to find \(modelName)in the main bundle")
+            print("Unable to find \(modelName) in the main bundle")
             return nil
         }
         self.modelURL = modelURL
