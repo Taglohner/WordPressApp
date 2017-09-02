@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class MainTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var cellImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

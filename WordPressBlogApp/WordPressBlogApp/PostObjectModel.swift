@@ -90,7 +90,7 @@ extension PostObject {
             throw SerializationError.missing("medium")
         }
         
-        guard let imageURL = mediumSizeImage["source_url"] as? String else {
+        guard let featuredImageURL = mediumSizeImage["source_url"] as? String else {
             throw SerializationError.missing("source_url")
         }
         
@@ -102,7 +102,7 @@ extension PostObject {
         self.link = link
         self.content = renderedContent
         self.excerpt = renderedExcerpt
-        self.imageURL = imageURL
+        self.imageURL = featuredImageURL
     }
 }
  

@@ -39,12 +39,15 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="cell_image_placeholder" id="UHT-gk-4mz">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="placeholder" id="UHT-gk-4mz">
                                             <rect key="frame" x="15" y="38" width="100" height="144"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellImage" destination="UHT-gk-4mz" id="GIz-fU-2eU"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -56,7 +59,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHy-pi-NjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="654" y="125"/>
+            <point key="canvasLocation" x="745" y="125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bd2-lW-Dca">
@@ -78,6 +81,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cell_image_placeholder" width="100" height="144"/>
+        <image name="placeholder" width="100" height="144"/>
     </resources>
 </document>

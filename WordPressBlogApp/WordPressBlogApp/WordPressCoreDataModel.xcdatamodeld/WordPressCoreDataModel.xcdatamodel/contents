@@ -4,14 +4,15 @@
         <attribute name="content" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="date" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="excerpt" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="featuredImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="featuredImageURL" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
-        <attribute name="imageURL" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="link" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="modified" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Post" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Post" positionX="-63" positionY="-18" width="128" height="195"/>
     </elements>
 </model>

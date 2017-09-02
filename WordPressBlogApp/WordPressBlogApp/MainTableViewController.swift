@@ -15,7 +15,6 @@ class MainTableViewController: CoreDataTableViewController {
         super.viewDidLoad()
         
         clearData()
-        
         getNewPosts()
         
         /* creates a fetch request */
@@ -29,8 +28,18 @@ class MainTableViewController: CoreDataTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainTableViewCell", for: indexPath) as! MainTableViewCell
         
-        // PENDING IMPLEMENTATION
-        
+        if let post = fetchedResultsController?.object(at: indexPath) as? Post {
+            if post.featuredImage == nil {
+                cell.cellImage.image = UIImage(named: "placeholder")
+            } else {
+                DispatchQueue.main.async {
+                    cell.cellImage.image = UIImage(data: post.featuredImage!)
+                }
+            }
+    
+            cell.textLabel?.text = post.title
+            cell.detailTextLabel?.text = post.excerpt
+        }
         return cell
     }
     
@@ -72,8 +81,23 @@ class MainTableViewController: CoreDataTableViewController {
             postEntity.link = object.link
             postEntity.content = object.content
             postEntity.excerpt = object.excerpt
-            postEntity.imageURL = object.imageURL
+            postEntity.featuredImageURL = object.imageURL
             
+            if let photoURL = postEntity.featuredImageURL {
+                RequestWordPressData.sharedInstance().imageDataFrom(photoURL) { (result) in
+                    
+                    switch result {
+                    case .Success(let imageData):
+                        
+                        DispatchQueue.main.async {
+                            postEntity.featuredImage = imageData
+                            AppDelegate.stack.save()
+                        }
+                    case .Error(let error):
+                        print(error)
+                    }
+                }
+            }
             return postEntity
         }
         return nil
@@ -81,7 +105,8 @@ class MainTableViewController: CoreDataTableViewController {
     
     private func saveInCoreDataWith(array: [PostObject]) {
         for object in array {
-            _ = createPhotoEntityFrom(object: object)
+            
+            _  = createPhotoEntityFrom(object: object)
             AppDelegate.stack.save()
         }
     }
@@ -104,7 +129,5 @@ class MainTableViewController: CoreDataTableViewController {
             print("ERROR DELETING : \(error)")
         }
     }
-    
-    
     
 }

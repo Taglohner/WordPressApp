@@ -2,7 +2,7 @@
 //  Post+CoreDataClass.swift
 //  WordPressBlogApp
 //
-//  Created by Steven Admin on 01/09/2017.
+//  Created by Steven Taglohner on 02/09/2017.
 //  Copyright © 2017 Steven Taglohner. All rights reserved.
 //
 

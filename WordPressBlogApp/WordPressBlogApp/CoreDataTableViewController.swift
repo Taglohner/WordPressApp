@@ -123,7 +123,6 @@ extension CoreDataTableViewController: NSFetchedResultsControllerDelegate {
         case .delete:
             tableView.deleteSections(set, with: .fade)
         default:
-
             break
         }
     }
