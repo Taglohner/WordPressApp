@@ -13,7 +13,6 @@ class MainTableViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         clearData()
         getNewPosts()
         
@@ -36,23 +35,24 @@ class MainTableViewController: CoreDataTableViewController {
                     cell.cellImage.image = UIImage(data: post.featuredImage!)
                 }
             }
-    
             cell.textLabel?.text = post.title
             cell.detailTextLabel?.text = post.excerpt
         }
         return cell
     }
     
+    // MARK: Navigation
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let selectedPost = fetchedResultsController?.object(at: indexPath) as! Post
+        
+        print(selectedPost.link ?? "no link found")
+        
+        let destinationViewController = self.storyboard!.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        self.navigationController!.pushViewController(destinationViewController, animated: true)
+        
+    }
     
     // MARK: Supporing methods
     
@@ -69,6 +69,7 @@ class MainTableViewController: CoreDataTableViewController {
         }
     }
     
+    /* creates a NSManagedObject from a PostObject */
     private func createPhotoEntityFrom(object: PostObject) -> NSManagedObject? {
         let context = AppDelegate.stack.context
         if let postEntity = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context) as? Post {

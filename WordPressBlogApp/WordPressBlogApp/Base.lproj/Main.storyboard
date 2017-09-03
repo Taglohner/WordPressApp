@@ -56,28 +56,55 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="U6K-id-8iV"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHy-pi-NjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="745" y="125"/>
+            <point key="canvasLocation" x="697" y="125"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="HLc-x9-Ylu">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="FZP-f3-dnu" customClass="WebViewController" customModule="WordPressBlogApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="BqX-P6-FeY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="9qc-Bo-OJa">
+                            <connections>
+                                <action selector="sharePost:" destination="FZP-f3-dnu" id="0Nv-a7-DCj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <outlet property="actionButton" destination="9qc-Bo-OJa" id="0mb-Vv-jVM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3RB-89-FTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bd2-lW-Dca">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tsx-Vo-NbQ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d7B-kK-add">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="d7B-kK-add">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="PMJ-1B-Qe3">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="eoW-NI-feU" kind="relationship" relationship="rootViewController" id="xDk-94-ix0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qwG-6L-pzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-50.399999999999999" y="124.58770614692655"/>
+            <point key="canvasLocation" x="-100" y="125"/>
         </scene>
     </scenes>
     <resources>
