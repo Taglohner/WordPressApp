@@ -7,15 +7,14 @@
 //
 
 import UIKit
-import CoreData
 
 class MainTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var mainLayout: UIView!
+    @IBOutlet weak var shadowLayout: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
     }
 
@@ -25,4 +24,12 @@ class MainTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configureCellLayout() {
+        
+        self.mainLayout.layer.cornerRadius = 8
+        self.mainLayout.layer.masksToBounds = false
+        self.shadowLayout.layer.cornerRadius = 8
+        self.shadowLayout.layer.masksToBounds = false
+    }
 }
+

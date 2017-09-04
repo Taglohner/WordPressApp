@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1212E1811F5CFEF600295122 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212E1801F5CFEF600295122 /* ShadowView.swift */; };
+		1241811E1F5C82C500C87B48 /* podkova-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811C1F5C826C00C87B48 /* podkova-bold.ttf */; };
+		1241811F1F5C82CC00C87B48 /* podkova-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811D1F5C826C00C87B48 /* podkova-regular.ttf */; };
 		1267E8671F5B41BF00A890E2 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1267E8651F5B41BF00A890E2 /* Post+CoreDataClass.swift */; };
 		1267E8681F5B41BF00A890E2 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1267E8661F5B41BF00A890E2 /* Post+CoreDataProperties.swift */; };
 		128ABA011F58C44F003ADAC7 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */; };
@@ -44,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1212E1801F5CFEF600295122 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		1241811C1F5C826C00C87B48 /* podkova-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-bold.ttf"; sourceTree = "<group>"; };
+		1241811D1F5C826C00C87B48 /* podkova-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-regular.ttf"; sourceTree = "<group>"; };
 		1267E8651F5B41BF00A890E2 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Post+CoreDataClass.swift"; path = "../Post+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1267E8661F5B41BF00A890E2 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Post+CoreDataProperties.swift"; path = "../Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		124181191F5C823600C87B48 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1241811C1F5C826C00C87B48 /* podkova-bold.ttf */,
+				1241811D1F5C826C00C87B48 /* podkova-regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		12A5CD7E1F561AF600B98638 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +132,7 @@
 		12A5CD891F561AF600B98638 /* WordPressBlogApp */ = {
 			isa = PBXGroup;
 			children = (
+				124181191F5C823600C87B48 /* Resources */,
 				536BA8291F58142600DEB552 /* Model */,
 				12AA393C1F577E6E00555493 /* Controllers */,
 				12A5CD8E1F561AF600B98638 /* Main.storyboard */,
@@ -159,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */,
+				1212E1801F5CFEF600295122 /* ShadowView.swift */,
 				12AA393D1F57804700555493 /* MainTableViewController.swift */,
 				129F9F371F5C329700778395 /* WebViewController.swift */,
 				12AA39431F57840300555493 /* MainTableViewCell.swift */,
@@ -299,6 +316,8 @@
 			files = (
 				12A5CD951F561AF600B98638 /* LaunchScreen.storyboard in Resources */,
 				12A5CD921F561AF600B98638 /* Assets.xcassets in Resources */,
+				1241811F1F5C82CC00C87B48 /* podkova-regular.ttf in Resources */,
+				1241811E1F5C82C500C87B48 /* podkova-bold.ttf in Resources */,
 				12A5CD901F561AF600B98638 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,6 +353,7 @@
 				129F9F381F5C329700778395 /* WebViewController.swift in Sources */,
 				1267E8681F5B41BF00A890E2 /* Post+CoreDataProperties.swift in Sources */,
 				1267E8671F5B41BF00A890E2 /* Post+CoreDataClass.swift in Sources */,
+				1212E1811F5CFEF600295122 /* ShadowView.swift in Sources */,
 				12AA39441F57840300555493 /* MainTableViewCell.swift in Sources */,
 				128ABA011F58C44F003ADAC7 /* CoreDataTableViewController.swift in Sources */,
 			);

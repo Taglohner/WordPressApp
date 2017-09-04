@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,40 +14,40 @@
         <scene sceneID="ZyH-FM-AOa">
             <objects>
                 <tableViewController id="eoW-NI-feU" customClass="MainTableViewController" customModule="WordPressBlogApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="222" sectionHeaderHeight="28" sectionFooterHeight="28" id="NZN-nF-Rv9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="239" sectionHeaderHeight="28" sectionFooterHeight="28" id="NZN-nF-Rv9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="mainTableViewCell" textLabel="Z5E-gQ-SbH" detailTextLabel="u5Y-UW-WhO" imageView="UHT-gk-4mz" rowHeight="222" style="IBUITableViewCellStyleSubtitle" id="PHJ-ip-P5J" customClass="MainTableViewCell" customModule="WordPressBlogApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="222"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="mainTableViewCell" rowHeight="239" id="PHJ-ip-P5J" customClass="MainTableViewCell" customModule="WordPressBlogApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="239"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PHJ-ip-P5J" id="x3l-wP-79Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="221.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="238.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title teste" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z5E-gQ-SbH">
-                                            <rect key="frame" x="130" y="94" width="76" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u5Y-UW-WhO">
-                                            <rect key="frame" x="130" y="114.5" width="44" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="placeholder" id="UHT-gk-4mz">
-                                            <rect key="frame" x="15" y="38" width="100" height="144"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ocx-xP-rTh" customClass="ShadowView" customModule="WordPressBlogApp" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="8" width="359" height="223"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwc-2Y-tfz">
+                                            <rect key="frame" x="8" y="9" width="359" height="223"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="pwc-2Y-tfz" secondAttribute="bottom" constant="-1.5" id="U0c-px-Ida"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ocx-xP-rTh" secondAttribute="trailing" id="XEd-4L-Idu"/>
+                                        <constraint firstItem="Ocx-xP-rTh" firstAttribute="leading" secondItem="x3l-wP-79Z" secondAttribute="leadingMargin" id="asp-1h-KsM"/>
+                                        <constraint firstItem="Ocx-xP-rTh" firstAttribute="top" secondItem="x3l-wP-79Z" secondAttribute="topMargin" id="cNk-2G-HwJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ocx-xP-rTh" secondAttribute="bottom" id="kB3-Pk-sfL"/>
+                                        <constraint firstItem="Ocx-xP-rTh" firstAttribute="trailing" secondItem="pwc-2Y-tfz" secondAttribute="trailing" id="sk9-Je-AKW"/>
+                                        <constraint firstItem="Ocx-xP-rTh" firstAttribute="leading" secondItem="pwc-2Y-tfz" secondAttribute="leading" id="uN7-hG-9Ls"/>
+                                        <constraint firstItem="pwc-2Y-tfz" firstAttribute="top" secondItem="x3l-wP-79Z" secondAttribute="topMargin" constant="1" id="yJJ-Qx-l1D"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="cellImage" destination="UHT-gk-4mz" id="GIz-fU-2eU"/>
+                                    <outlet property="mainLayout" destination="pwc-2Y-tfz" id="07c-HT-kIl"/>
+                                    <outlet property="shadowLayout" destination="Ocx-xP-rTh" id="f35-gi-5lz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -55,12 +56,14 @@
                             <outlet property="delegate" destination="eoW-NI-feU" id="zSh-jA-Irz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="U6K-id-8iV"/>
+                    <navigationItem key="navigationItem" id="U6K-id-8iV">
+                        <nil key="title"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHy-pi-NjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697" y="125"/>
+            <point key="canvasLocation" x="696.79999999999995" y="124.58770614692655"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="HLc-x9-Ylu">
@@ -89,7 +92,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tsx-Vo-NbQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="d7B-kK-add">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="d7B-kK-add">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -107,7 +110,4 @@
             <point key="canvasLocation" x="-100" y="125"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="placeholder" width="100" height="144"/>
-    </resources>
 </document>

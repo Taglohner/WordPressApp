@@ -13,6 +13,7 @@ class MainTableViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         clearData()
         getNewPosts()
         
@@ -21,6 +22,7 @@ class MainTableViewController: CoreDataTableViewController {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: nil, cacheName: nil)
     }
+
     
     // MARK: - TableView Data Source
     
@@ -28,16 +30,21 @@ class MainTableViewController: CoreDataTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainTableViewCell", for: indexPath) as! MainTableViewCell
         
         if let post = fetchedResultsController?.object(at: indexPath) as? Post {
-            if post.featuredImage == nil {
-                cell.cellImage.image = UIImage(named: "placeholder")
-            } else {
-                DispatchQueue.main.async {
-                    cell.cellImage.image = UIImage(data: post.featuredImage!)
-                }
-            }
-            cell.textLabel?.text = post.title
-            cell.detailTextLabel?.text = post.excerpt
+            
+//            if post.featuredImage == nil {
+//                cell.cellImage.image = UIImage(named: "placeholder")
+//            } else {
+//                DispatchQueue.main.async {
+//                    cell.cellImage.image = UIImage(data: post.featuredImage!)
+//                }
+//            }
+//            cell.textLabel?.text = post.title
+//            cell.detailTextLabel?.text = post.excerpt
         }
+        
+        
+        cell.configureCellLayout()
+        
         return cell
     }
     
@@ -131,4 +138,8 @@ class MainTableViewController: CoreDataTableViewController {
         }
     }
     
+    
+    
 }
+
+
