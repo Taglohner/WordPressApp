@@ -14,18 +14,24 @@ class WebViewController: UIViewController, WKUIDelegate {
     //MARK: Properties
     
     @IBOutlet weak var actionButton: UIBarButtonItem!
-    var pageURL = String()
+    var postID = Int32()
     var webView: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /* Configure UI */
+        
         self.navigationController?.navigationBar.tintColor = .orange
         actionButton.tintColor = .orange
+        
+        webRequest()
     }
-    
+
     func webRequest() {
-        let requestURL = URL(string: pageURL)
+        
+        let postURL = "http://52.32.244.193/?p=\(postID)"
+        let requestURL = URL(string: postURL)
         let request = URLRequest(url: requestURL!)
         webView.load(request)
     }

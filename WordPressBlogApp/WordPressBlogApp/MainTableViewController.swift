@@ -17,6 +17,12 @@ class MainTableViewController: CoreDataTableViewController {
         clearData()
         getNewPosts()
         
+        
+        /* UI Configuration */
+        
+        self.tableView.separatorColor = .white
+        
+        
         /* creates a fetch request */
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
@@ -31,19 +37,17 @@ class MainTableViewController: CoreDataTableViewController {
         
         if let post = fetchedResultsController?.object(at: indexPath) as? Post {
             
-//            if post.featuredImage == nil {
-//                cell.cellImage.image = UIImage(named: "placeholder")
-//            } else {
-//                DispatchQueue.main.async {
-//                    cell.cellImage.image = UIImage(data: post.featuredImage!)
-//                }
-//            }
-//            cell.textLabel?.text = post.title
-//            cell.detailTextLabel?.text = post.excerpt
+            if post.featuredImage == nil {
+                cell.postImage.image = UIImage(named: "placeholder")
+            } else {
+                DispatchQueue.main.async {
+                    cell.postImage.image = UIImage(data: post.featuredImage!)
+                }
+            }
+            cell.configureCellLayout(post: post)
         }
         
         
-        cell.configureCellLayout()
         
         return cell
     }
@@ -53,10 +57,8 @@ class MainTableViewController: CoreDataTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedPost = fetchedResultsController?.object(at: indexPath) as! Post
-        
-        print(selectedPost.link ?? "no link found")
-        
         let destinationViewController = self.storyboard!.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        destinationViewController.postID = selectedPost.id
         self.navigationController!.pushViewController(destinationViewController, animated: true)
         
     }

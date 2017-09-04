@@ -8,28 +8,49 @@
 
 import UIKit
 
+
 class MainTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainLayout: UIView!
     @IBOutlet weak var shadowLayout: UIView!
+    @IBOutlet weak var postImage: UIImageView!
+    @IBOutlet weak var postTitle: UITextView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
 
-    func configureCellLayout() {
+    func configureCellLayout(post: Post) {
         
+        postTitle.text = post.title
+        postTitle.isEditable = false
+        postTitle.isSelectable = false
+        postTitle.isScrollEnabled = false
+        postTitle.isPagingEnabled = false
+        
+        self.selectionStyle = .none
         self.mainLayout.layer.cornerRadius = 8
         self.mainLayout.layer.masksToBounds = false
         self.shadowLayout.layer.cornerRadius = 8
         self.shadowLayout.layer.masksToBounds = false
+        
+        postImage.clipsToBounds = true
+        postImage.contentMode = .scaleAspectFill
+        postImage.layer.cornerRadius = 8
+    
     }
-}
 
+    
+    
+    
+    
+    
+}

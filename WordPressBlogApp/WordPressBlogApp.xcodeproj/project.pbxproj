@@ -177,8 +177,8 @@
 				128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */,
 				1212E1801F5CFEF600295122 /* ShadowView.swift */,
 				12AA393D1F57804700555493 /* MainTableViewController.swift */,
-				129F9F371F5C329700778395 /* WebViewController.swift */,
 				12AA39431F57840300555493 /* MainTableViewCell.swift */,
+				129F9F371F5C329700778395 /* WebViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
