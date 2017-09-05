@@ -25,16 +25,18 @@ class MainTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        
     }
 
     func configureCellLayout(post: Post) {
         
         postTitle.text = post.title
+        postTitle.font = UIFont(name: "Oxygen-Regular", size: 16)
         postTitle.isEditable = false
         postTitle.isSelectable = false
         postTitle.isScrollEnabled = false
         postTitle.isPagingEnabled = false
+        postTitle.textAlignment = .natural
+        postTitle.backgroundColor = .white
         
         self.selectionStyle = .none
         self.mainLayout.layer.cornerRadius = 8
@@ -45,7 +47,6 @@ class MainTableViewCell: UITableViewCell {
         postImage.clipsToBounds = true
         postImage.contentMode = .scaleAspectFill
         postImage.layer.cornerRadius = 8
-    
     }
 
     

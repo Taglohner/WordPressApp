@@ -6,6 +6,9 @@
 	<array>
 		<string>podkova-bold.ttf</string>
 		<string>podkova-regular.ttf</string>
+		<string>Oxygen-Light.ttf</string>
+		<string>Oxygen-Bold.ttf</string>
+		<string>Oxygen-Regular.ttf</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -18,7 +21,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>en_GB</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

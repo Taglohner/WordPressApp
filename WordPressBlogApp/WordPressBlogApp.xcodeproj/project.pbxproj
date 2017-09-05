@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1212E1811F5CFEF600295122 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212E1801F5CFEF600295122 /* ShadowView.swift */; };
+		1212E1861F5E0F1300295122 /* Oxygen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1212E1831F5E0E5400295122 /* Oxygen-Bold.ttf */; };
+		1212E1871F5E0F1700295122 /* Oxygen-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1212E1841F5E0E5400295122 /* Oxygen-Light.ttf */; };
+		1212E1881F5E0F1A00295122 /* Oxygen-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */; };
 		1241811E1F5C82C500C87B48 /* podkova-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811C1F5C826C00C87B48 /* podkova-bold.ttf */; };
 		1241811F1F5C82CC00C87B48 /* podkova-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811D1F5C826C00C87B48 /* podkova-regular.ttf */; };
 		1267E8671F5B41BF00A890E2 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1267E8651F5B41BF00A890E2 /* Post+CoreDataClass.swift */; };
@@ -48,6 +51,9 @@
 
 /* Begin PBXFileReference section */
 		1212E1801F5CFEF600295122 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		1212E1831F5E0E5400295122 /* Oxygen-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Bold.ttf"; sourceTree = "<group>"; };
+		1212E1841F5E0E5400295122 /* Oxygen-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Light.ttf"; sourceTree = "<group>"; };
+		1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Regular.ttf"; sourceTree = "<group>"; };
 		1241811C1F5C826C00C87B48 /* podkova-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-bold.ttf"; sourceTree = "<group>"; };
 		1241811D1F5C826C00C87B48 /* podkova-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-regular.ttf"; sourceTree = "<group>"; };
 		1267E8651F5B41BF00A890E2 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Post+CoreDataClass.swift"; path = "../Post+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -100,9 +106,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1212E1821F5E093400295122 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1212E1801F5CFEF600295122 /* ShadowView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		124181191F5C823600C87B48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1212E1831F5E0E5400295122 /* Oxygen-Bold.ttf */,
+				1212E1841F5E0E5400295122 /* Oxygen-Light.ttf */,
+				1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */,
 				1241811C1F5C826C00C87B48 /* podkova-bold.ttf */,
 				1241811D1F5C826C00C87B48 /* podkova-regular.ttf */,
 			);
@@ -134,6 +151,7 @@
 			children = (
 				124181191F5C823600C87B48 /* Resources */,
 				536BA8291F58142600DEB552 /* Model */,
+				1212E1821F5E093400295122 /* View */,
 				12AA393C1F577E6E00555493 /* Controllers */,
 				12A5CD8E1F561AF600B98638 /* Main.storyboard */,
 				12A5CD8A1F561AF600B98638 /* AppDelegate.swift */,
@@ -175,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */,
-				1212E1801F5CFEF600295122 /* ShadowView.swift */,
 				12AA393D1F57804700555493 /* MainTableViewController.swift */,
 				12AA39431F57840300555493 /* MainTableViewCell.swift */,
 				129F9F371F5C329700778395 /* WebViewController.swift */,
@@ -314,11 +331,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1212E1871F5E0F1700295122 /* Oxygen-Light.ttf in Resources */,
 				12A5CD951F561AF600B98638 /* LaunchScreen.storyboard in Resources */,
 				12A5CD921F561AF600B98638 /* Assets.xcassets in Resources */,
 				1241811F1F5C82CC00C87B48 /* podkova-regular.ttf in Resources */,
+				1212E1861F5E0F1300295122 /* Oxygen-Bold.ttf in Resources */,
 				1241811E1F5C82C500C87B48 /* podkova-bold.ttf in Resources */,
 				12A5CD901F561AF600B98638 /* Main.storyboard in Resources */,
+				1212E1881F5E0F1A00295122 /* Oxygen-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

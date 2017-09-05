@@ -27,7 +27,7 @@ class WebViewController: UIViewController, WKUIDelegate {
         
         webRequest()
     }
-
+    
     func webRequest() {
         
         let postURL = "http://52.32.244.193/?p=\(postID)"

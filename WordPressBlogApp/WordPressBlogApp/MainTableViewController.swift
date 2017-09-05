@@ -17,11 +17,9 @@ class MainTableViewController: CoreDataTableViewController {
         clearData()
         getNewPosts()
         
-        
         /* UI Configuration */
         
         self.tableView.separatorColor = .white
-        
         
         /* creates a fetch request */
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
@@ -46,9 +44,6 @@ class MainTableViewController: CoreDataTableViewController {
             }
             cell.configureCellLayout(post: post)
         }
-        
-        
-        
         return cell
     }
     

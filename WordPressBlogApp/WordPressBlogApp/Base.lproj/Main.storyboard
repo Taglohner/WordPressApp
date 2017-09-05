@@ -23,24 +23,21 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="239"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PHJ-ip-P5J" id="x3l-wP-79Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="239"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="238.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ocx-xP-rTh" customClass="ShadowView" customModule="WordPressBlogApp" customModuleProvider="target">
                                             <rect key="frame" x="8" y="8" width="359" height="223"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwc-2Y-tfz">
-                                            <rect key="frame" x="8" y="9" width="359" height="223"/>
+                                            <rect key="frame" x="8" y="8" width="359" height="224"/>
                                             <subviews>
                                                 <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xdv-gX-tPk">
-                                                    <rect key="frame" x="8" y="8" width="343" height="142"/>
+                                                    <rect key="frame" x="6" y="6" width="347" height="128"/>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ej4-Wg-Eoh">
-                                                    <rect key="frame" x="8" y="154" width="343" height="61"/>
+                                                    <rect key="frame" x="6" y="134" width="347" height="84"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="61" id="dSf-j7-Zoy"/>
-                                                    </constraints>
                                                     <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -48,16 +45,14 @@
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="ej4-Wg-Eoh" secondAttribute="bottom" constant="8" id="IUC-hd-Ng2"/>
-                                                <constraint firstAttribute="trailing" secondItem="ej4-Wg-Eoh" secondAttribute="trailing" constant="8" id="LvE-Di-RB9"/>
-                                                <constraint firstItem="xdv-gX-tPk" firstAttribute="top" secondItem="pwc-2Y-tfz" secondAttribute="top" constant="8" id="SWr-Df-JIs"/>
-                                                <constraint firstItem="ej4-Wg-Eoh" firstAttribute="top" secondItem="xdv-gX-tPk" secondAttribute="bottom" constant="4" id="T7Q-z5-h6C"/>
-                                                <constraint firstItem="xdv-gX-tPk" firstAttribute="leading" secondItem="pwc-2Y-tfz" secondAttribute="leading" constant="8" id="kik-NP-JEB"/>
-                                                <constraint firstAttribute="trailing" secondItem="xdv-gX-tPk" secondAttribute="trailing" constant="8" id="mIi-7y-NMf"/>
-                                                <constraint firstItem="ej4-Wg-Eoh" firstAttribute="trailing" secondItem="xdv-gX-tPk" secondAttribute="trailing" id="vS1-qd-kf0"/>
-                                                <constraint firstItem="ej4-Wg-Eoh" firstAttribute="bottom" secondItem="pwc-2Y-tfz" secondAttribute="bottomMargin" id="vjL-ea-peS"/>
-                                                <constraint firstItem="ej4-Wg-Eoh" firstAttribute="leading" secondItem="pwc-2Y-tfz" secondAttribute="leading" constant="8" id="wTf-XH-HnH"/>
-                                                <constraint firstItem="ej4-Wg-Eoh" firstAttribute="leading" secondItem="xdv-gX-tPk" secondAttribute="leading" id="xjs-xY-pEe"/>
+                                                <constraint firstAttribute="bottom" secondItem="ej4-Wg-Eoh" secondAttribute="bottom" constant="6" id="1gS-Iy-Hor"/>
+                                                <constraint firstItem="xdv-gX-tPk" firstAttribute="top" secondItem="pwc-2Y-tfz" secondAttribute="top" constant="6" id="4hi-St-r5M"/>
+                                                <constraint firstAttribute="bottom" secondItem="xdv-gX-tPk" secondAttribute="bottom" constant="90" id="9bj-p9-a39"/>
+                                                <constraint firstItem="xdv-gX-tPk" firstAttribute="leading" secondItem="pwc-2Y-tfz" secondAttribute="leading" constant="6" id="Kwo-DW-scC"/>
+                                                <constraint firstItem="ej4-Wg-Eoh" firstAttribute="leading" secondItem="pwc-2Y-tfz" secondAttribute="leading" constant="6" id="OaY-iX-Qno"/>
+                                                <constraint firstItem="ej4-Wg-Eoh" firstAttribute="top" secondItem="xdv-gX-tPk" secondAttribute="bottom" id="Qws-Fx-cVa"/>
+                                                <constraint firstAttribute="trailing" secondItem="ej4-Wg-Eoh" secondAttribute="trailing" constant="6" id="bT9-6d-mDV"/>
+                                                <constraint firstAttribute="trailing" secondItem="xdv-gX-tPk" secondAttribute="trailing" constant="6" id="qBD-gO-arY"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -69,7 +64,7 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="Ocx-xP-rTh" secondAttribute="bottom" id="kB3-Pk-sfL"/>
                                         <constraint firstItem="Ocx-xP-rTh" firstAttribute="trailing" secondItem="pwc-2Y-tfz" secondAttribute="trailing" id="sk9-Je-AKW"/>
                                         <constraint firstItem="Ocx-xP-rTh" firstAttribute="leading" secondItem="pwc-2Y-tfz" secondAttribute="leading" id="uN7-hG-9Ls"/>
-                                        <constraint firstItem="pwc-2Y-tfz" firstAttribute="top" secondItem="x3l-wP-79Z" secondAttribute="topMargin" constant="1" id="yJJ-Qx-l1D"/>
+                                        <constraint firstItem="pwc-2Y-tfz" firstAttribute="top" secondItem="x3l-wP-79Z" secondAttribute="topMargin" id="yJJ-Qx-l1D"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
