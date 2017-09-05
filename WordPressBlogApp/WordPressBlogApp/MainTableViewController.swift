@@ -8,8 +8,13 @@
 
 import UIKit
 import CoreData
+import Reachability
 
 class MainTableViewController: CoreDataTableViewController {
+    
+    //MARK: Properties
+    
+    let reachability = Reachability()!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +54,22 @@ class MainTableViewController: CoreDataTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
+        do{
+            try reachability.startNotifier()
+        }catch{
+            print("could not start reachability notifier")
+        }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        reachability.stopNotifier()
+        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: reachability)
+    }
+    
     
     // MARK: Navigation
     
@@ -75,6 +94,17 @@ class MainTableViewController: CoreDataTableViewController {
             case .Error(let error):
                 print(error)
             }
+        }
+    }
+    
+    /* verifies internet connectivity and perform any actions accordingly */
+
+    func reachabilityChanged(note: Notification) {
+        let reachability = note.object as! Reachability
+        if reachability.isReachable {
+            print("Online")
+        } else {
+            print("Internet connection appears to be offline")
         }
     }
     
