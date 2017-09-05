@@ -16,6 +16,7 @@ class MainTableViewController: CoreDataTableViewController {
 
         clearData()
         getNewPosts()
+                
         
         /* UI Configuration */
         
@@ -27,7 +28,6 @@ class MainTableViewController: CoreDataTableViewController {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: nil, cacheName: nil)
     }
 
-    
     // MARK: - TableView Data Source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,6 +45,11 @@ class MainTableViewController: CoreDataTableViewController {
             cell.configureCellLayout(post: post)
         }
         return cell
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
     }
     
     // MARK: Navigation

@@ -13,6 +13,7 @@
 		1212E1881F5E0F1A00295122 /* Oxygen-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */; };
 		1241811E1F5C82C500C87B48 /* podkova-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811C1F5C826C00C87B48 /* podkova-bold.ttf */; };
 		1241811F1F5C82CC00C87B48 /* podkova-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811D1F5C826C00C87B48 /* podkova-regular.ttf */; };
+		125C47361F5F621A00F9069B /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125C47351F5F621A00F9069B /* Reachability.framework */; };
 		1267E8671F5B41BF00A890E2 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1267E8651F5B41BF00A890E2 /* Post+CoreDataClass.swift */; };
 		1267E8681F5B41BF00A890E2 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1267E8661F5B41BF00A890E2 /* Post+CoreDataProperties.swift */; };
 		128ABA011F58C44F003ADAC7 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */; };
@@ -56,6 +57,7 @@
 		1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Regular.ttf"; sourceTree = "<group>"; };
 		1241811C1F5C826C00C87B48 /* podkova-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-bold.ttf"; sourceTree = "<group>"; };
 		1241811D1F5C826C00C87B48 /* podkova-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-regular.ttf"; sourceTree = "<group>"; };
+		125C47351F5F621A00F9069B /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		1267E8651F5B41BF00A890E2 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Post+CoreDataClass.swift"; path = "../Post+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1267E8661F5B41BF00A890E2 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Post+CoreDataProperties.swift"; path = "../Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				125C47361F5F621A00F9069B /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +129,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		125C47341F5F621900F9069B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				125C47351F5F621A00F9069B /* Reachability.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		12A5CD7E1F561AF600B98638 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +144,7 @@
 				12A5CD9E1F561AF600B98638 /* WordPressBlogAppTests */,
 				12A5CDA91F561AF600B98638 /* WordPressBlogAppUITests */,
 				12A5CD881F561AF600B98638 /* Products */,
+				125C47341F5F621900F9069B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -231,6 +243,7 @@
 				12A5CD831F561AF600B98638 /* Sources */,
 				12A5CD841F561AF600B98638 /* Frameworks */,
 				12A5CD851F561AF600B98638 /* Resources */,
+				125C47371F5F622300F9069B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -357,6 +370,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		125C47371F5F622300F9069B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		12A5CD831F561AF600B98638 /* Sources */ = {
@@ -530,6 +560,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SXU3FLSZ5B;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = WordPressBlogApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = steven.taglohner.WordPressBlogApp;
@@ -543,6 +577,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SXU3FLSZ5B;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = WordPressBlogApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = steven.taglohner.WordPressBlogApp;
