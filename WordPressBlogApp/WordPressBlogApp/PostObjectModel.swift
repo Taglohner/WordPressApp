@@ -86,8 +86,8 @@ extension PostObject {
         guard let imageSizes = mediaDetails["sizes"] as? [String:Any] else {
             throw SerializationError.missing("sizes")
         }
-        guard let mediumSizeImage = imageSizes["medium"] as? [String:Any] else {
-            throw SerializationError.missing("medium")
+        guard let mediumSizeImage = imageSizes["large"] as? [String:Any] else {
+            throw SerializationError.missing("large")
         }
         
         guard let featuredImageURL = mediumSizeImage["source_url"] as? String else {

@@ -44,7 +44,12 @@ class WebViewController: UIViewController, WKUIDelegate {
     }
     
     @IBAction func sharePost(_ sender: UIBarButtonItem) {
-        
+        let postURL = "http://52.32.244.193/?p=\(postID)"
+        if let shareURL = URL(string: postURL) {
+            let objectToShare = [shareURL]
+            let activityViewController = UIActivityViewController(activityItems: objectToShare, applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
+        }
     }
     
     

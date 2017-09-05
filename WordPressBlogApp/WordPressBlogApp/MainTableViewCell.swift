@@ -48,10 +48,5 @@ class MainTableViewCell: UITableViewCell {
         postImage.contentMode = .scaleAspectFill
         postImage.layer.cornerRadius = 8
     }
-
-    
-    
-    
-    
-    
+ 
 }
