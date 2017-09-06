@@ -30,7 +30,7 @@ class WebViewController: UIViewController, WKUIDelegate {
     
     func webRequest() {
         
-        let postURL = "http://52.32.244.193/?p=\(postID)"
+        let postURL = "http://52.32.244.193/?p=\(postID)&content-only=1&css=1"
         let requestURL = URL(string: postURL)
         let request = URLRequest(url: requestURL!)
         webView.load(request)

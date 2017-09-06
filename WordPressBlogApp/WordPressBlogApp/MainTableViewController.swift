@@ -19,8 +19,7 @@ class MainTableViewController: CoreDataTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        clearData()
-        getNewPosts()
+        updateData()
         
         /* UI Configuration */
         
@@ -94,14 +93,35 @@ class MainTableViewController: CoreDataTableViewController {
         }
     }
     
-    /* verifies internet connectivity and perform any actions accordingly */
+    /* observe the internet connectivity */
     func reachabilityChanged(note: Notification) {
         let reachability = note.object as! Reachability
         if reachability.isReachable {
             print("Online")
-            
         } else {
             print("Internet connection appears to be offline")
+        }
+    }
+
+    func updateData() {
+        
+        reachability.whenReachable = { reachability in
+            DispatchQueue.main.async {
+                if reachability.isReachable {
+                    self.clearData()
+                    self.getNewPosts()
+                }
+            }
+        }
+        reachability.whenUnreachable = { reachability in
+            DispatchQueue.main.async {
+                print("Internet is not reachable")
+            }
+        }
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
         }
     }
     
