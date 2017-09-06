@@ -16,7 +16,6 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var postTitle: UITextView!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         

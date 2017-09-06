@@ -18,10 +18,9 @@ class MainTableViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         clearData()
         getNewPosts()
-                
         
         /* UI Configuration */
         
@@ -70,7 +69,6 @@ class MainTableViewController: CoreDataTableViewController {
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: reachability)
     }
     
-    
     // MARK: Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -85,7 +83,6 @@ class MainTableViewController: CoreDataTableViewController {
     // MARK: Supporing methods
     
     /* perform a network task and fetch for new posts, save into CoreData */
-    
     func getNewPosts() {
         RequestWordPressData.sharedInstance().getPostsFromWordPress { (result) in
             switch result {
@@ -98,11 +95,11 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     /* verifies internet connectivity and perform any actions accordingly */
-
     func reachabilityChanged(note: Notification) {
         let reachability = note.object as! Reachability
         if reachability.isReachable {
             print("Online")
+            
         } else {
             print("Internet connection appears to be offline")
         }
