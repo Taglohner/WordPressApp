@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="239"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PHJ-ip-P5J" id="x3l-wP-79Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="238.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="239"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ocx-xP-rTh" customClass="ShadowView" customModule="WordPressBlogApp" customModuleProvider="target">
@@ -83,12 +83,17 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="U6K-id-8iV">
                         <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="g9d-ao-9wj" customClass="LogoView" customModule="WordPressBlogApp" customModuleProvider="target">
+                            <rect key="frame" x="100" y="5.5" width="175" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHy-pi-NjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="687" y="116"/>
+            <point key="canvasLocation" x="831" y="116"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="HLc-x9-Ylu">
@@ -109,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3RB-89-FTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1374" y="116"/>
+            <point key="canvasLocation" x="1335" y="116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jf8-6f-WG4">
@@ -131,7 +136,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RrH-fX-tSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="195" y="116"/>
+            <point key="canvasLocation" x="162" y="116"/>
         </scene>
     </scenes>
 </document>

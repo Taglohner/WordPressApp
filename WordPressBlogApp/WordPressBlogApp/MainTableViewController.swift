@@ -29,6 +29,8 @@ class MainTableViewController: CoreDataTableViewController {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: nil, cacheName: nil)
+        
+
     }
 
     // MARK: - TableView Data Source
@@ -37,7 +39,6 @@ class MainTableViewController: CoreDataTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainTableViewCell", for: indexPath) as! MainTableViewCell
         
         if let post = fetchedResultsController?.object(at: indexPath) as? Post {
-            
             if post.featuredImage == nil {
                 cell.postImage.image = UIImage(named: "placeholder")
             } else {
@@ -49,6 +50,14 @@ class MainTableViewController: CoreDataTableViewController {
         }
         return cell
     }
+    
+    /*  PENDING IMPLEMENTATION */
+    
+//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        
+//        
+//
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -81,7 +90,7 @@ class MainTableViewController: CoreDataTableViewController {
     
     // MARK: Supporing methods
     
-    /* perform a network task and fetch for new posts, save into CoreData */
+    /* get new posts from WordPress */
     func getNewPosts() {
         RequestWordPressData.sharedInstance().getPostsFromWordPress { (result) in
             switch result {
@@ -102,9 +111,9 @@ class MainTableViewController: CoreDataTableViewController {
             print("Internet connection appears to be offline")
         }
     }
-
+    
+    /* update data based on internet availability */
     func updateData() {
-        
         reachability.whenReachable = { reachability in
             DispatchQueue.main.async {
                 if reachability.isReachable {
@@ -160,6 +169,7 @@ class MainTableViewController: CoreDataTableViewController {
         return nil
     }
     
+    /* save objects to core data after converting to a managed onject */
     private func saveInCoreDataWith(array: [PostObject]) {
         for object in array {
             
@@ -168,6 +178,7 @@ class MainTableViewController: CoreDataTableViewController {
         }
     }
     
+    /* clear the data base data */
     private func clearData() {
         do {
             let context = AppDelegate.stack.context
@@ -186,9 +197,6 @@ class MainTableViewController: CoreDataTableViewController {
             print("ERROR DELETING : \(error)")
         }
     }
-    
-    
-    
 }
 
 
