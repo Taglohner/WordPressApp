@@ -19,10 +19,4 @@ struct WordPressURL {
         static let Page = "page"
         static let PerPage = "per_page"
     }
-    
-    struct WordPressParameterValues {
-        
-        static let Page = "1"
-        static let PerPage = "4"
-    }
 }

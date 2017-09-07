@@ -1,5 +1,5 @@
 //
-//  StyleKit.swift
+//  SwiftPadawanLogo.swift
 //
 //  Created on 9/7/17.
 //
@@ -9,14 +9,9 @@
 
 import UIKit
 
-
-
 class StyleKit: NSObject {
     
-    
     //MARK: - Canvas Drawings
-    
-    /// Page 1
     
     class func drawSwiftPadawanLogo(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 147, height: 24), resizing: ResizingBehavior = .aspectFit) {
         /// General Declarations
@@ -46,10 +41,7 @@ class StyleKit: NSObject {
         context.restoreGState()
     }
     
-    
     //MARK: - Canvas Images
-    
-    /// Page 1
     
     class func imageOfSwiftPadawanLogo() -> UIImage {
         struct LocalCache {
@@ -108,6 +100,4 @@ class StyleKit: NSObject {
             return result
         }
     }
-    
-    
 }

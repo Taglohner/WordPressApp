@@ -13,11 +13,10 @@
 		1212E1881F5E0F1A00295122 /* Oxygen-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */; };
 		121D99F71F609F1B00955CA9 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121D99F51F609F1B00955CA9 /* Post+CoreDataClass.swift */; };
 		121D99F81F609F1B00955CA9 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121D99F61F609F1B00955CA9 /* Post+CoreDataProperties.swift */; };
-		121D99FC1F60CA9800955CA9 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121D99FB1F60CA9800955CA9 /* StyleKit.swift */; };
+		121D99FC1F60CA9800955CA9 /* SwiftPadawanLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121D99FB1F60CA9800955CA9 /* SwiftPadawanLogo.swift */; };
 		1241811E1F5C82C500C87B48 /* podkova-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811C1F5C826C00C87B48 /* podkova-bold.ttf */; };
 		1241811F1F5C82CC00C87B48 /* podkova-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811D1F5C826C00C87B48 /* podkova-regular.ttf */; };
 		125C47361F5F621A00F9069B /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125C47351F5F621A00F9069B /* Reachability.framework */; };
-		125C47391F5F699A00F9069B /* NetworkStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125C47381F5F699A00F9069B /* NetworkStatusView.swift */; };
 		128ABA011F58C44F003ADAC7 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */; };
 		129F9F381F5C329700778395 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F9F371F5C329700778395 /* WebViewController.swift */; };
 		12A5CD8B1F561AF600B98638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CD8A1F561AF600B98638 /* AppDelegate.swift */; };
@@ -59,11 +58,10 @@
 		1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Regular.ttf"; sourceTree = "<group>"; };
 		121D99F51F609F1B00955CA9 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Post+CoreDataClass.swift"; path = "../Post+CoreDataClass.swift"; sourceTree = "<group>"; };
 		121D99F61F609F1B00955CA9 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Post+CoreDataProperties.swift"; path = "../Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		121D99FB1F60CA9800955CA9 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
+		121D99FB1F60CA9800955CA9 /* SwiftPadawanLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPadawanLogo.swift; sourceTree = "<group>"; };
 		1241811C1F5C826C00C87B48 /* podkova-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-bold.ttf"; sourceTree = "<group>"; };
 		1241811D1F5C826C00C87B48 /* podkova-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-regular.ttf"; sourceTree = "<group>"; };
 		125C47351F5F621A00F9069B /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
-		125C47381F5F699A00F9069B /* NetworkStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkStatusView.swift; sourceTree = "<group>"; };
 		128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		129F9F371F5C329700778395 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		12A5CD871F561AF600B98638 /* WordPressBlogApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressBlogApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +114,7 @@
 		1212E1821F5E093400295122 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				121D99FB1F60CA9800955CA9 /* SwiftPadawanLogo.swift */,
 				1212E1801F5CFEF600295122 /* ShadowView.swift */,
 			);
 			name = View;
@@ -124,6 +123,11 @@
 		124181191F5C823600C87B48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				12A5CD8A1F561AF600B98638 /* AppDelegate.swift */,
+				12A5CD8E1F561AF600B98638 /* Main.storyboard */,
+				12A5CD911F561AF600B98638 /* Assets.xcassets */,
+				12A5CD961F561AF600B98638 /* Info.plist */,
+				12A5CD931F561AF600B98638 /* LaunchScreen.storyboard */,
 				1212E1831F5E0E5400295122 /* Oxygen-Bold.ttf */,
 				1212E1841F5E0E5400295122 /* Oxygen-Light.ttf */,
 				1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */,
@@ -165,15 +169,10 @@
 		12A5CD891F561AF600B98638 /* WordPressBlogApp */ = {
 			isa = PBXGroup;
 			children = (
-				124181191F5C823600C87B48 /* Resources */,
 				536BA8291F58142600DEB552 /* Model */,
 				1212E1821F5E093400295122 /* View */,
 				12AA393C1F577E6E00555493 /* Controllers */,
-				12A5CD8E1F561AF600B98638 /* Main.storyboard */,
-				12A5CD8A1F561AF600B98638 /* AppDelegate.swift */,
-				12A5CD911F561AF600B98638 /* Assets.xcassets */,
-				12A5CD931F561AF600B98638 /* LaunchScreen.storyboard */,
-				12A5CD961F561AF600B98638 /* Info.plist */,
+				124181191F5C823600C87B48 /* Resources */,
 			);
 			path = WordPressBlogApp;
 			sourceTree = "<group>";
@@ -199,6 +198,7 @@
 		12A5CDBC1F563A0100B98638 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				536BA82A1F58144300DEB552 /* PostObjectModel.swift */,
 				12A5CDB81F561C3B00B98638 /* URLConstants.swift */,
 				12A5CDBA1F561C4800B98638 /* APIService.swift */,
 			);
@@ -208,7 +208,6 @@
 		12AA393C1F577E6E00555493 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */,
 				5363B3381F60477500E68633 /* MainView */,
 				5363B3391F60478E00E68633 /* WebView */,
 			);
@@ -218,8 +217,7 @@
 		5363B3381F60477500E68633 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				121D99FB1F60CA9800955CA9 /* StyleKit.swift */,
-				125C47381F5F699A00F9069B /* NetworkStatusView.swift */,
+				128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */,
 				12AA393D1F57804700555493 /* MainTableViewController.swift */,
 				12AA39431F57840300555493 /* MainTableViewCell.swift */,
 			);
@@ -239,8 +237,6 @@
 			children = (
 				536BA8371F58614B00DEB552 /* CoreData */,
 				12A5CDBC1F563A0100B98638 /* Network */,
-				536BA82A1F58144300DEB552 /* PostObjectModel.swift */,
-				536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -248,6 +244,7 @@
 		536BA8371F58614B00DEB552 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */,
 				121D99F51F609F1B00955CA9 /* Post+CoreDataClass.swift */,
 				121D99F61F609F1B00955CA9 /* Post+CoreDataProperties.swift */,
 				536BA8381F58633100DEB552 /* CoreDataStack.swift */,
@@ -417,12 +414,11 @@
 			files = (
 				12A5CD8B1F561AF600B98638 /* AppDelegate.swift in Sources */,
 				121D99F71F609F1B00955CA9 /* Post+CoreDataClass.swift in Sources */,
-				121D99FC1F60CA9800955CA9 /* StyleKit.swift in Sources */,
+				121D99FC1F60CA9800955CA9 /* SwiftPadawanLogo.swift in Sources */,
 				12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */,
 				536BA8391F58633100DEB552 /* CoreDataStack.swift in Sources */,
 				536BA82B1F58144300DEB552 /* PostObjectModel.swift in Sources */,
 				12A5CDB91F561C3B00B98638 /* URLConstants.swift in Sources */,
-				125C47391F5F699A00F9069B /* NetworkStatusView.swift in Sources */,
 				12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */,
 				121D99F81F609F1B00955CA9 /* Post+CoreDataProperties.swift in Sources */,
 				536BA82E1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld in Sources */,

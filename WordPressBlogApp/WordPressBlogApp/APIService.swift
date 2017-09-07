@@ -13,19 +13,22 @@ class RequestWordPressData {
     let session = URLSession.shared
     
     /* get JSON from WordPress */
-    
-    func getPostsFromWordPress(completion: @escaping (Result<[[String : AnyObject]]>) -> Void) {
+    func getPostsFromWordPress(page: Int, numberOfPosts: Int?, completion: @escaping (Result<[[String : AnyObject]]>) -> Void) {
         
-//        let parameters = [
-//            WordPressURL.WordPressParameterKeys.Page : WordPressURL.WordPressParameterValues.Page,
-//            WordPressURL.WordPressParameterKeys.PerPage : WordPressURL.WordPressParameterValues.PerPage
-//            ] as [String : AnyObject]
+        let parameters = [ WordPressURL.WordPressParameterKeys.Page : page,
+                           WordPressURL.WordPressParameterKeys.PerPage : numberOfPosts ?? 10
+                         ] as [String : AnyObject]
         
-        let url = self.URLFromParameters(nil, WordPressURL.Scheme, WordPressURL.Host, WordPressURL.Path)
-        print(url)
+        let url = self.URLFromParameters(parameters, WordPressURL.Scheme, WordPressURL.Host, WordPressURL.Path)
         
-        self.session.dataTask(with: url) { (data, response, error) in
+        session.dataTask(with: url) { (data, response, error) in
             
+            if let httpResponse = response as? HTTPURLResponse {
+                if let numberOfPages = httpResponse.allHeaderFields["X-WP-TotalPages"], let numberOfPosts = httpResponse.allHeaderFields["X-WP-Total"]{
+                    Response.numberOfPages = Int(numberOfPages as! String) ?? 0
+                    Response.numberOfPosts = Int(numberOfPosts as! String) ?? 0
+                }
+            }
             guard error == nil else {
                 return completion(.Error(error!.localizedDescription))
             }
@@ -33,7 +36,6 @@ class RequestWordPressData {
             guard let data = data else {
                 return completion(.Error(error?.localizedDescription ?? "Could not parse data."))
             }
-            
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String : AnyObject]] {
                     completion(.Success(json))
@@ -45,13 +47,13 @@ class RequestWordPressData {
     }
     
     /* get image data from a provided URL */
-    
     func imageDataFrom(_ stringURL: String, completion: @escaping (Result<Data>) -> Void) {
         
         guard let url = NSURL(string: stringURL) else {
             return completion(.Error("Provided URL is invalid"))
         }
-        let request = NSURLRequest(url: url as URL)
+        
+        let request = URLRequest(url: url as URL)
         session.dataTask(with: request as URLRequest) { (data, response, error) in
             
             guard error == nil else {
@@ -73,7 +75,6 @@ class RequestWordPressData {
     }
     
     /* create a URL from parameters */
-    
     func URLFromParameters(_ parameters: [String:AnyObject]?,_ scheme: String,_ host: String,_ path: String) -> URL {
         
         var components = URLComponents()
@@ -90,9 +91,8 @@ class RequestWordPressData {
         }
         return components.url!
     }
-    
+
     /* singleton for the network tasks */
-    
     class func sharedInstance() -> RequestWordPressData {
         struct Singleton {
             static var sharedInstance = RequestWordPressData()

@@ -12,7 +12,6 @@ import WebKit
 class WebViewController: UIViewController, WKUIDelegate {
     
     //MARK: Properties
-    
     @IBOutlet weak var actionButton: UIBarButtonItem!
     var postID = Int()
     var webView: WKWebView!
@@ -20,16 +19,15 @@ class WebViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* Configure UI */
-        
+        /* configure UI */
         self.navigationController?.navigationBar.tintColor = .orange
         actionButton.tintColor = .orange
-        
+
+        /* make the request */
         webRequest()
     }
     
     func webRequest() {
-        
         let postURL = "http://52.32.244.193/?p=\(postID)&content-only=1&css=1"
         let requestURL = URL(string: postURL)
         let request = URLRequest(url: requestURL!)
@@ -51,12 +49,5 @@ class WebViewController: UIViewController, WKUIDelegate {
             self.present(activityViewController, animated: true, completion: nil)
         }
     }
-    
-    
-    
-    
-    
-    
-    
 }
  

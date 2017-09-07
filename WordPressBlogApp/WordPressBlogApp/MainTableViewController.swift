@@ -15,39 +15,52 @@ class MainTableViewController: CoreDataTableViewController {
     //MARK: Properties
     
     let reachability = Reachability()!
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateData()
-        
         /* UI Configuration */
-        
         self.tableView.separatorColor = .white
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
         
         /* creates a fetch request */
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: nil, cacheName: nil)
     }
+    
 
     // MARK: - TableView Data Source
+ 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainTableViewCell", for: indexPath) as! MainTableViewCell
         
         if let post = fetchedResultsController?.object(at: indexPath) as? Post {
             if let postImage = post.featuredImage {
-//                DispatchQueue.main.async {
-                    cell.postImage.image = UIImage(data: postImage)
-//                }
+                
+                cell.postImage.image = UIImage(data: postImage)
+                
             } else {
                 cell.postImage.image = UIImage(named: "placeholder")
             }
             cell.configureCellLayout(post: post)
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let totalItems = fetchedResultsController?.fetchedObjects?.count {
+            
+            let lastItem = totalItems - 4
+            if indexPath.row == lastItem && page < Response.numberOfPages {
+                getPosts(page: page + 1, number: nil)
+                page += 1
+            } else {
+                return
+            }
+        }
     }
     
     /*  PENDING IMPLEMENTATION */
@@ -60,6 +73,8 @@ class MainTableViewController: CoreDataTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        updateData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
         do{
@@ -91,8 +106,8 @@ class MainTableViewController: CoreDataTableViewController {
     // MARK: Supporing methods
     
     /* get new posts from WordPress */
-    func getNewPosts() {
-        RequestWordPressData.sharedInstance().getPostsFromWordPress { (result) in
+    func getPosts(page: Int, number: Int?) {
+        RequestWordPressData.sharedInstance().getPostsFromWordPress(page: page, numberOfPosts: number) { (result) in
             switch result {
             case .Success(let data):
                 self.saveInCoreDataWith(dictionary: data)
@@ -118,7 +133,7 @@ class MainTableViewController: CoreDataTableViewController {
             DispatchQueue.main.async {
                 if reachability.isReachable {
                     self.clearData()
-                    self.getNewPosts()
+                    self.getPosts(page: 1, number: nil)
                 }
             }
         }
@@ -147,7 +162,6 @@ class MainTableViewController: CoreDataTableViewController {
             postEntity.date = object?.date
             postEntity.modified = object?.modified
             postEntity.link = object?.link
-            postEntity.content = object?.content
             postEntity.excerpt = object?.excerpt
             postEntity.featuredImageURL = object?.imageURL
             
