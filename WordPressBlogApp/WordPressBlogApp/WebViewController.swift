@@ -14,7 +14,7 @@ class WebViewController: UIViewController, WKUIDelegate {
     //MARK: Properties
     
     @IBOutlet weak var actionButton: UIBarButtonItem!
-    var postID = Int32()
+    var postID = Int()
     var webView: WKWebView!
 
     override func viewDidLoad() {

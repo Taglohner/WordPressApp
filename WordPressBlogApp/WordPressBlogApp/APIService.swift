@@ -14,14 +14,15 @@ class RequestWordPressData {
     
     /* get JSON from WordPress */
     
-    func getPostsFromWordPress(completion: @escaping (Result<[PostObject]>) -> Void) {
+    func getPostsFromWordPress(completion: @escaping (Result<[[String : AnyObject]]>) -> Void) {
         
-        let parameters = [
-            WordPressURL.WordPressParameterKeys.Page : WordPressURL.WordPressParameterValues.Page,
-            WordPressURL.WordPressParameterKeys.PerPage : WordPressURL.WordPressParameterValues.PerPage
-            ] as [String : AnyObject]
+//        let parameters = [
+//            WordPressURL.WordPressParameterKeys.Page : WordPressURL.WordPressParameterValues.Page,
+//            WordPressURL.WordPressParameterKeys.PerPage : WordPressURL.WordPressParameterValues.PerPage
+//            ] as [String : AnyObject]
         
-        let url = self.URLFromParameters(parameters, WordPressURL.Scheme, WordPressURL.Host, WordPressURL.Path)
+        let url = self.URLFromParameters(nil, WordPressURL.Scheme, WordPressURL.Host, WordPressURL.Path)
+        print(url)
         
         self.session.dataTask(with: url) { (data, response, error) in
             
@@ -34,13 +35,8 @@ class RequestWordPressData {
             }
             
             do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String: AnyObject]] {
-                    var posts = [PostObject]()
-                    for object in json {
-                        let postObject = try PostObject(json: object)
-                        posts.append(postObject)
-                    }
-                    completion(.Success(posts))
+                if let json = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String : AnyObject]] {
+                    completion(.Success(json))
                 }
             } catch let error {
                 completion(.Error(error.localizedDescription))

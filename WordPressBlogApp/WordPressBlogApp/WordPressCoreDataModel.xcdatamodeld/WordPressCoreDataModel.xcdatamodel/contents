@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Post" representedClassName="Post" syncable="YES">
-        <attribute name="content" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="date" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="excerpt" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="excerpt" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="featuredImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="featuredImageURL" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
-        <attribute name="link" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="featuredImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="modified" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <elements>

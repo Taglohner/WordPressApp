@@ -24,13 +24,12 @@ class MainTableViewController: CoreDataTableViewController {
         /* UI Configuration */
         
         self.tableView.separatorColor = .white
+        self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
         
         /* creates a fetch request */
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: nil, cacheName: nil)
-        
-
     }
 
     // MARK: - TableView Data Source
@@ -39,12 +38,12 @@ class MainTableViewController: CoreDataTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainTableViewCell", for: indexPath) as! MainTableViewCell
         
         if let post = fetchedResultsController?.object(at: indexPath) as? Post {
-            if post.featuredImage == nil {
-                cell.postImage.image = UIImage(named: "placeholder")
+            if let postImage = post.featuredImage {
+//                DispatchQueue.main.async {
+                    cell.postImage.image = UIImage(data: postImage)
+//                }
             } else {
-                DispatchQueue.main.async {
-                    cell.postImage.image = UIImage(data: post.featuredImage!)
-                }
+                cell.postImage.image = UIImage(named: "placeholder")
             }
             cell.configureCellLayout(post: post)
         }
@@ -80,12 +79,13 @@ class MainTableViewController: CoreDataTableViewController {
     // MARK: Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let selectedPost = fetchedResultsController?.object(at: indexPath) as! Post
         let destinationViewController = self.storyboard!.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        destinationViewController.postID = selectedPost.id
-        self.navigationController!.pushViewController(destinationViewController, animated: true)
-        
+        if let selectedPost = fetchedResultsController?.object(at: indexPath) as? Post {
+            destinationViewController.postID = Int(selectedPost.id)
+            self.navigationController!.pushViewController(destinationViewController, animated: true)
+        } else {
+            return
+        }
     }
     
     // MARK: Supporing methods
@@ -95,7 +95,7 @@ class MainTableViewController: CoreDataTableViewController {
         RequestWordPressData.sharedInstance().getPostsFromWordPress { (result) in
             switch result {
             case .Success(let data):
-                self.saveInCoreDataWith(array: data)
+                self.saveInCoreDataWith(dictionary: data)
             case .Error(let error):
                 print(error)
             }
@@ -135,26 +135,27 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     /* creates a NSManagedObject from a PostObject */
-    private func createPhotoEntityFrom(object: PostObject) -> NSManagedObject? {
+    private func createPhotoEntityFrom(json: [String : AnyObject]) -> NSManagedObject? {
         let context = AppDelegate.stack.context
         if let postEntity = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context) as? Post {
             
-            postEntity.type = object.type
-            postEntity.id = Int32(object.id)
-            postEntity.title = object.title
-            postEntity.date = object.date
-            postEntity.modified = object.modified
-            postEntity.link = object.link
-            postEntity.content = object.content
-            postEntity.excerpt = object.excerpt
-            postEntity.featuredImageURL = object.imageURL
+            let object = PostObject(json: json)
+            
+            postEntity.type = object?.type
+            postEntity.id = object?.id ?? 1
+            postEntity.title = object?.title
+            postEntity.date = object?.date
+            postEntity.modified = object?.modified
+            postEntity.link = object?.link
+            postEntity.content = object?.content
+            postEntity.excerpt = object?.excerpt
+            postEntity.featuredImageURL = object?.imageURL
             
             if let photoURL = postEntity.featuredImageURL {
                 RequestWordPressData.sharedInstance().imageDataFrom(photoURL) { (result) in
                     
                     switch result {
                     case .Success(let imageData):
-                        
                         DispatchQueue.main.async {
                             postEntity.featuredImage = imageData
                             AppDelegate.stack.save()
@@ -170,10 +171,9 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     /* save objects to core data after converting to a managed onject */
-    private func saveInCoreDataWith(array: [PostObject]) {
-        for object in array {
-            
-            _  = createPhotoEntityFrom(object: object)
+    private func saveInCoreDataWith(dictionary: [[String : AnyObject]]) {
+        for object in dictionary {
+            _  = createPhotoEntityFrom(json: object)
             AppDelegate.stack.save()
         }
     }

@@ -23,17 +23,17 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="239"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PHJ-ip-P5J" id="x3l-wP-79Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="239"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="238.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ocx-xP-rTh" customClass="ShadowView" customModule="WordPressBlogApp" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="8" width="359" height="223"/>
+                                            <rect key="frame" x="8" y="8" width="359" height="222"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwc-2Y-tfz">
                                             <rect key="frame" x="8" y="8" width="359" height="224"/>
                                             <subviews>
                                                 <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xdv-gX-tPk">
-                                                    <rect key="frame" x="6" y="6" width="347" height="128"/>
+                                                    <rect key="frame" x="4" y="4" width="351" height="130"/>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ej4-Wg-Eoh">
                                                     <rect key="frame" x="6" y="134" width="347" height="84"/>
@@ -46,13 +46,13 @@
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="ej4-Wg-Eoh" secondAttribute="bottom" constant="6" id="1gS-Iy-Hor"/>
-                                                <constraint firstItem="xdv-gX-tPk" firstAttribute="top" secondItem="pwc-2Y-tfz" secondAttribute="top" constant="6" id="4hi-St-r5M"/>
+                                                <constraint firstItem="xdv-gX-tPk" firstAttribute="top" secondItem="pwc-2Y-tfz" secondAttribute="top" constant="4" id="4hi-St-r5M"/>
                                                 <constraint firstAttribute="bottom" secondItem="xdv-gX-tPk" secondAttribute="bottom" constant="90" id="9bj-p9-a39"/>
-                                                <constraint firstItem="xdv-gX-tPk" firstAttribute="leading" secondItem="pwc-2Y-tfz" secondAttribute="leading" constant="6" id="Kwo-DW-scC"/>
+                                                <constraint firstItem="xdv-gX-tPk" firstAttribute="leading" secondItem="pwc-2Y-tfz" secondAttribute="leading" constant="4" id="Kwo-DW-scC"/>
                                                 <constraint firstItem="ej4-Wg-Eoh" firstAttribute="leading" secondItem="pwc-2Y-tfz" secondAttribute="leading" constant="6" id="OaY-iX-Qno"/>
                                                 <constraint firstItem="ej4-Wg-Eoh" firstAttribute="top" secondItem="xdv-gX-tPk" secondAttribute="bottom" id="Qws-Fx-cVa"/>
                                                 <constraint firstAttribute="trailing" secondItem="ej4-Wg-Eoh" secondAttribute="trailing" constant="6" id="bT9-6d-mDV"/>
-                                                <constraint firstAttribute="trailing" secondItem="xdv-gX-tPk" secondAttribute="trailing" constant="6" id="qBD-gO-arY"/>
+                                                <constraint firstAttribute="trailing" secondItem="xdv-gX-tPk" secondAttribute="trailing" constant="4" id="qBD-gO-arY"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -81,19 +81,11 @@
                             <outlet property="delegate" destination="eoW-NI-feU" id="zSh-jA-Irz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="U6K-id-8iV">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="g9d-ao-9wj" customClass="LogoView" customModule="WordPressBlogApp" customModuleProvider="target">
-                            <rect key="frame" x="100" y="5.5" width="175" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationItem key="navigationItem" id="U6K-id-8iV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHy-pi-NjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="831" y="116"/>
+            <point key="canvasLocation" x="885.60000000000002" y="115.59220389805098"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="HLc-x9-Ylu">
@@ -107,21 +99,22 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="actionButton" destination="9qc-Bo-OJa" id="0mb-Vv-jVM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3RB-89-FTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1335" y="116"/>
+            <point key="canvasLocation" x="1538" y="116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jf8-6f-WG4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x7Z-Kd-bUe" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="9aL-k6-hzo">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9aL-k6-hzo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
