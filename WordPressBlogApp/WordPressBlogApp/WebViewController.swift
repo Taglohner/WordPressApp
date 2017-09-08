@@ -12,10 +12,13 @@ import WebKit
 class WebViewController: UIViewController, WKUIDelegate {
     
     //MARK: Properties
+    
     @IBOutlet weak var actionButton: UIBarButtonItem!
     var postID = Int()
     var webView: WKWebView!
 
+    //MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,13 +30,13 @@ class WebViewController: UIViewController, WKUIDelegate {
         webRequest()
     }
     
-    func webRequest() {
-        let postURL = "http://52.32.244.193/?p=\(postID)&content-only=1&css=1"
-        let requestURL = URL(string: postURL)
-        let request = URLRequest(url: requestURL!)
-        webView.load(request)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        /* configure UI */
+        self.navigationController?.hidesBarsOnSwipe = true
     }
-
+    
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
@@ -41,6 +44,15 @@ class WebViewController: UIViewController, WKUIDelegate {
         view = webView
     }
     
+    //MARK: Helper methods and actions
+    
+    private func webRequest() {
+        let postURL = "http://52.32.244.193/?p=\(postID)&content-only=1&css=1"
+        let requestURL = URL(string: postURL)
+        let request = URLRequest(url: requestURL!)
+        webView.load(request)
+    }
+
     @IBAction func sharePost(_ sender: UIBarButtonItem) {
         let postURL = "http://52.32.244.193/?p=\(postID)"
         if let shareURL = URL(string: postURL) {

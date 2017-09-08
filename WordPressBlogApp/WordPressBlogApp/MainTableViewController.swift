@@ -17,10 +17,12 @@ class MainTableViewController: CoreDataTableViewController {
     let reachability = Reachability()!
     var page = 1
     
+    //MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* UI Configuration */
+        /* UI configuration */
         self.tableView.separatorColor = .white
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
         
@@ -30,10 +32,32 @@ class MainTableViewController: CoreDataTableViewController {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: nil, cacheName: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        updateData()
+        
+        /* UI configuration */
+        self.navigationController?.hidesBarsOnSwipe = false
+        UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 246, green: 246, blue: 246, alpha: 0.5)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
+        do{
+            try reachability.startNotifier()
+        }catch{
+            print("could not start reachability notifier")
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        reachability.stopNotifier()
+        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: reachability)
+    }
 
     // MARK: - TableView Data Source
  
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainTableViewCell", for: indexPath) as! MainTableViewCell
         
@@ -70,26 +94,6 @@ class MainTableViewController: CoreDataTableViewController {
 //        
 //
 //    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        updateData()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
-        do{
-            try reachability.startNotifier()
-        }catch{
-            print("could not start reachability notifier")
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: reachability)
-    }
     
     // MARK: Navigation
     

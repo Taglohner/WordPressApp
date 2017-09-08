@@ -99,6 +99,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="actionButton" destination="9qc-Bo-OJa" id="0mb-Vv-jVM"/>
@@ -114,7 +115,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x7Z-Kd-bUe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9aL-k6-hzo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9aL-k6-hzo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
