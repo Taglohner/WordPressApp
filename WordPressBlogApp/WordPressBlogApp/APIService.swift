@@ -52,20 +52,16 @@ class RequestWordPressData {
         guard let url = NSURL(string: stringURL) else {
             return completion(.Error("Provided URL is invalid"))
         }
-        
         let request = URLRequest(url: url as URL)
         session.dataTask(with: request as URLRequest) { (data, response, error) in
             
             guard error == nil else {
                 return completion(.Error(error?.localizedDescription ?? "Could not get the image data."))
             }
-            
             guard let data = data else {
                 return completion(.Error(error?.localizedDescription ?? "Invalid image data."))
             }
-            
             completion(.Success(data))
-            
             }.resume()
     }
     

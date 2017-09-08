@@ -99,7 +99,7 @@ internal extension CoreDataStack  {
         try coordinator.destroyPersistentStore(at: dbURL, ofType: NSSQLiteStoreType , options: nil)
         try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: nil)
     }
-} 
+}
 
 // MARK: - CoreDataStack (Batch Processing in the Background)
 
@@ -113,8 +113,6 @@ extension CoreDataStack {
             
             batch(self.backgroundContext)
             
-            // Save it to the parent context, so normal saving
-            // can work
             do {
                 try self.backgroundContext.save()
             } catch {

@@ -39,7 +39,7 @@ class MainTableViewController: CoreDataTableViewController {
         
         /* UI configuration */
         self.navigationController?.hidesBarsOnSwipe = false
-        UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 246, green: 246, blue: 246, alpha: 0.5)
+        UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 246, green: 246, blue: 246, alpha: 0.1)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
         do{
