@@ -30,7 +30,7 @@ class CoreDataTableViewController: UITableViewController {
         fetchedResultsController = fc
         super.init(style: style)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -78,14 +78,6 @@ extension CoreDataTableViewController {
             return fc.section(forSectionIndexTitle: title, at: index)
         } else {
             return 0
-        }
-    }
-    
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        if let fc = fetchedResultsController {
-            return fc.sectionIndexTitles
-        } else {
-            return nil
         }
     }
 }

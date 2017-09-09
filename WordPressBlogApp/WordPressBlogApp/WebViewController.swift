@@ -22,14 +22,18 @@ class WebViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let statWindow = UIApplication.shared.value(forKey:"statusBarWindow") as! UIView
+//        let statusBar = statWindow.subviews[0] as UIView
+        
         /* configure UI */
         self.navigationController?.navigationBar.tintColor = .orange
+  
         actionButton.tintColor = .orange
 
         /* make the request */
         webRequest()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         

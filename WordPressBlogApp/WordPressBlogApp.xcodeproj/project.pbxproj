@@ -17,6 +17,7 @@
 		1241811E1F5C82C500C87B48 /* podkova-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811C1F5C826C00C87B48 /* podkova-bold.ttf */; };
 		1241811F1F5C82CC00C87B48 /* podkova-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811D1F5C826C00C87B48 /* podkova-regular.ttf */; };
 		125C47361F5F621A00F9069B /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125C47351F5F621A00F9069B /* Reachability.framework */; };
+		127F55E01F6377E80071E14F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F55DF1F6377E80071E14F /* Helpers.swift */; };
 		128ABA011F58C44F003ADAC7 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */; };
 		129F9F381F5C329700778395 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F9F371F5C329700778395 /* WebViewController.swift */; };
 		12A5CD8B1F561AF600B98638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CD8A1F561AF600B98638 /* AppDelegate.swift */; };
@@ -63,6 +64,7 @@
 		1241811C1F5C826C00C87B48 /* podkova-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-bold.ttf"; sourceTree = "<group>"; };
 		1241811D1F5C826C00C87B48 /* podkova-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-regular.ttf"; sourceTree = "<group>"; };
 		125C47351F5F621A00F9069B /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
+		127F55DF1F6377E80071E14F /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		129F9F371F5C329700778395 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		12A5CD871F561AF600B98638 /* WordPressBlogApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressBlogApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +225,7 @@
 				128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */,
 				12AA393D1F57804700555493 /* MainTableViewController.swift */,
 				12AA39431F57840300555493 /* MainTableViewCell.swift */,
+				127F55DF1F6377E80071E14F /* Helpers.swift */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */,
 				121D99F81F609F1B00955CA9 /* Post+CoreDataProperties.swift in Sources */,
 				536BA82E1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld in Sources */,
+				127F55E01F6377E80071E14F /* Helpers.swift in Sources */,
 				129F9F381F5C329700778395 /* WebViewController.swift in Sources */,
 				1212E1811F5CFEF600295122 /* ShadowView.swift in Sources */,
 				12AA39441F57840300555493 /* MainTableViewCell.swift in Sources */,

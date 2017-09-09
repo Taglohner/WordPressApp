@@ -25,11 +25,12 @@ class MainTableViewController: CoreDataTableViewController {
         /* UI configuration */
         self.tableView.separatorColor = .white
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
         
         /* creates a fetch request */
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: "date", cacheName: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +40,6 @@ class MainTableViewController: CoreDataTableViewController {
         
         /* UI configuration */
         self.navigationController?.hidesBarsOnSwipe = false
-        UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 249, green: 249, blue: 249, alpha: 1)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
         do{
@@ -55,7 +55,8 @@ class MainTableViewController: CoreDataTableViewController {
         reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: reachability)
     }
-
+    
+    
     // MARK: - TableView Data Source
  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,9 +64,7 @@ class MainTableViewController: CoreDataTableViewController {
         
         if let post = fetchedResultsController?.object(at: indexPath) as? Post {
             if let postImage = post.featuredImage {
-                
                 cell.postImage.image = UIImage(data: postImage)
-                
             } else {
                 cell.postImage.image = UIImage(named: "placeholder")
             }
@@ -76,7 +75,6 @@ class MainTableViewController: CoreDataTableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let totalItems = fetchedResultsController?.fetchedObjects?.count {
-            
             let lastItem = totalItems - 4
             if indexPath.row == lastItem && page < Response.numberOfPages {
                 getPosts(page: page + 1, number: nil)
@@ -87,13 +85,38 @@ class MainTableViewController: CoreDataTableViewController {
         }
     }
     
-    /*  PENDING IMPLEMENTATION */
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 24
+    }
     
-//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        
-//        
-//
-//    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let sectionName = fetchedResultsController?.sections![section].name {
+        
+            /* configure the blur effect */
+            let blurEffect = UIBlurEffect(style: .light)
+            
+            /* creates the blurry view */
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        
+            blurEffectView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 24)
+            blurEffectView.autoresizingMask = .flexibleWidth
+            
+            /* creates the header text label */
+            let headerLabel = UILabel()
+            headerLabel.backgroundColor = .clear
+            headerLabel.frame = blurEffectView.frame
+            headerLabel.autoresizingMask = .flexibleWidth
+            headerLabel.text = sectionName
+            headerLabel.font = UIFont(name: "Oxygen-Light", size: 14)
+            headerLabel.textColor = .orange
+            headerLabel.textAlignment = .center
+            
+            /* add the label to the view */
+            blurEffectView.contentView.addSubview(headerLabel)
+            return blurEffectView
+        }
+        return nil
+    }
     
     // MARK: Navigation
     
@@ -163,11 +186,15 @@ class MainTableViewController: CoreDataTableViewController {
             postEntity.type = object?.type
             postEntity.id = object?.id ?? 1
             postEntity.title = object?.title
-            postEntity.date = object?.date
             postEntity.modified = object?.modified
             postEntity.link = object?.link
             postEntity.excerpt = object?.excerpt
             postEntity.featuredImageURL = object?.imageURL
+            
+            /* converting date format before saving to Core Data */
+            DispatchQueue.main.async {
+                postEntity.date = object?.date.toDateString(inputFormat: "yyyy-MM-dd'T'HH:mm:ss", outputFormat: "EEEE, dd MMMM")
+            }
             
             if let photoURL = postEntity.featuredImageURL {
                 RequestWordPressData.sharedInstance().imageDataFrom(photoURL) { (result) in
