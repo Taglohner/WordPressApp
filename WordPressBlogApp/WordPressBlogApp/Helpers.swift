@@ -20,7 +20,7 @@ extension DateFormatter {
 
 extension String {
     
-    func toDate (format: String) -> Date? {
+    func toDate(format: String) -> Date? {
         return DateFormatter(format: format).date(from: self)
     }
     
@@ -29,13 +29,6 @@ extension String {
             return DateFormatter(format: outputFormat).string(from: date)
         }
         return nil
-    }
-}
-
-extension Date {
-    
-    func toString (format:String) -> String? {
-        return DateFormatter(format: format).string(from: self)
     }
 }
 

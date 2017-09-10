@@ -20,33 +20,14 @@ class WebViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        statusBar()
-        
         /* configure UI */
         self.navigationController?.navigationBar.tintColor = .orange
-        
+        self.navigationController?.hidesBarsOnSwipe = true
+
         /* make the request */
         webRequest()
-        
     }
-    
-    func statusBar() {
-        /* configure the blur effect */
-        let blurEffect = UIBlurEffect(style: .regular)
-        
-        /* creates the blurry view */
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = UIApplication.shared.statusBarFrame
-        blurEffectView.autoresizingMask = .flexibleWidth
-        self.view.addSubview(blurEffectView)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    
-        
-    }
-    
+
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)

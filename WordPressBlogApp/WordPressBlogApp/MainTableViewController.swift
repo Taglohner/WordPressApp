@@ -26,8 +26,15 @@ class MainTableViewController: CoreDataTableViewController {
         self.tableView.separatorColor = .white
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
+        
+        /* creates a UIView to place under the status bar but above the navigation bar */
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = UIApplication.shared.statusBarFrame
+        blurEffectView.autoresizingMask = .flexibleWidth
+        UIApplication.shared.keyWindow?.addSubview(blurEffectView)
 
-        /* creates a fetch request */
+        /* creates a Fetch Request */
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: "date", cacheName: nil)

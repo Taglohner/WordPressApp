@@ -27,7 +27,7 @@ class StyleKit: NSObject {
         UIColor(white: 1, alpha: 0).setFill()
         context.fill(context.boundingBoxOfClipPath)
         
-        /// Swift Padawan.
+        /// Swift Padawan. Logo
         let swiftPadawan = NSMutableAttributedString(string: "Swift Padawan.")
         swiftPadawan.addAttribute(NSFontAttributeName, value: UIFont(name: "Podkova-Bold", size: 22)!, range: NSRange(location: 0, length: swiftPadawan.length))
         swiftPadawan.addAttribute(NSForegroundColorAttributeName, value: UIColor(hue: 0.075, saturation: 0.839, brightness: 0.889, alpha: 1), range: NSRange(location: 13, length: 1))
