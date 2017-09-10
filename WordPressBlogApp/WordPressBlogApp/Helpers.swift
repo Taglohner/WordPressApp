@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension DateFormatter {
     
@@ -35,5 +36,14 @@ extension Date {
     
     func toString (format:String) -> String? {
         return DateFormatter(format: format).string(from: self)
+    }
+}
+
+extension UIImageView {
+    
+    func makeRounded() {
+        let radius = self.frame.size.width / 2
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
     }
 }

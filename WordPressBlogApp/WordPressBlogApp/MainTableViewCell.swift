@@ -14,7 +14,11 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var mainLayout: UIView!
     @IBOutlet weak var shadowLayout: UIView!
     @IBOutlet weak var postImage: UIImageView!
-    @IBOutlet weak var postTitle: UITextView!
+    @IBOutlet weak var authorProfilePicture: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var excerptLabel: UILabel!
+    @IBOutlet weak var bookMark: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,23 +31,38 @@ class MainTableViewCell: UITableViewCell {
 
     func configureCellLayout(post: Post) {
         
-        postTitle.text = post.title
-        postTitle.font = UIFont(name: "Oxygen-Regular", size: 16)
-        postTitle.isEditable = false
-        postTitle.isSelectable = false
-        postTitle.isScrollEnabled = false
-        postTitle.isPagingEnabled = false
-        postTitle.textAlignment = .natural
-        postTitle.backgroundColor = .white
-        
         self.selectionStyle = .none
-        self.mainLayout.layer.cornerRadius = 8
-        self.mainLayout.layer.masksToBounds = false
-        self.shadowLayout.layer.cornerRadius = 8
-        self.shadowLayout.layer.masksToBounds = false
+        
+        titleLabel.text = post.title
+        titleLabel.font = UIFont(name: "Oxygen-Bold", size: 16)
+        titleLabel.numberOfLines = 3
+        titleLabel.textAlignment = .natural
+        
+        excerptLabel.text = post.excerpt
+        excerptLabel.numberOfLines = 4
+        excerptLabel.textAlignment = .natural
+        excerptLabel.font = UIFont(name: "Oxygen-Light", size: 14)
+        
+        authorLabel.font = UIFont(name: "Oxygen-Bold", size: 8)
+        authorLabel.textAlignment = .left
+
+        mainLayout.layer.cornerRadius = 0
+        mainLayout.layer.masksToBounds = false
+        shadowLayout.layer.cornerRadius = 0
+        shadowLayout.layer.masksToBounds = false
         
         postImage.clipsToBounds = true
         postImage.contentMode = .scaleAspectFill
-        postImage.layer.cornerRadius = 8
+        postImage.layer.cornerRadius = 4
+        
+        authorProfilePicture.layer.borderWidth = 0.5
+        authorProfilePicture.layer.borderColor = UIColor.orange.cgColor
+        authorProfilePicture.contentMode = .scaleAspectFill
+        authorProfilePicture.makeRounded()
+        
     }
+    
+    
+    
+    
 }

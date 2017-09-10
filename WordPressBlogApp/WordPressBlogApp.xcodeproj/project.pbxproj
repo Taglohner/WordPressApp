@@ -30,6 +30,7 @@
 		12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CDBA1F561C4800B98638 /* APIService.swift */; };
 		12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA393D1F57804700555493 /* MainTableViewController.swift */; };
 		12AA39441F57840300555493 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA39431F57840300555493 /* MainTableViewCell.swift */; };
+		12B38EBA1F65CAC700417D24 /* StylekitIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B38EB91F65CAC700417D24 /* StylekitIcon.swift */; };
 		5304EF2B1F62B5B400D66C7D /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5304EF2A1F62B5B400D66C7D /* StatusBar.swift */; };
 		536BA82B1F58144300DEB552 /* PostObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82A1F58144300DEB552 /* PostObjectModel.swift */; };
 		536BA82E1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */; };
@@ -83,6 +84,7 @@
 		12A5CDBA1F561C4800B98638 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		12AA393D1F57804700555493 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		12AA39431F57840300555493 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		12B38EB91F65CAC700417D24 /* StylekitIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylekitIcon.swift; sourceTree = "<group>"; };
 		5304EF2A1F62B5B400D66C7D /* StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		536BA82A1F58144300DEB552 /* PostObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostObjectModel.swift; sourceTree = "<group>"; };
 		536BA82D1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WordPressCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		1212E1821F5E093400295122 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				12B38EB91F65CAC700417D24 /* StylekitIcon.swift */,
 				121D99FB1F60CA9800955CA9 /* SwiftPadawanLogo.swift */,
 				1212E1801F5CFEF600295122 /* ShadowView.swift */,
 				5304EF2A1F62B5B400D66C7D /* StatusBar.swift */,
@@ -420,6 +423,7 @@
 			files = (
 				5304EF2B1F62B5B400D66C7D /* StatusBar.swift in Sources */,
 				12A5CD8B1F561AF600B98638 /* AppDelegate.swift in Sources */,
+				12B38EBA1F65CAC700417D24 /* StylekitIcon.swift in Sources */,
 				121D99F71F609F1B00955CA9 /* Post+CoreDataClass.swift in Sources */,
 				121D99FC1F60CA9800955CA9 /* SwiftPadawanLogo.swift in Sources */,
 				12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */,

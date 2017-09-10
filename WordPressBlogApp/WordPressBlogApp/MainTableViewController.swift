@@ -26,7 +26,7 @@ class MainTableViewController: CoreDataTableViewController {
         self.tableView.separatorColor = .white
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
-        
+
         /* creates a fetch request */
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
@@ -40,6 +40,7 @@ class MainTableViewController: CoreDataTableViewController {
         
         /* UI configuration */
         self.navigationController?.hidesBarsOnSwipe = false
+        self.navigationController?.navigationBar.isHidden = false
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
         do{
@@ -142,6 +143,10 @@ class MainTableViewController: CoreDataTableViewController {
                 print(error)
             }
         }
+    }
+    
+    func refreshPosts(){
+        
     }
     
     /* observe the internet connectivity */

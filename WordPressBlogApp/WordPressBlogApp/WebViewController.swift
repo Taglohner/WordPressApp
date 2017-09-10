@@ -12,8 +12,6 @@ import WebKit
 class WebViewController: UIViewController, WKUIDelegate {
     
     //MARK: Properties
-    
-    @IBOutlet weak var actionButton: UIBarButtonItem!
     var postID = Int()
     var webView: WKWebView!
 
@@ -22,23 +20,31 @@ class WebViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let statWindow = UIApplication.shared.value(forKey:"statusBarWindow") as! UIView
-//        let statusBar = statWindow.subviews[0] as UIView
+        statusBar()
         
         /* configure UI */
         self.navigationController?.navigationBar.tintColor = .orange
-  
-        actionButton.tintColor = .orange
-
+        
         /* make the request */
         webRequest()
+        
     }
-
+    
+    func statusBar() {
+        /* configure the blur effect */
+        let blurEffect = UIBlurEffect(style: .regular)
+        
+        /* creates the blurry view */
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = UIApplication.shared.statusBarFrame
+        blurEffectView.autoresizingMask = .flexibleWidth
+        self.view.addSubview(blurEffectView)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    
         
-        /* configure UI */
-        self.navigationController?.hidesBarsOnSwipe = true
     }
     
     override func loadView() {
@@ -57,6 +63,10 @@ class WebViewController: UIViewController, WKUIDelegate {
         webView.load(request)
     }
 
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     @IBAction func sharePost(_ sender: UIBarButtonItem) {
         let postURL = "http://52.32.244.193/?p=\(postID)"
         if let shareURL = URL(string: postURL) {
@@ -66,4 +76,5 @@ class WebViewController: UIViewController, WKUIDelegate {
         }
     }
 }
- 
+
+
