@@ -64,7 +64,6 @@ class MainTableViewController: CoreDataTableViewController {
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: reachability)
     }
     
-    
     // MARK: - TableView Data Source
  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

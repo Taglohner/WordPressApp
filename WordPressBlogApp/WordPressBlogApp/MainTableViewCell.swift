@@ -61,8 +61,4 @@ class MainTableViewCell: UITableViewCell {
         authorProfilePicture.makeRounded()
         
     }
-    
-    
-    
-    
 }

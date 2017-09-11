@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController, WKUIDelegate {
+class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
     
     //MARK: Properties
     var postID = Int()
@@ -22,6 +22,7 @@ class WebViewController: UIViewController, WKUIDelegate {
         
         /* configure UI */
         self.navigationController?.navigationBar.tintColor = .orange
+        self.webView.scrollView.delegate = self
         self.navigationController?.hidesBarsOnSwipe = true
 
         /* make the request */
@@ -38,7 +39,7 @@ class WebViewController: UIViewController, WKUIDelegate {
     //MARK: Helper methods and actions
     
     private func webRequest() {
-        let postURL = "http://52.32.244.193/?p=\(postID)&content-only=1&css=1"
+        let postURL = "http://52.32.244.193/?p=\(postID)"
         let requestURL = URL(string: postURL)
         let request = URLRequest(url: requestURL!)
         webView.load(request)
