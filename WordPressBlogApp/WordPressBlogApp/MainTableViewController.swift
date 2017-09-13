@@ -44,27 +44,21 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     @IBAction func fetchRecentPosts(_ sender: Any) {
-        print(lastFecthTotalPosts)
-        
-        getPosts(page: 1, numberOfPosts: 1, save: false) { (pages, posts) in
-            print(posts)
-            print(self.lastFecthTotalPosts)
-            
+        getPosts(page: 1, numberOfPosts: 1, save: false) { (pages,posts) in
             if posts > self.lastFecthTotalPosts {
-                print("more")
-            } else {
-                print("you're up to date")
+                self.getPosts(page: 1, numberOfPosts: (posts - self.lastFecthTotalPosts), save: true) { (pages, posts) in
+                    self.lastFecthTotalPosts = posts
+                    self.lastFetchTotalPages = pages
+                }
             }
         }
-        self.topRefreshControl.endRefreshing()
+        topRefreshControl.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("something")
-
-        updateData()
+        refreshData()
         /* UI configuration */
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.isHidden = false
@@ -82,7 +76,6 @@ class MainTableViewController: CoreDataTableViewController {
         
         reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: reachability)
-        
     }
     
     // MARK: - TableView Data Source
@@ -109,11 +102,15 @@ class MainTableViewController: CoreDataTableViewController {
 
         if scrolledPercentage > 0.55 && scrolledPercentage < 0.65 && page < lastFetchTotalPages {
             getPosts(page: page + 1, numberOfPosts: nil, save: true) { (pages, posts) in
-            
-                ///Implement to verify new posts.
-                self.lastFetchTotalPages = pages
-                self.lastFecthTotalPosts = posts
+                
+                /* VERIFY IF NEW POSTS ARE AVIALABLE AND NOTIFY THE USER IF SO */
+                
+                print(pages)
+                print(posts)
+                
+                /* VERIFY IF NEW POSTS ARE AVIALABLE AND NOTIFY THE USER IF SO */
             }
+            page += 1
         } else {
             return
         }
@@ -168,10 +165,8 @@ class MainTableViewController: CoreDataTableViewController {
     
     /* get new posts from WordPress */
     func getPosts(page: Int?, numberOfPosts: Int?, save: Bool, completion: ((_ pages: Int, _ posts: Int) -> (Void))?) {
-
         RequestWordPressData.sharedInstance().getPostsResponse(page: page, numberOfPosts: numberOfPosts) { (data, pages, posts, error) in
-            
-            print(".........................................................................................")
+            print("....................................... FETCHING DATA ..................................................")
             
             guard error == nil else {
                 print(error ?? "Error getting posts")
@@ -201,7 +196,7 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     /* update data based on internet availability */
-    func updateData() {
+    func refreshData() {
         reachability.whenReachable = { reachability in
             DispatchQueue.main.async {
                 if reachability.isReachable {
@@ -211,10 +206,8 @@ class MainTableViewController: CoreDataTableViewController {
                         self.lastFecthTotalPosts = posts
                     }
                 }
-                
             }
         }
-        
         reachability.whenUnreachable = { reachability in
             DispatchQueue.main.async {
                 print("Internet is not reachable")
@@ -228,7 +221,6 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     /* creates a NSManagedObject from a PostObject */
-    
     private func createPhotoEntityFrom(json: [String : AnyObject]) -> NSManagedObject? {
         let context = AppDelegate.stack.context
         if let postEntity = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context) as? Post {
