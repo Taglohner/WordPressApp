@@ -14,8 +14,11 @@ class MainTableViewController: CoreDataTableViewController {
     
     //MARK: Properties
     
+    @IBOutlet weak var topRefreshControl: UIRefreshControl!
     let reachability = Reachability()!
     var page = 1
+    var lastFetchTotalPages = Int()
+    var lastFecthTotalPosts = Int()
     
     //MARK: Lifecycle
     
@@ -40,11 +43,28 @@ class MainTableViewController: CoreDataTableViewController {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: "date", cacheName: nil)
     }
     
+    @IBAction func fetchRecentPosts(_ sender: Any) {
+        print(lastFecthTotalPosts)
+        
+        getPosts(page: 1, numberOfPosts: 1, save: false) { (pages, posts) in
+            print(posts)
+            print(self.lastFecthTotalPosts)
+            
+            if posts > self.lastFecthTotalPosts {
+                print("more")
+            } else {
+                print("you're up to date")
+            }
+        }
+        self.topRefreshControl.endRefreshing()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        print("something")
+
         updateData()
-        
         /* UI configuration */
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.isHidden = false
@@ -62,6 +82,7 @@ class MainTableViewController: CoreDataTableViewController {
         
         reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: reachability)
+        
     }
     
     // MARK: - TableView Data Source
@@ -81,17 +102,23 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let totalItems = fetchedResultsController?.fetchedObjects?.count {
-            let lastItem = totalItems - 4
-            if indexPath.row == lastItem && page < Response.numberOfPages {
-                getPosts(page: page + 1, number: nil)
-                page += 1
-            } else {
-                return
+        
+        let yOffSet = tableView.contentOffset.y
+        let tableHeight = tableView.contentSize.height - tableView.frame.size.height
+        let scrolledPercentage = yOffSet / tableHeight
+
+        if scrolledPercentage > 0.55 && scrolledPercentage < 0.65 && page < lastFetchTotalPages {
+            getPosts(page: page + 1, numberOfPosts: nil, save: true) { (pages, posts) in
+            
+                ///Implement to verify new posts.
+                self.lastFetchTotalPages = pages
+                self.lastFecthTotalPosts = posts
             }
+        } else {
+            return
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 24
     }
@@ -140,19 +167,27 @@ class MainTableViewController: CoreDataTableViewController {
     // MARK: Supporing methods
     
     /* get new posts from WordPress */
-    func getPosts(page: Int, number: Int?) {
-        RequestWordPressData.sharedInstance().getPostsFromWordPress(page: page, numberOfPosts: number) { (result) in
-            switch result {
-            case .Success(let data):
-                self.saveInCoreDataWith(dictionary: data)
-            case .Error(let error):
-                print(error)
+    func getPosts(page: Int?, numberOfPosts: Int?, save: Bool, completion: ((_ pages: Int, _ posts: Int) -> (Void))?) {
+
+        RequestWordPressData.sharedInstance().getPostsResponse(page: page, numberOfPosts: numberOfPosts) { (data, pages, posts, error) in
+            
+            print(".........................................................................................")
+            
+            guard error == nil else {
+                print(error ?? "Error getting posts")
+                return
+            }
+            if let posts = posts, let pages = pages {
+                completion!(pages, posts)
+            }
+            if save {
+                if let data = data {
+                    DispatchQueue.main.async {
+                        self.saveInCoreDataWith(dictionary: data)
+                    }
+                }
             }
         }
-    }
-    
-    func refreshPosts(){
-        
     }
     
     /* observe the internet connectivity */
@@ -171,10 +206,15 @@ class MainTableViewController: CoreDataTableViewController {
             DispatchQueue.main.async {
                 if reachability.isReachable {
                     self.clearData()
-                    self.getPosts(page: 1, number: nil)
+                    self.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts) in
+                        self.lastFetchTotalPages = pages
+                        self.lastFecthTotalPosts = posts
+                    }
                 }
+                
             }
         }
+        
         reachability.whenUnreachable = { reachability in
             DispatchQueue.main.async {
                 print("Internet is not reachable")
@@ -188,6 +228,7 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     /* creates a NSManagedObject from a PostObject */
+    
     private func createPhotoEntityFrom(json: [String : AnyObject]) -> NSManagedObject? {
         let context = AppDelegate.stack.context
         if let postEntity = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context) as? Post {
@@ -206,7 +247,6 @@ class MainTableViewController: CoreDataTableViewController {
             DispatchQueue.main.async {
                 postEntity.date = object?.date.toDateString(inputFormat: "yyyy-MM-dd'T'HH:mm:ss", outputFormat: "EEEE, dd MMMM")
             }
-            
             if let photoURL = postEntity.featuredImageURL {
                 RequestWordPressData.sharedInstance().imageDataFrom(photoURL) { (result) in
                     

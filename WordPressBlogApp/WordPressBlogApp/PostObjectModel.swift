@@ -49,8 +49,3 @@ extension PostObject {
         self.imageURL = featuredImageURL
     }
 }
-
-struct Response {
-    static var numberOfPages = 0
-    static var numberOfPosts = 0
-}

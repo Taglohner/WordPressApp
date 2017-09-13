@@ -13,6 +13,45 @@ class RequestWordPressData {
     let session = URLSession.shared
     
     /* get JSON from WordPress */
+    
+    func getPostsResponse(page: Int?, numberOfPosts: Int?, completion: @escaping ( _ data: [[String : AnyObject]]?, _ totalPages: Int?, _ totalPosts: Int?, _ error: String?) -> Void) {
+        
+        let parameters = [ WordPressURL.WordPressParameterKeys.Page : page, WordPressURL.WordPressParameterKeys.PerPage : numberOfPosts ?? 10] as [String : AnyObject]
+        let url = self.URLFromParameters(parameters, WordPressURL.Scheme, WordPressURL.Host, WordPressURL.Path)
+        session.dataTask(with: url) { (data, response, error) in
+            
+            var totalPages = Int()
+            var totalPosts = Int()
+            
+            guard error == nil else {
+                return completion(nil, nil, nil, error?.localizedDescription ?? "Unknown error returned from network request")
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                if let numberOfPages = httpResponse.allHeaderFields["X-WP-TotalPages"], let numberOfPosts = httpResponse.allHeaderFields["X-WP-Total"]{
+                    totalPages = Int(numberOfPages as! String) ?? 0
+                    totalPosts = Int(numberOfPosts as! String) ?? 0
+                }
+            } else {
+                return completion(nil, nil, nil, "Failed getting network response")
+            }
+            
+            guard let data = data else {
+                return completion(nil, nil, nil, "Error parsing data")
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String : AnyObject]] {
+                    completion(json, totalPages, totalPosts, nil)
+                }
+            } catch let error {
+                completion(nil, nil, nil, error.localizedDescription)
+            }
+            }.resume()
+    }
+    
+    /*
+     
+     
     func getPostsFromWordPress(page: Int, numberOfPosts: Int?, completion: @escaping (Result<[[String : AnyObject]]>) -> Void) {
         
         let parameters = [ WordPressURL.WordPressParameterKeys.Page : page,
@@ -44,7 +83,10 @@ class RequestWordPressData {
                 completion(.Error(error.localizedDescription))
             }
             }.resume()
-    }
+    } 
+     
+     */
+
     
     /* get image data from a provided URL */
     func imageDataFrom(_ stringURL: String, completion: @escaping (Result<Data>) -> Void) {
