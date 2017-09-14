@@ -14,7 +14,7 @@ class MainTableViewController: CoreDataTableViewController {
     
     //MARK: Properties
     
-    @IBOutlet weak var topRefreshControl: UIRefreshControl!
+    var topRefreshControl: UIRefreshControl!
     let reachability = Reachability()!
     var page = 1
     var lastFetchTotalPages = Int()
@@ -24,11 +24,15 @@ class MainTableViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         /* UI configuration */
         self.tableView.separatorColor = .white
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
+        
+        /* refresh control */
+        topRefreshControl = UIRefreshControl()
+        tableView.addSubview(topRefreshControl)
         
         /* creates a UIView to place under the status bar but above the navigation bar */
         let blurEffect = UIBlurEffect(style: .regular)
@@ -43,16 +47,18 @@ class MainTableViewController: CoreDataTableViewController {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.stack.context, sectionNameKeyPath: "date", cacheName: nil)
     }
     
-    @IBAction func fetchRecentPosts(_ sender: Any) {
-        getPosts(page: 1, numberOfPosts: 1, save: false) { (pages,posts) in
-            if posts > self.lastFecthTotalPosts {
-                self.getPosts(page: 1, numberOfPosts: (posts - self.lastFecthTotalPosts), save: true) { (pages, posts) in
-                    self.lastFecthTotalPosts = posts
-                    self.lastFetchTotalPages = pages
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if topRefreshControl.isRefreshing {
+            getPosts(page: 1, numberOfPosts: 1, save: false) { (pages,posts) in
+                if posts > self.lastFecthTotalPosts {
+                    self.getPosts(page: 1, numberOfPosts: (posts - self.lastFecthTotalPosts), save: true) { (pages, posts) in
+                        self.lastFecthTotalPosts = posts
+                        self.lastFetchTotalPages = pages
+                    }
                 }
             }
+            topRefreshControl.endRefreshing()
         }
-        topRefreshControl.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +68,7 @@ class MainTableViewController: CoreDataTableViewController {
         /* UI configuration */
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.isToolbarHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
         do{

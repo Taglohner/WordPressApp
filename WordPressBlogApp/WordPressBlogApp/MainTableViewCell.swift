@@ -59,6 +59,5 @@ class MainTableViewCell: UITableViewCell {
         authorProfilePicture.layer.borderColor = UIColor.orange.cgColor
         authorProfilePicture.contentMode = .scaleAspectFill
         authorProfilePicture.makeRounded()
-        
     }
 }

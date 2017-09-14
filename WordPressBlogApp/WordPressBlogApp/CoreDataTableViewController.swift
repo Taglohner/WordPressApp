@@ -17,7 +17,6 @@ class CoreDataTableViewController: UITableViewController {
     
     var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
         didSet {
-            
             fetchedResultsController?.delegate = self
             executeSearch()
             tableView.reloadData()

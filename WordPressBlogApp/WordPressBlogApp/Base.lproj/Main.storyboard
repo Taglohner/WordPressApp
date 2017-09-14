@@ -124,16 +124,6 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="U6K-id-8iV"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="zdl-Tc-jLr">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <action selector="fetchRecentPosts:" destination="eoW-NI-feU" eventType="valueChanged" id="uMC-c5-vVZ"/>
-                        </connections>
-                    </refreshControl>
-                    <connections>
-                        <outlet property="topRefreshControl" destination="zdl-Tc-jLr" id="5eB-ef-JVW"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHy-pi-NjJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,7 +132,8 @@
         <!--Web View Controller-->
         <scene sceneID="HLc-x9-Ylu">
             <objects>
-                <viewController storyboardIdentifier="WebViewController" id="FZP-f3-dnu" customClass="WebViewController" customModule="WordPressBlogApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" modalTransitionStyle="crossDissolve" id="FZP-f3-dnu" customClass="WebViewController" customModule="WordPressBlogApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="BqX-P6-FeY">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="Zfx-NJ-8sh">
@@ -160,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3RB-89-FTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1583" y="116"/>
+            <point key="canvasLocation" x="1569" y="116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jf8-6f-WG4">
