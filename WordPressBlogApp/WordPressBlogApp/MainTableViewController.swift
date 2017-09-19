@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import Reachability
 
 class MainTableViewController: CoreDataTableViewController {
     
@@ -24,11 +23,14 @@ class MainTableViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /* Fetch data */
+        refreshDataIfOnline()
 
         /* UI configuration */
         self.tableView.separatorColor = .white
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
         
         /* refresh control */
         topRefreshControl = UIRefreshControl()
@@ -64,13 +66,12 @@ class MainTableViewController: CoreDataTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        refreshData()
         /* UI configuration */
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.isToolbarHidden = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: Notification.Name.reachabilityChanged,object: reachability)
         do{
             try reachability.startNotifier()
         }catch{
@@ -82,7 +83,7 @@ class MainTableViewController: CoreDataTableViewController {
         super.viewWillDisappear(animated)
         
         reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: reachability)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.reachabilityChanged, object: reachability)
     }
     
     // MARK: - TableView Data Source
@@ -90,14 +91,20 @@ class MainTableViewController: CoreDataTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainTableViewCell", for: indexPath) as! MainTableViewCell
         
-        if let post = fetchedResultsController?.object(at: indexPath) as? Post {
-            if let postImage = post.featuredImage {
+        if let post = fetchedResultsController?.object(at: indexPath) as? Post, let postImage = post.featuredImage, let title = post.title, let excerpt = post.excerpt {
+            DispatchQueue.main.async {
                 cell.postImage.image = UIImage(data: postImage)
-            } else {
-                cell.postImage.image = UIImage(named: "placeholder")
+                cell.titleLabel.text = title
+                cell.authorLabel.text = "Steven Taglohner"
+                cell.excerptLabel.text = excerpt
             }
-            cell.configureCellLayout(post: post)
+        } else {
+            cell.postImage.image = UIImage(named: "placeholder")
+            cell.titleLabel.text = "Loading info"
+            cell.authorLabel.text = "Steven Taglohner"
+            cell.excerptLabel.text = "Loading info"
         }
+        cell.configureCellLayout(cell: cell)
         return cell
     }
     
@@ -138,17 +145,16 @@ class MainTableViewController: CoreDataTableViewController {
         
             blurEffectView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 24)
             blurEffectView.autoresizingMask = .flexibleWidth
-            
+    
             /* creates the header text label */
             let headerLabel = UILabel()
-            headerLabel.backgroundColor = .clear
             headerLabel.frame = blurEffectView.frame
             headerLabel.autoresizingMask = .flexibleWidth
             headerLabel.text = sectionName
             headerLabel.font = UIFont(name: "Oxygen-Light", size: 14)
             headerLabel.textColor = .orange
             headerLabel.textAlignment = .center
-            
+
             /* add the label to the view */
             blurEffectView.contentView.addSubview(headerLabel)
             return blurEffectView
@@ -174,7 +180,7 @@ class MainTableViewController: CoreDataTableViewController {
     func getPosts(page: Int?, numberOfPosts: Int?, save: Bool, completion: ((_ pages: Int, _ posts: Int) -> (Void))?) {
         RequestWordPressData.sharedInstance().getPostsResponse(page: page, numberOfPosts: numberOfPosts) { (data, pages, posts, error) in
             print("....................................... FETCHING DATA ..................................................")
-            
+
             guard error == nil else {
                 print(error ?? "Error getting posts")
                 return
@@ -193,40 +199,40 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     /* observe the internet connectivity */
-    func reachabilityChanged(note: Notification) {
+    @objc func reachabilityChanged(note: Notification) {
+        
         let reachability = note.object as! Reachability
-        if reachability.isReachable {
-            print("Online")
-        } else {
-            print("Internet connection appears to be offline")
+        
+        switch reachability.connection {
+        case .wifi:
+            print("Reachable via WiFi")
+        case .cellular:
+            print("Reachable via Cellular")
+        case .none:
+            print("Network not reachable")
         }
     }
     
     /* update data based on internet availability */
-    func refreshData() {
+    func refreshDataIfOnline() {
+        
         reachability.whenReachable = { reachability in
-            DispatchQueue.main.async {
-                if reachability.isReachable {
-                    self.clearData()
-                    self.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts) in
-                        self.lastFetchTotalPages = pages
-                        self.lastFecthTotalPosts = posts
-                    }
+            if reachability.connection == .wifi || reachability.connection == .cellular {
+                
+                self.clearData()
+                self.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts) in
+                    self.lastFetchTotalPages = pages
+                    self.lastFecthTotalPosts = posts
                 }
             }
-        }
-        reachability.whenUnreachable = { reachability in
-            DispatchQueue.main.async {
-                print("Internet is not reachable")
+            
+            reachability.whenUnreachable = { _ in
+                print("Not reachable")
             }
-        }
-        do {
-            try reachability.startNotifier()
-        } catch {
-            print("Unable to start notifier")
         }
     }
     
+
     /* creates a NSManagedObject from a PostObject */
     private func createPhotoEntityFrom(json: [String : AnyObject]) -> NSManagedObject? {
         let context = AppDelegate.stack.context

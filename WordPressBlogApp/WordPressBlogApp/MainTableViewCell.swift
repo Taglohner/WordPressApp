@@ -29,16 +29,14 @@ class MainTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    func configureCellLayout(post: Post) {
+    func configureCellLayout(cell: UITableViewCell) {
         
         self.selectionStyle = .none
         
-        titleLabel.text = post.title
         titleLabel.font = UIFont(name: "Oxygen-Bold", size: 16)
         titleLabel.numberOfLines = 3
         titleLabel.textAlignment = .natural
         
-        excerptLabel.text = post.excerpt
         excerptLabel.numberOfLines = 4
         excerptLabel.textAlignment = .natural
         excerptLabel.font = UIFont(name: "Oxygen-Light", size: 14)
