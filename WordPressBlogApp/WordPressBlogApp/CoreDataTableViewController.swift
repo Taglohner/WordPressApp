@@ -110,7 +110,7 @@ extension CoreDataTableViewController: NSFetchedResultsControllerDelegate {
         
         switch (type) {
         case .insert:
-            tableView.insertSections(set, with: .fade)
+            tableView.insertSections(set, with:.fade)
         case .delete:
             tableView.deleteSections(set, with: .fade)
         default:

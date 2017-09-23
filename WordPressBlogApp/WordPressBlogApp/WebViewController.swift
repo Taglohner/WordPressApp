@@ -22,9 +22,6 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
         
         /* configure UI */
         webView.scrollView.delegate = self
-
-        /* make the request */
-        webRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +30,9 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
         /* configure UI */
         self.navigationController?.hidesBarsOnSwipe = true
         self.navigationController?.navigationBar.tintColor = .orange
+        
+        /* make the request */
+        webRequest()
     }
 
     override func loadView() {

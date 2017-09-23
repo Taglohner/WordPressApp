@@ -49,45 +49,6 @@ class RequestWordPressData {
             }.resume()
     }
     
-    /*
-     
-     
-    func getPostsFromWordPress(page: Int, numberOfPosts: Int?, completion: @escaping (Result<[[String : AnyObject]]>) -> Void) {
-        
-        let parameters = [ WordPressURL.WordPressParameterKeys.Page : page,
-                           WordPressURL.WordPressParameterKeys.PerPage : numberOfPosts ?? 10
-                         ] as [String : AnyObject]
-        
-        let url = self.URLFromParameters(parameters, WordPressURL.Scheme, WordPressURL.Host, WordPressURL.Path)
-        
-        session.dataTask(with: url) { (data, response, error) in
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                if let numberOfPages = httpResponse.allHeaderFields["X-WP-TotalPages"], let numberOfPosts = httpResponse.allHeaderFields["X-WP-Total"]{
-                    Response.numberOfPages = Int(numberOfPages as! String) ?? 0
-                    Response.numberOfPosts = Int(numberOfPosts as! String) ?? 0
-                }
-            }
-            guard error == nil else {
-                return completion(.Error(error!.localizedDescription))
-            }
-            
-            guard let data = data else {
-                return completion(.Error(error?.localizedDescription ?? "Could not parse data."))
-            }
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String : AnyObject]] {
-                    completion(.Success(json))
-                }
-            } catch let error {
-                completion(.Error(error.localizedDescription))
-            }
-            }.resume()
-    } 
-     
-     */
-
-    
     /* get image data from a provided URL */
     func imageDataFrom(_ stringURL: String, completion: @escaping (Result<Data>) -> Void) {
         

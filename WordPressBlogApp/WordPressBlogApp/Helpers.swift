@@ -40,3 +40,14 @@ extension UIImageView {
         self.layer.masksToBounds = true
     }
 }
+
+extension UIColor {
+    
+    convenience init(r: Int, g: Int, b: Int, alpha: CGFloat) {
+        let red = CGFloat(r)/255
+        let green = CGFloat(g)/255
+        let blue = CGFloat(b)/255
+        
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+}

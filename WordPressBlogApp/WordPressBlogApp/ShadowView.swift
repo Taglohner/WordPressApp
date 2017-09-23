@@ -18,9 +18,9 @@ class ShadowView: UIView {
     }
     
     fileprivate func setupShadow() {
-        self.layer.shadowOffset = CGSize(width: 1, height: 2)
-        self.layer.shadowRadius = 1.5
-        self.layer.shadowOpacity = 0.3
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.layer.shadowRadius = 1.0
+        self.layer.shadowOpacity = 0.4
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 0, height: 0)).cgPath
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale

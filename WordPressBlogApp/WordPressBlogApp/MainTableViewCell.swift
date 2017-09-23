@@ -31,13 +31,15 @@ class MainTableViewCell: UITableViewCell {
 
     func configureCellLayout(cell: UITableViewCell) {
         
+//        cell.backgroundColor = .orange
+        
         self.selectionStyle = .none
         
         titleLabel.font = UIFont(name: "Oxygen-Bold", size: 16)
         titleLabel.numberOfLines = 3
         titleLabel.textAlignment = .natural
         
-        excerptLabel.numberOfLines = 4
+        excerptLabel.numberOfLines = 5
         excerptLabel.textAlignment = .natural
         excerptLabel.font = UIFont(name: "Oxygen-Light", size: 14)
         
