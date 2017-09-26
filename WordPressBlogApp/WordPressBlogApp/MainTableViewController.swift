@@ -15,20 +15,23 @@ class MainTableViewController: CoreDataTableViewController {
     
     var topRefreshControl: UIRefreshControl!
     let reachability = Reachability()!
-    let context = AppDelegate.stack.context
+    let coreDataStack = AppDelegate.stack
+    let wordpressAPIService = APIService.sharedInstance()
+    
     var page = 1
     var lastFetchTotalPages = Int()
     var lastFecthTotalPosts = Int()
     
     //MARK: Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* Fetch data */
-        clearData()
+        /* clear data */
+        coreDataStack.batchDelete(context: coreDataStack.context, entityName: "Post")
         
-        getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts) in
+        /* download fresh data */
+        wordpressAPIService.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts) in
             self.lastFetchTotalPages = pages
             self.lastFecthTotalPosts = posts
         }
@@ -52,20 +55,41 @@ class MainTableViewController: CoreDataTableViewController {
         /* creates a Fetch Request */
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: "date", cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataStack.context, sectionNameKeyPath: "date", cacheName: nil)
     }
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if topRefreshControl.isRefreshing {
-            getPosts(page: 1, numberOfPosts: 1, save: false) { (pages,posts) in
+            wordpressAPIService.getPosts(page: 1, numberOfPosts: 1, save: false) { (pages,posts) in
                 if posts > self.lastFecthTotalPosts {
-                    self.getPosts(page: 1, numberOfPosts: (posts - self.lastFecthTotalPosts), save: true) { (pages, posts) in
+                    self.wordpressAPIService.getPosts(page: 1, numberOfPosts: (posts - self.lastFecthTotalPosts), save: true) { (pages, posts) in
                         self.lastFecthTotalPosts = posts
                         self.lastFetchTotalPages = pages
                     }
                 }
             }
             topRefreshControl.endRefreshing()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let yOffSet = tableView.contentOffset.y
+        let tableHeight = tableView.contentSize.height - tableView.frame.size.height
+        let scrolledPercentage = yOffSet / tableHeight
+        
+        if scrolledPercentage > 0.55 && scrolledPercentage < 0.65 && page < lastFetchTotalPages {
+            wordpressAPIService.getPosts(page: page + 1, numberOfPosts: nil, save: true) { (pages, posts) in
+                
+                /* VERIFY IF NEW POSTS ARE AVIALABLE AND NOTIFY THE USER IF SO */
+                
+                print(pages)
+                print(posts)
+                
+                /* VERIFY IF NEW POSTS ARE AVIALABLE AND NOTIFY THE USER IF SO */
+            }
+            page += 1
+        } else {
+            return
         }
     }
     
@@ -95,49 +119,45 @@ class MainTableViewController: CoreDataTableViewController {
     // MARK: - TableView Data Source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mainTableViewCell", for: indexPath) as! MainTableViewCell
+        guard let post = fetchedResultsController?.object(at: indexPath) as? Post, let postTitle = post.title, let postExcerpt = post.excerpt, let postImage = post.featuredImage else {
+            return UITableViewCell()
+        }
         
-        if let post = fetchedResultsController?.object(at: indexPath) as? Post, let postImage = post.featuredImage, let title = post.title, let excerpt = post.excerpt {
-            
+        if post.cellType == "featured" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "featuredPostCell", for: indexPath) as! FeaturedPostTableViewCell
             DispatchQueue.main.async {
-                cell.postImage.image = UIImage(data: postImage)
-                cell.titleLabel.text = title
-                cell.authorLabel.text = "Steven Taglohner"
-                cell.excerptLabel.text = excerpt
+                cell.featuredImage.image = UIImage(data: postImage)
+                cell.titleLabel.text = postTitle
+                cell.excerptLabel.text = postExcerpt
+                cell.cellViewForFeaturedPost(cell: cell)
             }
+            return cell
         }
         else {
-            cell.postImage.image = UIImage(named: "placeholder")
-            cell.titleLabel.text = "Loading info"
-            cell.authorLabel.text = "Steven Taglohner"
-            cell.excerptLabel.text = "Loading info"
-        }
-        cell.configureCellLayout(cell: cell)
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        let yOffSet = tableView.contentOffset.y
-        let tableHeight = tableView.contentSize.height - tableView.frame.size.height
-        let scrolledPercentage = yOffSet / tableHeight
-        
-        if scrolledPercentage > 0.55 && scrolledPercentage < 0.65 && page < lastFetchTotalPages {
-            getPosts(page: page + 1, numberOfPosts: nil, save: true) { (pages, posts) in
-                
-                /* VERIFY IF NEW POSTS ARE AVIALABLE AND NOTIFY THE USER IF SO */
-                
-                print(pages)
-                print(posts)
-                
-                /* VERIFY IF NEW POSTS ARE AVIALABLE AND NOTIFY THE USER IF SO */
+            let cell = tableView.dequeueReusableCell(withIdentifier: "regularPostCell", for: indexPath) as! RegularPostTableViewCell
+            DispatchQueue.main.async {
+                cell.postImage.image = UIImage(data: postImage)
+                cell.titleLabel.text = postTitle
+                cell.excerptLabel.text = postExcerpt
+                cell.cellViewForRegularPost(cell: cell)
             }
-            page += 1
-        } else {
-            return
+            return cell
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let post = fetchedResultsController?.object(at: indexPath) as? Post, let cellType = post.cellType else {
+            return 0
+        }
+        
+        if cellType == "featured" {
+            return 300
+        }
+        else {
+            return 203
+        }
+    }
+
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 24
     }
@@ -150,7 +170,6 @@ class MainTableViewController: CoreDataTableViewController {
             
             /* creates the blurry view */
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            
             blurEffectView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 24)
             blurEffectView.autoresizingMask = .flexibleWidth
             
@@ -169,7 +188,6 @@ class MainTableViewController: CoreDataTableViewController {
         }
         return nil
     }
-
     
     // MARK: Navigation
     
@@ -184,26 +202,6 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     // MARK: Supporing methods
-    
-    /* get new posts from WordPress */
-    func getPosts(page: Int?, numberOfPosts: Int?, save: Bool, completion: @escaping (_ pages: Int, _ posts: Int) -> Void) {
-        RequestWordPressData.sharedInstance().getPostsResponse(page: page, numberOfPosts: numberOfPosts) { (data, pages, posts, error) in
-            print("....................................... FETCHING DATA ..................................................")
-            
-            guard error == nil else {
-                print(error ?? "Error getting posts")
-                return
-            }
-            if let posts = posts, let pages = pages {
-                completion(pages, posts)
-            }
-            if save {
-                if let data = data {
-                    self.saveInCoreDataWith(dictionary: data)
-                }
-            }
-        }
-    }
     
     /* observe the internet connectivity */
     @objc func reachabilityChanged(note: Notification) {
@@ -221,106 +219,27 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     /* update data based on internet availability */
-//    func refreshDataIfOnline() {
-//
-//        reachability.whenReachable = { reachability in
-//            if reachability.connection == .wifi {
-//
-//            } else if reachability.connection == .cellular {
-//
-//            } else {
-//
-//                self.clearData()
-//                self.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts) in
-//                    self.lastFetchTotalPages = pages
-//                    self.lastFecthTotalPosts = posts
-//                }
-//            }
-//
-//            reachability.whenUnreachable = { _ in
-//                print("Not reachable")
-//            }
-//        }
-//    }
-    
-    /* creates a NSManagedObject from a PostObject */
-    private func createPhotoEntityFrom(json: [String : AnyObject]) -> NSManagedObject? {
-        let context = AppDelegate.stack.context
-        if let postEntity = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context) as? Post {
-            
-            let object = PostObject(json: json)
-            
-            postEntity.type = object?.type
-            postEntity.id = object?.id ?? 1
-            postEntity.title = object?.title
-            postEntity.modified = object?.modified
-            postEntity.link = object?.link
-            postEntity.excerpt = object?.excerpt
-            postEntity.featuredImageURL = object?.imageURL
-            
-            /* converting date format before saving to Core Data */
-            DispatchQueue.main.async {
-                postEntity.date = object?.date.toDateString(inputFormat: "yyyy-MM-dd'T'HH:mm:ss", outputFormat: "EEEE, dd MMMM")
-            }
-            if let photoURL = postEntity.featuredImageURL {
-                RequestWordPressData.sharedInstance().imageDataFrom(photoURL) { (result) in
-                    
-                    switch result {
-
-                    case .Success(let imageData):
-                        DispatchQueue.main.async {
-                            postEntity.featuredImage = imageData
-                            AppDelegate.stack.save()
-                        }
-                    case .Error(let error):
-                        print(error)
-                    }
-                }
-            }
-            return postEntity
-        }
-        return nil
-    }
-    
-    /* save objects to core data after converting to a managed onject */
-    private func saveInCoreDataWith(dictionary: [[String : AnyObject]]) {
-        for object in dictionary {
-            _  = createPhotoEntityFrom(json: object)
-            AppDelegate.stack.save()
-        }
-    }
-    
-    /* clear the data base data */
-    
-    private func clearData() {
-        
-        context.performAndWait {
-            
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
-            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-            
-            do {
-                let batchDeleteResult = try context.execute(batchDeleteRequest) as? NSBatchDeleteResult
-                if let deletedObjectIDs = batchDeleteResult?.result as? [NSManagedObjectID] {
-                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: [NSDeletedObjectsKey: deletedObjectIDs], into: [context])
-                }
-            } catch {
-                print("Error: \(error) could not batch delete existing records.")
-            }
-            
-            if context.hasChanges {
-                do {
-                    try context.save()
-                } catch {
-                    print("Error: \(error) could not save Core Data context.")
-                    return
-                }
-                context.reset()
-            }
-        }
-    }
-    
-    
+    //    func refreshDataIfOnline() {
+    //
+    //        reachability.whenReachable = { reachability in
+    //            if reachability.connection == .wifi {
+    //
+    //            } else if reachability.connection == .cellular {
+    //
+    //            } else {
+    //
+    //                self.clearData()
+    //                self.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts) in
+    //                    self.lastFetchTotalPages = pages
+    //                    self.lastFecthTotalPosts = posts
+    //                }
+    //            }
+    //
+    //            reachability.whenUnreachable = { _ in
+    //                print("Not reachable")
+    //            }
+    //        }
+    //    }
 }
 
 

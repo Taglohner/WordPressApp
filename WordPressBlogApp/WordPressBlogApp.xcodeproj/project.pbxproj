@@ -11,12 +11,14 @@
 		1212E1861F5E0F1300295122 /* Oxygen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1212E1831F5E0E5400295122 /* Oxygen-Bold.ttf */; };
 		1212E1871F5E0F1700295122 /* Oxygen-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1212E1841F5E0E5400295122 /* Oxygen-Light.ttf */; };
 		1212E1881F5E0F1A00295122 /* Oxygen-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */; };
-		121D99F71F609F1B00955CA9 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121D99F51F609F1B00955CA9 /* Post+CoreDataClass.swift */; };
-		121D99F81F609F1B00955CA9 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121D99F61F609F1B00955CA9 /* Post+CoreDataProperties.swift */; };
+		12168DBE1F767223009EBB03 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12168DBD1F767223009EBB03 /* Convenience.swift */; };
 		121D99FC1F60CA9800955CA9 /* SwiftPadawanLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121D99FB1F60CA9800955CA9 /* SwiftPadawanLogo.swift */; };
 		1220CA071F71C90400A03D03 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1220CA061F71C90400A03D03 /* Reachability.swift */; };
+		1230B4861F782F8E00720FFB /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1230B4841F782F8E00720FFB /* Post+CoreDataClass.swift */; };
+		1230B4871F782F8E00720FFB /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1230B4851F782F8E00720FFB /* Post+CoreDataProperties.swift */; };
 		1241811E1F5C82C500C87B48 /* podkova-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811C1F5C826C00C87B48 /* podkova-bold.ttf */; };
 		1241811F1F5C82CC00C87B48 /* podkova-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1241811D1F5C826C00C87B48 /* podkova-regular.ttf */; };
+		125A26881F79B60A0002AA22 /* FeaturedPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125A26871F79B60A0002AA22 /* FeaturedPostTableViewCell.swift */; };
 		127F55E01F6377E80071E14F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F55DF1F6377E80071E14F /* Helpers.swift */; };
 		128ABA011F58C44F003ADAC7 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */; };
 		129F9F381F5C329700778395 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F9F371F5C329700778395 /* WebViewController.swift */; };
@@ -29,7 +31,7 @@
 		12A5CDB91F561C3B00B98638 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CDB81F561C3B00B98638 /* URLConstants.swift */; };
 		12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CDBA1F561C4800B98638 /* APIService.swift */; };
 		12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA393D1F57804700555493 /* MainTableViewController.swift */; };
-		12AA39441F57840300555493 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA39431F57840300555493 /* MainTableViewCell.swift */; };
+		12AA39441F57840300555493 /* RegularPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA39431F57840300555493 /* RegularPostTableViewCell.swift */; };
 		536BA82B1F58144300DEB552 /* PostObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82A1F58144300DEB552 /* PostObjectModel.swift */; };
 		536BA82E1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */; };
 		536BA8391F58633100DEB552 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA8381F58633100DEB552 /* CoreDataStack.swift */; };
@@ -57,12 +59,14 @@
 		1212E1831F5E0E5400295122 /* Oxygen-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Bold.ttf"; sourceTree = "<group>"; };
 		1212E1841F5E0E5400295122 /* Oxygen-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Light.ttf"; sourceTree = "<group>"; };
 		1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Regular.ttf"; sourceTree = "<group>"; };
-		121D99F51F609F1B00955CA9 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Post+CoreDataClass.swift"; path = "../Post+CoreDataClass.swift"; sourceTree = "<group>"; };
-		121D99F61F609F1B00955CA9 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Post+CoreDataProperties.swift"; path = "../Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		12168DBD1F767223009EBB03 /* Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		121D99FB1F60CA9800955CA9 /* SwiftPadawanLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPadawanLogo.swift; sourceTree = "<group>"; };
 		1220CA061F71C90400A03D03 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		1230B4841F782F8E00720FFB /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1230B4851F782F8E00720FFB /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1241811C1F5C826C00C87B48 /* podkova-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-bold.ttf"; sourceTree = "<group>"; };
 		1241811D1F5C826C00C87B48 /* podkova-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "podkova-regular.ttf"; sourceTree = "<group>"; };
+		125A26871F79B60A0002AA22 /* FeaturedPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPostTableViewCell.swift; sourceTree = "<group>"; };
 		125C47351F5F621A00F9069B /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		127F55DF1F6377E80071E14F /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +86,7 @@
 		12A5CDB81F561C3B00B98638 /* URLConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
 		12A5CDBA1F561C4800B98638 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		12AA393D1F57804700555493 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		12AA39431F57840300555493 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		12AA39431F57840300555493 /* RegularPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularPostTableViewCell.swift; sourceTree = "<group>"; };
 		536BA82A1F58144300DEB552 /* PostObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostObjectModel.swift; sourceTree = "<group>"; };
 		536BA82D1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WordPressCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		536BA8381F58633100DEB552 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 				1220CA061F71C90400A03D03 /* Reachability.swift */,
 				536BA82A1F58144300DEB552 /* PostObjectModel.swift */,
 				12A5CDB81F561C3B00B98638 /* URLConstants.swift */,
+				12168DBD1F767223009EBB03 /* Convenience.swift */,
 				12A5CDBA1F561C4800B98638 /* APIService.swift */,
 			);
 			name = Network;
@@ -222,7 +227,8 @@
 			children = (
 				128ABA001F58C44F003ADAC7 /* CoreDataTableViewController.swift */,
 				12AA393D1F57804700555493 /* MainTableViewController.swift */,
-				12AA39431F57840300555493 /* MainTableViewCell.swift */,
+				12AA39431F57840300555493 /* RegularPostTableViewCell.swift */,
+				125A26871F79B60A0002AA22 /* FeaturedPostTableViewCell.swift */,
 				127F55DF1F6377E80071E14F /* Helpers.swift */,
 			);
 			name = MainView;
@@ -248,9 +254,9 @@
 		536BA8371F58614B00DEB552 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				1230B4841F782F8E00720FFB /* Post+CoreDataClass.swift */,
+				1230B4851F782F8E00720FFB /* Post+CoreDataProperties.swift */,
 				536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */,
-				121D99F51F609F1B00955CA9 /* Post+CoreDataClass.swift */,
-				121D99F61F609F1B00955CA9 /* Post+CoreDataProperties.swift */,
 				536BA8381F58633100DEB552 /* CoreDataStack.swift */,
 			);
 			name = CoreData;
@@ -402,21 +408,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				12A5CD8B1F561AF600B98638 /* AppDelegate.swift in Sources */,
-				121D99F71F609F1B00955CA9 /* Post+CoreDataClass.swift in Sources */,
 				121D99FC1F60CA9800955CA9 /* SwiftPadawanLogo.swift in Sources */,
 				12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */,
 				536BA8391F58633100DEB552 /* CoreDataStack.swift in Sources */,
 				536BA82B1F58144300DEB552 /* PostObjectModel.swift in Sources */,
+				1230B4871F782F8E00720FFB /* Post+CoreDataProperties.swift in Sources */,
 				12A5CDB91F561C3B00B98638 /* URLConstants.swift in Sources */,
 				12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */,
-				121D99F81F609F1B00955CA9 /* Post+CoreDataProperties.swift in Sources */,
 				536BA82E1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld in Sources */,
 				127F55E01F6377E80071E14F /* Helpers.swift in Sources */,
 				129F9F381F5C329700778395 /* WebViewController.swift in Sources */,
 				1212E1811F5CFEF600295122 /* ShadowView.swift in Sources */,
-				12AA39441F57840300555493 /* MainTableViewCell.swift in Sources */,
+				12AA39441F57840300555493 /* RegularPostTableViewCell.swift in Sources */,
+				12168DBE1F767223009EBB03 /* Convenience.swift in Sources */,
+				1230B4861F782F8E00720FFB /* Post+CoreDataClass.swift in Sources */,
 				1220CA071F71C90400A03D03 /* Reachability.swift in Sources */,
 				128ABA011F58C44F003ADAC7 /* CoreDataTableViewController.swift in Sources */,
+				125A26881F79B60A0002AA22 /* FeaturedPostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

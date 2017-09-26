@@ -12,7 +12,6 @@ import CoreData
 // MARK: - CoreDataStack
 
 struct CoreDataStack {
-    
     // MARK: Properties
     
     private let model: NSManagedObjectModel
@@ -109,9 +108,7 @@ extension CoreDataStack {
     typealias Batch = (_ workerContext: NSManagedObjectContext) -> ()
     
     func performBackgroundBatchOperation(_ batch: @escaping Batch) {
-        
         backgroundContext.perform() {
-            
             batch(self.backgroundContext)
             
             do {
@@ -127,14 +124,35 @@ extension CoreDataStack {
 
 extension CoreDataStack {
     
-    func save() {
-        // We call this synchronously, but it's a very fast
-        // operation (it doesn't hit the disk). We need to know
-        // when it ends so we can call the next save (on the persisting
-        // context). This last one might take some time and is done
-        // in a background queue
-        context.performAndWait() {
+    /* Delete all the data straight from the store */
+    func batchDelete(context: NSManagedObjectContext, entityName: String) {
+        context.performAndWait {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             
+            do {
+                let batchDeleteResult = try context.execute(batchDeleteRequest) as? NSBatchDeleteResult
+                if let deletedObjectIDs = batchDeleteResult?.result as? [NSManagedObjectID] {
+                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: [NSDeletedObjectsKey: deletedObjectIDs], into: [context])
+                }
+            } catch {
+                print("Error: \(error) could not batch delete existing records.")
+            }
+            
+            if context.hasChanges {
+                do {
+                    try context.save()
+                } catch {
+                    print("Error: \(error) could not save Core Data context.")
+                    return
+                }
+                context.reset()
+            }
+        }
+    }
+    
+    func save() {
+        context.performAndWait() {
             
             if self.context.hasChanges {
                 do {

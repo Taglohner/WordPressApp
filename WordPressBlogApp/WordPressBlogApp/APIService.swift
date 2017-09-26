@@ -7,17 +7,19 @@
 //
 
 import Foundation
+import CoreData
 
-class RequestWordPressData {
+class APIService {
     
     let session = URLSession.shared
+    let coreDataStack = AppDelegate.stack
     
-    /* get JSON from WordPress */
-    
-    func getPostsResponse(page: Int?, numberOfPosts: Int?, completion: @escaping ( _ data: [[String : AnyObject]]?, _ totalPages: Int?, _ totalPosts: Int?, _ error: String?) -> Void) {
+    /* network request to get posts from WordPress */
+    func getPostsJSON(page: Int?, numberOfPosts: Int?, completion: @escaping ( _ data: [[String : AnyObject]]?, _ totalPages: Int?, _ totalPosts: Int?, _ error: String?) -> Void) {
         
         let parameters = [ WordPressURL.WordPressParameterKeys.Page : page, WordPressURL.WordPressParameterKeys.PerPage : numberOfPosts ?? 10] as [String : AnyObject]
-        let url = self.URLFromParameters(parameters, WordPressURL.Scheme, WordPressURL.Host, WordPressURL.Path)
+        let url = self.URLFromParameters(parameters, WordPressURL.Scheme, WordPressURL.Host, WordPressURL.Path, WordPressURL.Method.Posts)
+        
         session.dataTask(with: url) { (data, response, error) in
             
             var totalPages = Int()
@@ -35,10 +37,11 @@ class RequestWordPressData {
             } else {
                 return completion(nil, nil, nil, "Failed getting network response")
             }
-            
+    
             guard let data = data else {
                 return completion(nil, nil, nil, "Error parsing data")
             }
+            
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers]) as? [[String : AnyObject]] {
                     completion(json, totalPages, totalPosts, nil)
@@ -50,36 +53,35 @@ class RequestWordPressData {
     }
     
     /* get image data from a provided URL */
-    func imageDataFrom(_ stringURL: String, completion: @escaping (Result<Data>) -> Void) {
+    func imageDataFrom(_ stringURL: String, completion: @escaping (_ imageData: Data?, _ error: String?) -> Void) {
         
         guard let url = NSURL(string: stringURL) else {
-            return completion(.Error("Provided URL is invalid"))
+            return completion(nil, "Provided URL is invalid.")
         }
+        
         let request = URLRequest(url: url as URL)
         session.dataTask(with: request as URLRequest) { (data, response, error) in
             
             guard error == nil else {
-                return completion(.Error(error?.localizedDescription ?? "Could not get the image data."))
+                return completion(nil, error?.localizedDescription ?? "Could not get the image data.")
             }
+            
             guard let data = data else {
-                return completion(.Error(error?.localizedDescription ?? "Invalid image data."))
+                return completion(nil, error?.localizedDescription ?? "Invalid image data.")
             }
-            completion(.Success(data))
+            
+            completion(data, nil)
+            
             }.resume()
     }
     
-    enum Result <T> {
-        case Success(T)
-        case Error(String)
-    }
-    
     /* create a URL from parameters */
-    func URLFromParameters(_ parameters: [String:AnyObject]?,_ scheme: String,_ host: String,_ path: String) -> URL {
+    func URLFromParameters(_ parameters: [String:AnyObject]?,_ scheme: String,_ host: String,_ path: String, _ method: String) -> URL {
         
         var components = URLComponents()
         components.scheme = scheme
         components.host = host
-        components.path = path
+        components.path = path + method
         components.queryItems = [URLQueryItem]()
         
         if let parameters = parameters {
@@ -92,9 +94,9 @@ class RequestWordPressData {
     }
 
     /* singleton for the network tasks */
-    class func sharedInstance() -> RequestWordPressData {
+    class func sharedInstance() -> APIService {
         struct Singleton {
-            static var sharedInstance = RequestWordPressData()
+            static var sharedInstance = APIService()
         }
         return Singleton.sharedInstance
     }

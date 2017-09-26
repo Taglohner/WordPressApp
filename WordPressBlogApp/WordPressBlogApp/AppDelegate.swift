@@ -20,11 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /* print SQL directory */
         AppDelegate.stack.applicationDocumentsDirectory()
         
-        /* start autosaving */
-        AppDelegate.stack.autoSave(60)
-        
         return true
     }
-    
 }
 
