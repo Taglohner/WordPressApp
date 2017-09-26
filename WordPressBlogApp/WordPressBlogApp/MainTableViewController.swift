@@ -151,7 +151,7 @@ class MainTableViewController: CoreDataTableViewController {
         }
         
         if cellType == "featured" {
-            return 300
+            return 280
         }
         else {
             return 203

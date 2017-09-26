@@ -97,21 +97,21 @@
                                     <outlet property="titleLabel" destination="G3j-30-ynn" id="TEz-I2-Aw9"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="featuredPostCell" rowHeight="300" id="yUw-A2-cs0" customClass="FeaturedPostTableViewCell" customModule="WordPressBlogApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="231" width="375" height="300"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="featuredPostCell" rowHeight="280" id="yUw-A2-cs0" customClass="FeaturedPostTableViewCell" customModule="WordPressBlogApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="231" width="375" height="280"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="yUw-A2-cs0" id="ZJl-sS-kvi">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="279.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqG-ou-6kO" customClass="ShadowView" customModule="WordPressBlogApp" customModuleProvider="target">
-                                            <rect key="frame" x="4" y="4" width="368" height="292.5"/>
+                                            <rect key="frame" x="4" y="4" width="368" height="272.5"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="klI-9o-o7u">
-                                                    <rect key="frame" x="0.0" y="0.0" width="366" height="290.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="366" height="270.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="d7O-p5-8PK">
-                                                            <rect key="frame" x="8" y="8" width="350" height="274.5"/>
+                                                            <rect key="frame" x="8" y="8" width="350" height="254.5"/>
                                                             <subviews>
                                                                 <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCC-9L-8zZ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="350" height="116.5"/>
@@ -120,13 +120,13 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="Label" lineBreakMode="tailTruncation" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lv-HW-Vj1">
-                                                                    <rect key="frame" x="0.0" y="121.5" width="350" height="127.5"/>
+                                                                    <rect key="frame" x="0.0" y="121.5" width="350" height="107.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDT-pb-hbS">
-                                                                    <rect key="frame" x="0.0" y="254" width="350" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="234" width="350" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
