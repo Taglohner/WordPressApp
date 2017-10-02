@@ -17,9 +17,8 @@ class FeaturedPostTableViewCell: UITableViewCell {
     @IBOutlet weak var featuredImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var excerptLabel: UILabel!
-    
-    let lightGrayColor = UIColor(r: 220, g: 220, b: 220, alpha: 1)
-    
+    let lightGrayColor = UIColor(r: 184, g: 184, b: 184, alpha: 1)
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -40,11 +39,11 @@ class FeaturedPostTableViewCell: UITableViewCell {
         excerptLabel.textAlignment = .natural
         excerptLabel.font = UIFont(name: "Oxygen-Light", size: 14)
         
-        mainLayout.layer.cornerRadius = 0
+        mainLayout.layer.cornerRadius = 4
         mainLayout.layer.masksToBounds = false
         mainLayout.layer.borderWidth = 0.2
         mainLayout.layer.borderColor = lightGrayColor.cgColor
-        shadowLayout.layer.cornerRadius = 0
+        shadowLayout.layer.cornerRadius = 4
         shadowLayout.layer.masksToBounds = false
         
         featuredImage.clipsToBounds = true

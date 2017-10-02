@@ -27,10 +27,6 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        /* configure UI */
-        self.navigationController?.hidesBarsOnSwipe = true
-        self.navigationController?.navigationBar.tintColor = .orange
-        
         /* make the request */
         webRequest()
     }

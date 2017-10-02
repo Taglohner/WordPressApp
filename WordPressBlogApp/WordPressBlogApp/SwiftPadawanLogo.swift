@@ -29,12 +29,12 @@ class StyleKit: NSObject {
         
         /// Swift Padawan. Logo
         let swiftPadawan = NSMutableAttributedString(string: "Swift Padawan.")
-        swiftPadawan.addAttribute(NSAttributedStringKey.font, value: UIFont(name: "Podkova-Bold", size: 22)!, range: NSRange(location: 0, length: swiftPadawan.length))
-        swiftPadawan.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(hue: 0.075, saturation: 0.839, brightness: 0.889, alpha: 1), range: NSRange(location: 13, length: 1))
+        swiftPadawan.addAttribute(NSFontAttributeName, value: UIFont(name: "Podkova-Bold", size: 22)!, range: NSRange(location: 0, length: swiftPadawan.length))
+        swiftPadawan.addAttribute(NSForegroundColorAttributeName, value: UIColor(hue: 0.075, saturation: 0.839, brightness: 0.889, alpha: 1), range: NSRange(location: 13, length: 1))
         do {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
-            swiftPadawan.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: swiftPadawan.length))
+            swiftPadawan.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: swiftPadawan.length))
         }
         context.saveGState()
         swiftPadawan.draw(at: CGPoint(x: 3, y: 1))
@@ -79,17 +79,17 @@ class StyleKit: NSObject {
             scales.height = abs(target.height / rect.height)
             
             switch self {
-                case .aspectFit:
-                    scales.width = min(scales.width, scales.height)
-                    scales.height = scales.width
-                case .aspectFill:
-                    scales.width = max(scales.width, scales.height)
-                    scales.height = scales.width
-                case .stretch:
-                    break
-                case .center:
-                    scales.width = 1
-                    scales.height = 1
+            case .aspectFit:
+                scales.width = min(scales.width, scales.height)
+                scales.height = scales.width
+            case .aspectFill:
+                scales.width = max(scales.width, scales.height)
+                scales.height = scales.width
+            case .stretch:
+                break
+            case .center:
+                scales.width = 1
+                scales.height = 1
             }
             
             var result = rect.standardized

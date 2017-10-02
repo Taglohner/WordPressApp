@@ -11,14 +11,14 @@ import CoreData
 
 extension APIService {
     
-    func getPosts(page: Int?, numberOfPosts: Int?, save: Bool, completion: @escaping (_ pages: Int, _ posts: Int) -> Void) {
+    func getPosts(page: Int?, numberOfPosts: Int?, save: Bool, completion: @escaping (_ pages: Int?, _ posts: Int?, _ error: String?) -> Void) {
         getPostsJSON(page: page, numberOfPosts: numberOfPosts) { (data, pages, posts, error) in
             guard error == nil else {
-                print(error ?? "Error getting posts")
+                completion(nil, nil, error)
                 return
             }
             if let posts = posts, let pages = pages {
-                completion(pages, posts)
+                completion(pages, posts, nil)
             }
             if save {
                 if let data = data {
@@ -33,21 +33,18 @@ extension APIService {
             
             let object = PostObject(json: json)
             
-            postEntity.type = object?.type
             postEntity.id = object?.id ?? 1
             postEntity.title = object?.title
-            postEntity.modified = object?.modified
             postEntity.link = object?.link
             postEntity.excerpt = object?.excerpt
             postEntity.featuredImageURL = object?.imageURL
-            postEntity.authorID = object?.authorID ?? 0
             postEntity.cellType = object?.cellType
             
             /* converting date format before saving to Core Data */
             DispatchQueue.main.async {
                 postEntity.date = object?.date.toDateString(inputFormat: "yyyy-MM-dd'T'HH:mm:ss", outputFormat: "EEEE, dd MMMM")
             }
-            
+        
             /* downloading the featured image */
             if let imageURL = postEntity.featuredImageURL {
                 imageDataFrom(imageURL) { (imageData, error) in

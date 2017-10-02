@@ -17,6 +17,7 @@ class MainTableViewController: CoreDataTableViewController {
     let reachability = Reachability()!
     let coreDataStack = AppDelegate.stack
     let wordpressAPIService = APIService.sharedInstance()
+    let messageLabel = UILabel()
     
     var page = 1
     var lastFetchTotalPages = Int()
@@ -27,30 +28,26 @@ class MainTableViewController: CoreDataTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* clear data */
-        coreDataStack.batchDelete(context: coreDataStack.context, entityName: "Post")
-        
-        /* download fresh data */
-        wordpressAPIService.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts) in
-            self.lastFetchTotalPages = pages
-            self.lastFecthTotalPosts = posts
-        }
+        fetchFreshData()
         
         /* UI configuration */
-        self.tableView.separatorColor = .white
+        self.navigationController?.navigationBar.tintColor = .orange
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
+        
+        //Connection status label
+        messageLabel.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: 24)
+        messageLabel.autoresizingMask = .flexibleWidth
+        messageLabel.text = "Check your internet connectivity"
+        messageLabel.font = UIFont(name: "Oxygen-Light", size: 14)
+        messageLabel.textColor = .black
+        messageLabel.backgroundColor = .orange
+        messageLabel.textAlignment = .center
+        self.navigationController?.view.addSubview(messageLabel)
         
         /* refresh control */
         topRefreshControl = UIRefreshControl()
         tableView.addSubview(topRefreshControl)
-        
-        /* creates a UIView to place under the status bar but above the navigation bar */
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = UIApplication.shared.statusBarFrame
-        blurEffectView.autoresizingMask = .flexibleWidth
-        UIApplication.shared.keyWindow?.addSubview(blurEffectView)
         
         /* creates a Fetch Request */
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
@@ -60,9 +57,27 @@ class MainTableViewController: CoreDataTableViewController {
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if topRefreshControl.isRefreshing {
-            wordpressAPIService.getPosts(page: 1, numberOfPosts: 1, save: false) { (pages,posts) in
+            wordpressAPIService.getPosts(page: 1, numberOfPosts: 1, save: false) { (pages,posts, error) in
+                
+                guard error == nil else {
+                    return print(error ?? "")
+                }
+                guard let pages = pages, let posts = posts else {
+                    return print("error occurred couting posts and pages")
+                }
+                self.lastFecthTotalPosts = posts
+                self.lastFetchTotalPages = pages
+                
                 if posts > self.lastFecthTotalPosts {
-                    self.wordpressAPIService.getPosts(page: 1, numberOfPosts: (posts - self.lastFecthTotalPosts), save: true) { (pages, posts) in
+                    
+                    self.wordpressAPIService.getPosts(page: 1, numberOfPosts: (posts - self.lastFecthTotalPosts), save: true) { (pages, posts, error) in
+                        
+                        guard error == nil else {
+                            return print(error ?? "")
+                        }
+                        guard let pages = pages, let posts = posts else {
+                           return print("error occurred couting posts and pages")
+                        }
                         self.lastFecthTotalPosts = posts
                         self.lastFetchTotalPages = pages
                     }
@@ -77,16 +92,8 @@ class MainTableViewController: CoreDataTableViewController {
         let tableHeight = tableView.contentSize.height - tableView.frame.size.height
         let scrolledPercentage = yOffSet / tableHeight
         
-        if scrolledPercentage > 0.55 && scrolledPercentage < 0.65 && page < lastFetchTotalPages {
-            wordpressAPIService.getPosts(page: page + 1, numberOfPosts: nil, save: true) { (pages, posts) in
-                
-                /* VERIFY IF NEW POSTS ARE AVIALABLE AND NOTIFY THE USER IF SO */
-                
-                print(pages)
-                print(posts)
-                
-                /* VERIFY IF NEW POSTS ARE AVIALABLE AND NOTIFY THE USER IF SO */
-            }
+        if scrolledPercentage > 0.45 && scrolledPercentage < 0.65 && page < lastFetchTotalPages {
+            wordpressAPIService.getPosts(page: page + 1, numberOfPosts: nil, save: true) { (pages, posts, error) in }
             page += 1
         } else {
             return
@@ -117,7 +124,7 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     // MARK: - TableView Data Source
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let post = fetchedResultsController?.object(at: indexPath) as? Post, let postTitle = post.title, let postExcerpt = post.excerpt, let postImage = post.featuredImage else {
             return UITableViewCell()
@@ -149,12 +156,11 @@ class MainTableViewController: CoreDataTableViewController {
         guard let post = fetchedResultsController?.object(at: indexPath) as? Post, let cellType = post.cellType else {
             return 0
         }
-        
         if cellType == "featured" {
-            return 280
+            return 340
         }
         else {
-            return 203
+            return 210
         }
     }
 
@@ -201,45 +207,34 @@ class MainTableViewController: CoreDataTableViewController {
         }
     }
     
+    func fetchFreshData(){
+        /* clear data */
+        coreDataStack.batchDelete(context: coreDataStack.context, entityName: "Post")
+        
+        /* download fresh data */
+        wordpressAPIService.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts, error) in
+            guard error == nil else {
+                return print(error ?? "")
+            }
+            guard let pages = pages, let posts = posts else {
+                return print("error occurred couting posts and pages")
+            }
+            self.lastFetchTotalPages = pages
+            self.lastFecthTotalPosts = posts
+        }
+    }
     // MARK: Supporing methods
     
     /* observe the internet connectivity */
     @objc func reachabilityChanged(note: Notification) {
-        
-        let reachability = note.object as! Reachability
-        
-        switch reachability.connection {
-        case .wifi:
-            print("Reachable via WiFi")
-        case .cellular:
-            print("Reachable via Cellular")
+
+        let reachability = note.object
         case .none:
-            print("Network not reachable")
+            self.messageLabel.isHidden = false
+            self.tableView.bounces = false
         }
     }
     
-    /* update data based on internet availability */
-    //    func refreshDataIfOnline() {
-    //
-    //        reachability.whenReachable = { reachability in
-    //            if reachability.connection == .wifi {
-    //
-    //            } else if reachability.connection == .cellular {
-    //
-    //            } else {
-    //
-    //                self.clearData()
-    //                self.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts) in
-    //                    self.lastFetchTotalPages = pages
-    //                    self.lastFecthTotalPosts = posts
-    //                }
-    //            }
-    //
-    //            reachability.whenUnreachable = { _ in
-    //                print("Not reachable")
-    //            }
-    //        }
-    //    }
 }
 
 
