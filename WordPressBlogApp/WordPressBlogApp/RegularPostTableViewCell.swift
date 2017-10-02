@@ -13,11 +13,10 @@ class RegularPostTableViewCell: UITableViewCell {
     // MARK: - Properties
     
     @IBOutlet weak var mainLayout: UIView!
-    @IBOutlet weak var shadowLayout: UIView!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var excerptLabel: UILabel!
-    let lightGrayColor = UIColor(r: 184, g: 184, b: 184, alpha: 1)
+    let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,7 +29,8 @@ class RegularPostTableViewCell: UITableViewCell {
     func cellViewForRegularPost(cell: UITableViewCell) {
         
         self.selectionStyle = .none
-        
+        self.backgroundColor = lightGrayColor
+    
         titleLabel.font = UIFont(name: "Oxygen-Bold", size: 16)
         titleLabel.numberOfLines = 3
         titleLabel.textAlignment = .natural
@@ -39,15 +39,13 @@ class RegularPostTableViewCell: UITableViewCell {
         excerptLabel.textAlignment = .natural
         excerptLabel.font = UIFont(name: "Oxygen-Light", size: 14)
  
-        mainLayout.layer.cornerRadius = 4
+        mainLayout.layer.cornerRadius = 10
         mainLayout.layer.masksToBounds = false
-        mainLayout.layer.borderWidth = 0.2
-        mainLayout.layer.borderColor = lightGrayColor.cgColor
-        shadowLayout.layer.cornerRadius = 4
-        shadowLayout.layer.masksToBounds = false
-        
+
         postImage.clipsToBounds = true
         postImage.contentMode = .scaleAspectFill
-        postImage.layer.cornerRadius = 4
+        postImage.layer.cornerRadius = 10
+        postImage.layer.borderColor = lightGrayColor.cgColor
+        postImage.layer.borderWidth = 0.2
     }
 }

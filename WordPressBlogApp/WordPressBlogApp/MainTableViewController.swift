@@ -13,18 +13,19 @@ class MainTableViewController: CoreDataTableViewController {
     
     //MARK: Properties
     
-    var topRefreshControl: UIRefreshControl!
+    var topRefreshControl = UIRefreshControl()
     let reachability = Reachability()!
     let coreDataStack = AppDelegate.stack
     let wordpressAPIService = APIService.sharedInstance()
     let messageLabel = UILabel()
+    let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
     
     var page = 1
     var lastFetchTotalPages = Int()
     var lastFecthTotalPosts = Int()
     
     //MARK: Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,10 +33,12 @@ class MainTableViewController: CoreDataTableViewController {
         
         /* UI configuration */
         self.navigationController?.navigationBar.tintColor = .orange
+        self.tableView.backgroundColor = lightGrayColor
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
+        messageLabel.isHidden()
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
         
-        //Connection status label
+        /* Connection status label */
         messageLabel.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: 24)
         messageLabel.autoresizingMask = .flexibleWidth
         messageLabel.text = "Check your internet connectivity"
@@ -54,7 +57,7 @@ class MainTableViewController: CoreDataTableViewController {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataStack.context, sectionNameKeyPath: "date", cacheName: nil)
     }
-    
+
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if topRefreshControl.isRefreshing {
             wordpressAPIService.getPosts(page: 1, numberOfPosts: 1, save: false) { (pages,posts, error) in
@@ -62,11 +65,9 @@ class MainTableViewController: CoreDataTableViewController {
                 guard error == nil else {
                     return print(error ?? "")
                 }
-                guard let pages = pages, let posts = posts else {
+                guard let posts = posts else {
                     return print("error occurred couting posts and pages")
                 }
-                self.lastFecthTotalPosts = posts
-                self.lastFetchTotalPages = pages
                 
                 if posts > self.lastFecthTotalPosts {
                     
@@ -76,7 +77,7 @@ class MainTableViewController: CoreDataTableViewController {
                             return print(error ?? "")
                         }
                         guard let pages = pages, let posts = posts else {
-                           return print("error occurred couting posts and pages")
+                            return print("error occurred couting posts and pages")
                         }
                         self.lastFecthTotalPosts = posts
                         self.lastFetchTotalPages = pages
@@ -103,11 +104,6 @@ class MainTableViewController: CoreDataTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        /* UI configuration */
-        self.navigationController?.hidesBarsOnSwipe = false
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.isToolbarHidden = true
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: Notification.Name.reachabilityChanged,object: reachability)
         do{
             try reachability.startNotifier()
@@ -124,7 +120,7 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     // MARK: - TableView Data Source
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let post = fetchedResultsController?.object(at: indexPath) as? Post, let postTitle = post.title, let postExcerpt = post.excerpt, let postImage = post.featuredImage else {
             return UITableViewCell()
@@ -157,13 +153,13 @@ class MainTableViewController: CoreDataTableViewController {
             return 0
         }
         if cellType == "featured" {
-            return 340
+            return 356
         }
         else {
-            return 210
+            return 226
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 24
     }
@@ -207,33 +203,43 @@ class MainTableViewController: CoreDataTableViewController {
         }
     }
     
-    func fetchFreshData(){
-        /* clear data */
-        coreDataStack.batchDelete(context: coreDataStack.context, entityName: "Post")
-        
-        /* download fresh data */
-        wordpressAPIService.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts, error) in
-            guard error == nil else {
-                return print(error ?? "")
-            }
-            guard let pages = pages, let posts = posts else {
-                return print("error occurred couting posts and pages")
-            }
-            self.lastFetchTotalPages = pages
-            self.lastFecthTotalPosts = posts
-        }
-    }
     // MARK: Supporing methods
     
     /* observe the internet connectivity */
     @objc func reachabilityChanged(note: Notification) {
-
-        let reachability = note.object
+        let reachability = note.object as! Reachability
+        
+        switch reachability.connection {
+        case .wifi, .cellular:
+            self.messageLabel.fadeOut()
+            self.tableView.bounces = true
         case .none:
-            self.messageLabel.isHidden = false
+            self.messageLabel.fadeIn()
             self.tableView.bounces = false
         }
     }
+    
+    func fetchFreshData(){
+        
+        if reachability.connection != .none {
+            
+            /* clear all data */
+            coreDataStack.batchDelete(context: coreDataStack.context, entityName: "Post")
+            
+            /* fetch new data */
+            wordpressAPIService.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts, error) in
+                guard error == nil else {
+                    return print(error ?? "")
+                }
+                guard let pages = pages, let posts = posts else {
+                    return print("error occurred couting posts and pages")
+                }
+                self.lastFetchTotalPages = pages
+                self.lastFecthTotalPosts = posts
+            }
+        }
+    }
+    
     
 }
 

@@ -13,13 +13,16 @@ extension APIService {
     
     func getPosts(page: Int?, numberOfPosts: Int?, save: Bool, completion: @escaping (_ pages: Int?, _ posts: Int?, _ error: String?) -> Void) {
         getPostsJSON(page: page, numberOfPosts: numberOfPosts) { (data, pages, posts, error) in
+            
             guard error == nil else {
                 completion(nil, nil, error)
                 return
             }
+            
             if let posts = posts, let pages = pages {
                 completion(pages, posts, nil)
             }
+            
             if save {
                 if let data = data {
                     self.saveInCoreDataWith(dictionary: data)
