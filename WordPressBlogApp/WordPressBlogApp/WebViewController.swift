@@ -14,28 +14,55 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
     //MARK: Properties
     var postID = Int()
     var webView: WKWebView!
-
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
+    let activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), type: .ballPulse, color: .orange, padding: 180)
+    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /* setup the activityIndicatorView */
+        activityIndicatorView.backgroundColor = lightGrayColor
+        self.webView.addSubview(activityIndicatorView)
+        
         /* configure UI */
+        webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.delegate = self
+        webView.uiDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        /* make the request */
+        activityIndicatorView.startAnimating()
+        shareButton.isEnabled = false
+        
+        /* Observe content loading progress */
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+        
+        /* make the web request */
         webRequest()
     }
-
+    
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.uiDelegate = self
         view = webView
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "estimatedProgress" {
+            if webView.estimatedProgress == 1.0 {
+                activityIndicatorView.stopAnimating()
+                shareButton.isEnabled = true
+            }
+        }
+    }
+    
+    deinit {
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
     }
     
     //MARK: Helper methods and actions
@@ -46,7 +73,7 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
         let request = URLRequest(url: requestURL!)
         webView.load(request)
     }
-
+    
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
     }

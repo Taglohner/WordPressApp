@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MainTableViewController: CoreDataTableViewController {
+class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorViewable {
     
     //MARK: Properties
     
@@ -20,6 +20,8 @@ class MainTableViewController: CoreDataTableViewController {
     let messageLabel = UILabel()
     let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
     
+    let activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), type: .ballPulse, color: .orange, padding: 180)
+    
     var page = 1
     var lastFetchTotalPages = Int()
     var lastFecthTotalPosts = Int()
@@ -29,13 +31,22 @@ class MainTableViewController: CoreDataTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.view.addSubview(activityIndicatorView)
+        
+        /* ActivityIndicatorView View */
+        activityIndicatorView.startAnimating()
+        
         fetchFreshData()
+        
+        /* creates a Fetch Request */
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataStack.context, sectionNameKeyPath: "date", cacheName: nil)
         
         /* UI configuration */
         self.navigationController?.navigationBar.tintColor = .orange
         self.tableView.backgroundColor = lightGrayColor
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
-        messageLabel.isHidden()
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
         
         /* Connection status label */
@@ -52,14 +63,12 @@ class MainTableViewController: CoreDataTableViewController {
         topRefreshControl = UIRefreshControl()
         tableView.addSubview(topRefreshControl)
         
-        /* creates a Fetch Request */
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataStack.context, sectionNameKeyPath: "date", cacheName: nil)
+        messageLabel.isHidden()
     }
-
+    
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if topRefreshControl.isRefreshing {
+            
             wordpressAPIService.getPosts(page: 1, numberOfPosts: 1, save: false) { (pages,posts, error) in
                 
                 guard error == nil else {
@@ -89,6 +98,7 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         let yOffSet = tableView.contentOffset.y
         let tableHeight = tableView.contentSize.height - tableView.frame.size.height
         let scrolledPercentage = yOffSet / tableHeight
@@ -98,6 +108,12 @@ class MainTableViewController: CoreDataTableViewController {
             page += 1
         } else {
             return
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.last != nil {
+            activityIndicatorView.stopAnimating()
         }
     }
     
@@ -220,9 +236,7 @@ class MainTableViewController: CoreDataTableViewController {
     }
     
     func fetchFreshData(){
-        
         if reachability.connection != .none {
-            
             /* clear all data */
             coreDataStack.batchDelete(context: coreDataStack.context, entityName: "Post")
             
@@ -231,6 +245,7 @@ class MainTableViewController: CoreDataTableViewController {
                 guard error == nil else {
                     return print(error ?? "")
                 }
+                
                 guard let pages = pages, let posts = posts else {
                     return print("error occurred couting posts and pages")
                 }
