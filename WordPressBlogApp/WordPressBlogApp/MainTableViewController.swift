@@ -57,11 +57,9 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
         messageLabel.textColor = .black
         messageLabel.backgroundColor = .orange
         messageLabel.textAlignment = .center
-        
-        /* refresh control */
-        topRefreshControl = UIRefreshControl()
-        tableView.addSubview(topRefreshControl)
         messageLabel.isHidden()
+        
+        tableView.refreshControl = topRefreshControl
     }
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

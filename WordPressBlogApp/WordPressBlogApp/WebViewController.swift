@@ -45,6 +45,11 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
         webRequest()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        activityIndicatorView.stopAnimating()
+    }
+    
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
