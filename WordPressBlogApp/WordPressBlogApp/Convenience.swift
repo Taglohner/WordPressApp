@@ -47,8 +47,8 @@ extension APIService {
             DispatchQueue.main.async {
                 postEntity.date = object?.date.toDateString(inputFormat: "yyyy-MM-dd'T'HH:mm:ss", outputFormat: "EEEE, dd MMMM")
             }
-        
-            /* downloading the featured image */
+
+            /* download the featured image */
             if let imageURL = postEntity.featuredImageURL {
                 imageDataFrom(imageURL) { (imageData, error) in
                     if error == nil {

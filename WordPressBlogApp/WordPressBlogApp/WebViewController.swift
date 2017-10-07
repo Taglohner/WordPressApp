@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
+class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate, NVActivityIndicatorViewable {
     
     //MARK: Properties
 
@@ -17,19 +17,14 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
     var webView: WKWebView!
     var postID = Int()
     let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
-    let activityIndicatorView = NVActivityIndicatorView(frame: UIScreen.main.bounds, type: .ballPulse, color: .orange, padding: 190)
+    let reachability = Reachability()!
     
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* setup the activityIndicatorView */
-        activityIndicatorView.backgroundColor = lightGrayColor
-        self.webView.addSubview(activityIndicatorView)
-        
         /* configure UI */
-        webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.delegate = self
         webView.uiDelegate = self
     }
@@ -37,7 +32,8 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        activityIndicatorView.startAnimating()
+        startAnimating(color: .orange, padding: 10, backgroundColor: lightGrayColor)
+        webView.scrollView.bounces = false
         shareButton.isEnabled = false
         
         /* Observe content loading progress */
@@ -55,8 +51,8 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "estimatedProgress" {
-            if webView.estimatedProgress == 1.0 {
-                activityIndicatorView.stopAnimating()
+            if webView.estimatedProgress == 1.0 && self.reachability.connection != .none {
+                stopAnimating()
                 shareButton.isEnabled = true
             }
         }

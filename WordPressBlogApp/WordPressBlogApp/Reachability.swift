@@ -273,7 +273,6 @@ fileprivate extension Reachability {
             block?(self)
             self.notificationCenter.post(name: .reachabilityChanged, object:self)
         }
-        
         previousFlags = flags
     }
     

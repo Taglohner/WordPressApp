@@ -350,7 +350,7 @@ public final class NVActivityIndicatorView: UIView {
     public static var DEFAULT_BLOCKER_DISPLAY_TIME_THRESHOLD = 0
 
     /// Default minimum display time of UI blocker. Default value is 0 ms.
-    public static var DEFAULT_BLOCKER_MINIMUM_DISPLAY_TIME = 3000
+    public static var DEFAULT_BLOCKER_MINIMUM_DISPLAY_TIME = 0
 
     /// Default message displayed in UI blocker. Default value is nil.
     public static var DEFAULT_BLOCKER_MESSAGE: String?

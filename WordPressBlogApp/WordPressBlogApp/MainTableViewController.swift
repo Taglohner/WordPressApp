@@ -13,40 +13,23 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     
     //MARK: Properties
     
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
-    
     var topRefreshControl = UIRefreshControl()
     let reachability = Reachability()!
     let coreDataStack = AppDelegate.stack
     let wordpressAPIService = APIService.sharedInstance()
     let messageLabel = UILabel()
     let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
-//    let launchScreenView = LaunchScreenView()
-//    let activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 24, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 24), type: .ballPulse, color: .orange, padding: 190)
     
     var page = 1
     var lastFetchTotalPages = Int()
     var lastFecthTotalPosts = Int()
+    var lastConnectionStatusConnected = true
     
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.navigationController?.view.addSubview(activityIndicatorView)
-        
-        /* ActivityIndicatorView View */
-//        activityIndicatorView.backgroundColor = .none
-//        activityIndicatorView.startAnimating()
-        
-        /* ActivityIndicatorView View */
-//        launchScreenView.frame = self.view.frame
-//        launchScreenView.backgroundColor = .white
-//        launchScreenView.addSubview(activityIndicatorView)
-//        self.navigationController?.view.addSubview(launchScreenView)
-  
         fetchFreshData()
         
         /* creates a Fetch Request */
@@ -74,9 +57,8 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
         topRefreshControl = UIRefreshControl()
         tableView.addSubview(topRefreshControl)
         messageLabel.isHidden()
-
     }
-
+    
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if topRefreshControl.isRefreshing {
             
@@ -124,8 +106,8 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.last != nil {
-//            launchScreenView.fadeOut()
-//            activityIndicatorView.stopAnimating()
+            //            self.activityIndicatorView.stopAnimating()
+            stopAnimating()
         }
     }
     
@@ -241,34 +223,63 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
         case .wifi, .cellular:
             self.messageLabel.fadeOut()
             self.tableView.bounces = true
+            
+            /* fetch fresh data if the internet connection has been restablish after a connection break */
+            if !lastConnectionStatusConnected {
+                fetchFreshData()
+            }
         case .none:
             self.messageLabel.fadeIn()
             self.tableView.bounces = false
+            lastConnectionStatusConnected = false
+        }
+    }
+    
+    func clearData(){
+        do {
+            let context = coreDataStack.context
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+            do {
+                guard let objects = try context.fetch(fetchRequest) as? [NSManagedObject] else {
+                    print("Error fetching data to delete.")
+                    return
+                }
+                for object in objects {
+                    context.delete(object)
+                }
+            }
+            catch let error {
+                print("ERROR DELETING : \(error)")
+            }
         }
     }
     
     func fetchFreshData(){
+        startAnimating(color: .orange, padding: 10, backgroundColor: lightGrayColor)
         if reachability.connection != .none {
-
+            /* reset the page you're on */
+            page = 1
+            
             /* clear all data */
-            coreDataStack.batchDelete(context: coreDataStack.context, entityName: "Post")
-
+            self.clearData()
+            
             /* fetch new data */
             wordpressAPIService.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts, error) in
                 guard error == nil else {
                     return print(error ?? "")
                 }
-
+                
                 guard let pages = pages, let posts = posts else {
                     return print("error occurred couting posts and pages")
                 }
                 self.lastFetchTotalPages = pages
                 self.lastFecthTotalPosts = posts
+                self.lastConnectionStatusConnected = true
             }
+        } else {
+            lastConnectionStatusConnected = false
         }
     }
-    
-    
 }
 
 

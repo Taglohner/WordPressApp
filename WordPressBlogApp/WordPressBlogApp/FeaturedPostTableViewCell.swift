@@ -48,5 +48,4 @@ class FeaturedPostTableViewCell: UITableViewCell {
         featuredImage.layer.borderColor = lightGrayColor.cgColor
         featuredImage.layer.borderWidth = 0.3
     }
-
 }

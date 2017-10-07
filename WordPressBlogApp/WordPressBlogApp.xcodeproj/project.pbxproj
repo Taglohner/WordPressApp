@@ -22,7 +22,6 @@
 		129F9F381F5C329700778395 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F9F371F5C329700778395 /* WebViewController.swift */; };
 		12A5CD8B1F561AF600B98638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CD8A1F561AF600B98638 /* AppDelegate.swift */; };
 		12A5CD901F561AF600B98638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12A5CD8E1F561AF600B98638 /* Main.storyboard */; };
-		12A5CD921F561AF600B98638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A5CD911F561AF600B98638 /* Assets.xcassets */; };
 		12A5CDA01F561AF600B98638 /* WordPressBlogAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CD9F1F561AF600B98638 /* WordPressBlogAppTests.swift */; };
 		12A5CDAB1F561AF600B98638 /* WordPressBlogAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CDAA1F561AF600B98638 /* WordPressBlogAppUITests.swift */; };
 		12A5CDB91F561C3B00B98638 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CDB81F561C3B00B98638 /* URLConstants.swift */; };
@@ -32,15 +31,13 @@
 		536BA82B1F58144300DEB552 /* PostObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82A1F58144300DEB552 /* PostObjectModel.swift */; };
 		536BA82E1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */; };
 		536BA8391F58633100DEB552 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA8381F58633100DEB552 /* CoreDataStack.swift */; };
-		E70FEEE01F882E4500CB2B65 /* SwiftPadawanLaunchScreenDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70FEEDF1F882E4500CB2B65 /* SwiftPadawanLaunchScreenDesign.swift */; };
 		E70FEEEC1F88351900CB2B65 /* NVActivityIndicatorAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70FEEE91F88340500CB2B65 /* NVActivityIndicatorAnimationDelegate.swift */; };
 		E70FEEED1F88352400CB2B65 /* NVActivityIndicatorShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70FEEE81F88340500CB2B65 /* NVActivityIndicatorShape.swift */; };
 		E70FEEEE1F88352400CB2B65 /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70FEEE71F88340500CB2B65 /* NVActivityIndicatorView.swift */; };
-		E70FEEFD1F88483B00CB2B65 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70FEEFC1F88479100CB2B65 /* LaunchScreenViewController.swift */; };
-		E70FEF001F884CAE00CB2B65 /* FadeOutSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70FEEFF1F884CAE00CB2B65 /* FadeOutSegue.swift */; };
+		E7126CF61F890865002CE544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7126CF51F890861002CE544 /* Assets.xcassets */; };
+		E75AB78A1F88F4A70098E6F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E75AB7891F88F4A70098E6F1 /* LaunchScreen.storyboard */; };
 		E7932A8F1F7FDD9900A34184 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7932A8D1F7FDD9900A34184 /* Post+CoreDataClass.swift */; };
 		E7932A901F7FDD9900A34184 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7932A8E1F7FDD9900A34184 /* Post+CoreDataProperties.swift */; };
-		E79608531F86F426003DC4E5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79608521F86F426003DC4E5 /* LaunchScreenView.swift */; };
 		E79822B21F843B1400DBC764 /* NVActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79822A31F843A5100DBC764 /* NVActivityIndicatorPresenter.swift */; };
 		E79822B31F843B1400DBC764 /* NVActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79822A21F843A5100DBC764 /* NVActivityIndicatorViewable.swift */; };
 		E79822B71F843B1400DBC764 /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E798228C1F843A1B00DBC764 /* NVActivityIndicatorAnimationAudioEqualizer.swift */; };
@@ -112,7 +109,6 @@
 		12A5CD871F561AF600B98638 /* WordPressBlogApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPressBlogApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A5CD8A1F561AF600B98638 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12A5CD8F1F561AF600B98638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		12A5CD911F561AF600B98638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12A5CD9B1F561AF600B98638 /* WordPressBlogAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordPressBlogAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A5CD9F1F561AF600B98638 /* WordPressBlogAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPressBlogAppTests.swift; sourceTree = "<group>"; };
 		12A5CDA11F561AF600B98638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,16 +122,14 @@
 		536BA82A1F58144300DEB552 /* PostObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostObjectModel.swift; sourceTree = "<group>"; };
 		536BA82D1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WordPressCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		536BA8381F58633100DEB552 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		E70FEEDF1F882E4500CB2B65 /* SwiftPadawanLaunchScreenDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPadawanLaunchScreenDesign.swift; sourceTree = "<group>"; };
 		E70FEEE71F88340500CB2B65 /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
 		E70FEEE81F88340500CB2B65 /* NVActivityIndicatorShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorShape.swift; sourceTree = "<group>"; };
 		E70FEEE91F88340500CB2B65 /* NVActivityIndicatorAnimationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationDelegate.swift; sourceTree = "<group>"; };
 		E70FEEF31F8837A500CB2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E70FEEFC1F88479100CB2B65 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
-		E70FEEFF1F884CAE00CB2B65 /* FadeOutSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeOutSegue.swift; sourceTree = "<group>"; };
+		E7126CF51F890861002CE544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E75AB7891F88F4A70098E6F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7932A8D1F7FDD9900A34184 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E7932A8E1F7FDD9900A34184 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E79608521F86F426003DC4E5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		E798227E1F843A1A00DBC764 /* NVActivityIndicatorAnimationLineScaleParty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationLineScaleParty.swift; sourceTree = "<group>"; };
 		E798227F1F843A1A00DBC764 /* NVActivityIndicatorAnimationBallZigZag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallZigZag.swift; sourceTree = "<group>"; };
 		E79822801F843A1A00DBC764 /* NVActivityIndicatorAnimationBallScaleMultiple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallScaleMultiple.swift; sourceTree = "<group>"; };
@@ -202,9 +196,7 @@
 			children = (
 				E798227C1F8439F400DBC764 /* NVActivityIndicatorView */,
 				121D99FB1F60CA9800955CA9 /* SwiftPadawanLogo.swift */,
-				E70FEEDF1F882E4500CB2B65 /* SwiftPadawanLaunchScreenDesign.swift */,
 				1212E1801F5CFEF600295122 /* ShadowView.swift */,
-				E79608521F86F426003DC4E5 /* LaunchScreenView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -212,15 +204,16 @@
 		124181191F5C823600C87B48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E7126CF51F890861002CE544 /* Assets.xcassets */,
 				E70FEEF31F8837A500CB2B65 /* Info.plist */,
 				12A5CD8A1F561AF600B98638 /* AppDelegate.swift */,
 				12A5CD8E1F561AF600B98638 /* Main.storyboard */,
-				12A5CD911F561AF600B98638 /* Assets.xcassets */,
 				1212E1831F5E0E5400295122 /* Oxygen-Bold.ttf */,
 				1212E1841F5E0E5400295122 /* Oxygen-Light.ttf */,
 				1212E1851F5E0E5400295122 /* Oxygen-Regular.ttf */,
 				1241811C1F5C826C00C87B48 /* podkova-bold.ttf */,
 				1241811D1F5C826C00C87B48 /* podkova-regular.ttf */,
+				E75AB7891F88F4A70098E6F1 /* LaunchScreen.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -298,7 +291,6 @@
 		12AA393C1F577E6E00555493 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E70FEEFE1F884C7A00CB2B65 /* LaunchScreenViewControler */,
 				5363B3381F60477500E68633 /* MainView */,
 				5363B3391F60478E00E68633 /* WebView */,
 			);
@@ -345,15 +337,6 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		E70FEEFE1F884C7A00CB2B65 /* LaunchScreenViewControler */ = {
-			isa = PBXGroup;
-			children = (
-				E70FEEFC1F88479100CB2B65 /* LaunchScreenViewController.swift */,
-				E70FEEFF1F884CAE00CB2B65 /* FadeOutSegue.swift */,
-			);
-			name = LaunchScreenViewControler;
-			sourceTree = "<group>";
-		};
 		E798227C1F8439F400DBC764 /* NVActivityIndicatorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,7 +344,6 @@
 				E70FEEE81F88340500CB2B65 /* NVActivityIndicatorShape.swift */,
 				E70FEEE71F88340500CB2B65 /* NVActivityIndicatorView.swift */,
 				E79822A11F843A4200DBC764 /* Presenter */,
-				E79822A41F843A5A00DBC764 /* Supporting Files */,
 				E798227D1F843A0A00DBC764 /* Animations */,
 			);
 			name = NVActivityIndicatorView;
@@ -413,13 +395,6 @@
 				E79822A21F843A5100DBC764 /* NVActivityIndicatorViewable.swift */,
 			);
 			name = Presenter;
-			sourceTree = "<group>";
-		};
-		E79822A41F843A5A00DBC764 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -536,11 +511,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1212E1871F5E0F1700295122 /* Oxygen-Light.ttf in Resources */,
-				12A5CD921F561AF600B98638 /* Assets.xcassets in Resources */,
+				E75AB78A1F88F4A70098E6F1 /* LaunchScreen.storyboard in Resources */,
 				1241811F1F5C82CC00C87B48 /* podkova-regular.ttf in Resources */,
 				1212E1861F5E0F1300295122 /* Oxygen-Bold.ttf in Resources */,
 				1241811E1F5C82C500C87B48 /* podkova-bold.ttf in Resources */,
 				12A5CD901F561AF600B98638 /* Main.storyboard in Resources */,
+				E7126CF61F890865002CE544 /* Assets.xcassets in Resources */,
 				1212E1881F5E0F1A00295122 /* Oxygen-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,7 +542,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E70FEEFD1F88483B00CB2B65 /* LaunchScreenViewController.swift in Sources */,
 				E70FEEED1F88352400CB2B65 /* NVActivityIndicatorShape.swift in Sources */,
 				E70FEEEE1F88352400CB2B65 /* NVActivityIndicatorView.swift in Sources */,
 				E70FEEEC1F88351900CB2B65 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
@@ -586,7 +561,6 @@
 				E79822C21F843B1400DBC764 /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
 				E79822C31F843B1400DBC764 /* NVActivityIndicatorAnimationBallScale.swift in Sources */,
 				E79822C41F843B1400DBC764 /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */,
-				E70FEEE01F882E4500CB2B65 /* SwiftPadawanLaunchScreenDesign.swift in Sources */,
 				E79822C51F843B1400DBC764 /* NVActivityIndicatorAnimationBallScaleRipple.swift in Sources */,
 				E79822C61F843B1400DBC764 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */,
 				E79822C71F843B1400DBC764 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */,
@@ -594,7 +568,6 @@
 				E79822C91F843B1400DBC764 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
 				E79822CA1F843B1400DBC764 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
 				E79822CB1F843B1400DBC764 /* NVActivityIndicatorAnimationBlank.swift in Sources */,
-				E70FEF001F884CAE00CB2B65 /* FadeOutSegue.swift in Sources */,
 				E79822CC1F843B1400DBC764 /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
 				E79822CD1F843B1400DBC764 /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
 				E79822CE1F843B1400DBC764 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
@@ -606,7 +579,6 @@
 				E79822D41F843B1400DBC764 /* NVActivityIndicatorAnimationSemiCircleSpin.swift in Sources */,
 				E79822D51F843B1400DBC764 /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */,
 				E79822D61F843B1400DBC764 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
-				E79608531F86F426003DC4E5 /* LaunchScreenView.swift in Sources */,
 				12A5CD8B1F561AF600B98638 /* AppDelegate.swift in Sources */,
 				121D99FC1F60CA9800955CA9 /* SwiftPadawanLogo.swift in Sources */,
 				12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */,
