@@ -12,11 +12,12 @@ import WebKit
 class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
     
     //MARK: Properties
-    var postID = Int()
-    var webView: WKWebView!
+
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    var webView: WKWebView!
+    var postID = Int()
     let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
-    let activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), type: .ballPulse, color: .orange, padding: 180)
+    let activityIndicatorView = NVActivityIndicatorView(frame: UIScreen.main.bounds, type: .ballPulse, color: .orange, padding: 190)
     
     //MARK: Lifecycle
     

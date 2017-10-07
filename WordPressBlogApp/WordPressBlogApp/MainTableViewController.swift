@@ -13,14 +13,18 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     
     //MARK: Properties
     
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
     var topRefreshControl = UIRefreshControl()
     let reachability = Reachability()!
     let coreDataStack = AppDelegate.stack
     let wordpressAPIService = APIService.sharedInstance()
     let messageLabel = UILabel()
     let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
-    
-    let activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), type: .ballPulse, color: .orange, padding: 180)
+//    let launchScreenView = LaunchScreenView()
+//    let activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 24, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 24), type: .ballPulse, color: .orange, padding: 190)
     
     var page = 1
     var lastFetchTotalPages = Int()
@@ -31,11 +35,18 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.view.addSubview(activityIndicatorView)
+//        self.navigationController?.view.addSubview(activityIndicatorView)
         
         /* ActivityIndicatorView View */
-        activityIndicatorView.startAnimating()
+//        activityIndicatorView.backgroundColor = .none
+//        activityIndicatorView.startAnimating()
         
+        /* ActivityIndicatorView View */
+//        launchScreenView.frame = self.view.frame
+//        launchScreenView.backgroundColor = .white
+//        launchScreenView.addSubview(activityIndicatorView)
+//        self.navigationController?.view.addSubview(launchScreenView)
+  
         fetchFreshData()
         
         /* creates a Fetch Request */
@@ -49,7 +60,7 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Oxygen-Light", size: 18)!], for: .normal)
         
-        /* Connection status label */
+        /* connection status label */
         messageLabel.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: 24)
         messageLabel.autoresizingMask = .flexibleWidth
         messageLabel.text = "Check your internet connectivity"
@@ -62,10 +73,10 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
         /* refresh control */
         topRefreshControl = UIRefreshControl()
         tableView.addSubview(topRefreshControl)
-        
         messageLabel.isHidden()
+
     }
-    
+
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if topRefreshControl.isRefreshing {
             
@@ -113,7 +124,8 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.last != nil {
-            activityIndicatorView.stopAnimating()
+//            launchScreenView.fadeOut()
+//            activityIndicatorView.stopAnimating()
         }
     }
     
@@ -177,7 +189,7 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 24
+        return 26
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -237,15 +249,16 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     
     func fetchFreshData(){
         if reachability.connection != .none {
+
             /* clear all data */
             coreDataStack.batchDelete(context: coreDataStack.context, entityName: "Post")
-            
+
             /* fetch new data */
             wordpressAPIService.getPosts(page: 1, numberOfPosts: nil, save: true) { (pages, posts, error) in
                 guard error == nil else {
                     return print(error ?? "")
                 }
-                
+
                 guard let pages = pages, let posts = posts else {
                     return print("error occurred couting posts and pages")
                 }
