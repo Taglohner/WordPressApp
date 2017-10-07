@@ -19,6 +19,7 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     let wordpressAPIService = APIService.sharedInstance()
     let messageLabel = UILabel()
     let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
+    let activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64), type: nil, color: .orange, padding: 184)
     
     var page = 1
     var lastFetchTotalPages = Int()
@@ -38,6 +39,11 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataStack.context, sectionNameKeyPath: "date", cacheName: nil)
         
         /* UI configuration */
+        
+        activityIndicatorView.backgroundColor = lightGrayColor
+        navigationController?.view.addSubview(activityIndicatorView)
+        navigationController?.view.addSubview(messageLabel)
+        
         self.navigationController?.navigationBar.tintColor = .orange
         self.tableView.backgroundColor = lightGrayColor
         self.navigationItem.titleView = UIImageView(image: StyleKit.imageOfSwiftPadawanLogo())
@@ -51,7 +57,6 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
         messageLabel.textColor = .black
         messageLabel.backgroundColor = .orange
         messageLabel.textAlignment = .center
-        self.navigationController?.view.addSubview(messageLabel)
         
         /* refresh control */
         topRefreshControl = UIRefreshControl()
@@ -106,8 +111,7 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.last != nil {
-            //            self.activityIndicatorView.stopAnimating()
-            stopAnimating()
+            activityIndicatorView.stopAnimating()
         }
     }
     
@@ -255,7 +259,7 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     }
     
     func fetchFreshData(){
-        startAnimating(color: .orange, padding: 10, backgroundColor: lightGrayColor)
+        activityIndicatorView.startAnimating()
         if reachability.connection != .none {
             /* reset the page you're on */
             page = 1

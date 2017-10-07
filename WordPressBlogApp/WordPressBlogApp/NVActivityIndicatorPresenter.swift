@@ -175,7 +175,7 @@ public final class NVActivityIndicatorPresenter {
 
     private func show(with activityData: ActivityData) {
         
-        let containerView = UIView(frame: UIScreen.main.bounds)
+     let containerView = UIView(frame: UIScreen.main.bounds)
 
         containerView.backgroundColor = activityData.backgroundColor
         containerView.restorationIdentifier = restorationIdentifier
@@ -220,13 +220,14 @@ public final class NVActivityIndicatorPresenter {
         guard let keyWindow = UIApplication.shared.keyWindow else { return }
 
         keyWindow.addSubview(containerView)
+        
         state = .showed
 
         // Add constraints for `containerView`.
         ({
             let leadingConstraint = NSLayoutConstraint(item: keyWindow, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 0)
             let trailingConstraint = NSLayoutConstraint(item: keyWindow, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: 0)
-            let topConstraint = NSLayoutConstraint(item: keyWindow, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: -64)
+            let topConstraint = NSLayoutConstraint(item: keyWindow, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: -0)
             let bottomConstraint = NSLayoutConstraint(item: keyWindow, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: 0)
 
             keyWindow.addConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])

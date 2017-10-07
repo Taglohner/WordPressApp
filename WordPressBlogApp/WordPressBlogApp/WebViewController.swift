@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate, NVActivityIndicatorViewable {
+class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
     
     //MARK: Properties
 
@@ -18,7 +18,8 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate, N
     var postID = Int()
     let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
     let reachability = Reachability()!
-    
+    let activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64), type: nil, color: .orange, padding: 184)
+
     //MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -32,14 +33,15 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate, N
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        startAnimating(color: .orange, padding: 10, backgroundColor: lightGrayColor)
-        webView.scrollView.bounces = false
+        activityIndicatorView.backgroundColor = lightGrayColor
+        navigationController?.view.addSubview(activityIndicatorView)
         shareButton.isEnabled = false
         
         /* Observe content loading progress */
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         
         /* make the web request */
+        activityIndicatorView.startAnimating()
         webRequest()
     }
     
@@ -52,7 +54,7 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate, N
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "estimatedProgress" {
             if webView.estimatedProgress == 1.0 && self.reachability.connection != .none {
-                stopAnimating()
+                activityIndicatorView.stopAnimating()
                 shareButton.isEnabled = true
             }
         }
