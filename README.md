@@ -16,4 +16,6 @@ WordPressApp (Swift Padawan it’s a generic name) is build for iOS in Swift 3.2
 
 * If the internet connection is lost the user is notified. 
 
-![Sample Video](https://youtu.be/zOau1TIYu44)
+###Sample Video:
+
+https://youtu.be/zOau1TIYu44
