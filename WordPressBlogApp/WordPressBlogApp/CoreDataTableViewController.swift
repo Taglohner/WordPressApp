@@ -105,7 +105,6 @@ extension CoreDataTableViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        
         let set = IndexSet(integer: sectionIndex)
         
         switch (type) {

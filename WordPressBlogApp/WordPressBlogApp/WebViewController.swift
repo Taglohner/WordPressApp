@@ -34,7 +34,7 @@ class WebViewController: UIViewController, WKUIDelegate, UIScrollViewDelegate {
         super.viewWillAppear(animated)
         
         activityIndicatorView.backgroundColor = lightGrayColor
-        navigationController?.view.addSubview(activityIndicatorView)
+        webView.addSubview(activityIndicatorView)
         shareButton.isEnabled = false
         
         /* Observe content loading progress */

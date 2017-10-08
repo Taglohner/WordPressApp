@@ -94,7 +94,6 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         let yOffSet = tableView.contentOffset.y
         let tableHeight = tableView.contentSize.height - tableView.frame.size.height
         let scrolledPercentage = yOffSet / tableHeight

@@ -17,17 +17,8 @@ class RegularPostTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var excerptLabel: UILabel!
     let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
-        
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 
     func cellViewForRegularPost(cell: UITableViewCell) {
-        
         self.selectionStyle = .none
         self.backgroundColor = lightGrayColor
     

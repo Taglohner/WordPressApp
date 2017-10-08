@@ -190,7 +190,6 @@ extension CoreDataStack {
             }
         }
     }
-    
 }
 
 
