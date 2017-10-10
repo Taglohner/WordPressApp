@@ -1,5 +1,5 @@
 //
-//  Post+CoreDataClass.swift
+//  Author+CoreDataClass.swift
 //  WordPressBlogApp
 //
 //  Created by Steven Taglohner on 10/10/2017.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Post)
-public class Post: NSManagedObject {
+@objc(Author)
+public class Author: NSManagedObject {
 
 }

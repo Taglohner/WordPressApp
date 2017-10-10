@@ -28,7 +28,7 @@
 		12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5CDBA1F561C4800B98638 /* APIService.swift */; };
 		12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA393D1F57804700555493 /* MainTableViewController.swift */; };
 		12AA39441F57840300555493 /* RegularPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AA39431F57840300555493 /* RegularPostTableViewCell.swift */; };
-		536BA82B1F58144300DEB552 /* PostObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82A1F58144300DEB552 /* PostObjectModel.swift */; };
+		536BA82B1F58144300DEB552 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82A1F58144300DEB552 /* Models.swift */; };
 		536BA82E1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */; };
 		536BA8391F58633100DEB552 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BA8381F58633100DEB552 /* CoreDataStack.swift */; };
 		E70FEEEC1F88351900CB2B65 /* NVActivityIndicatorAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70FEEE91F88340500CB2B65 /* NVActivityIndicatorAnimationDelegate.swift */; };
@@ -36,8 +36,10 @@
 		E70FEEEE1F88352400CB2B65 /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70FEEE71F88340500CB2B65 /* NVActivityIndicatorView.swift */; };
 		E7126CF61F890865002CE544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7126CF51F890861002CE544 /* Assets.xcassets */; };
 		E75AB78A1F88F4A70098E6F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E75AB7891F88F4A70098E6F1 /* LaunchScreen.storyboard */; };
-		E7932A8F1F7FDD9900A34184 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7932A8D1F7FDD9900A34184 /* Post+CoreDataClass.swift */; };
-		E7932A901F7FDD9900A34184 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7932A8E1F7FDD9900A34184 /* Post+CoreDataProperties.swift */; };
+		E78F662A1F8D7FFA003F833F /* Author+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78F66261F8D7FFA003F833F /* Author+CoreDataClass.swift */; };
+		E78F662B1F8D7FFA003F833F /* Author+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78F66271F8D7FFA003F833F /* Author+CoreDataProperties.swift */; };
+		E78F662C1F8D7FFA003F833F /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78F66281F8D7FFA003F833F /* Post+CoreDataClass.swift */; };
+		E78F662D1F8D7FFA003F833F /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78F66291F8D7FFA003F833F /* Post+CoreDataProperties.swift */; };
 		E79822B21F843B1400DBC764 /* NVActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79822A31F843A5100DBC764 /* NVActivityIndicatorPresenter.swift */; };
 		E79822B31F843B1400DBC764 /* NVActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79822A21F843A5100DBC764 /* NVActivityIndicatorViewable.swift */; };
 		E79822B71F843B1400DBC764 /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E798228C1F843A1B00DBC764 /* NVActivityIndicatorAnimationAudioEqualizer.swift */; };
@@ -119,7 +121,7 @@
 		12A5CDBA1F561C4800B98638 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		12AA393D1F57804700555493 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		12AA39431F57840300555493 /* RegularPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularPostTableViewCell.swift; sourceTree = "<group>"; };
-		536BA82A1F58144300DEB552 /* PostObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostObjectModel.swift; sourceTree = "<group>"; };
+		536BA82A1F58144300DEB552 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		536BA82D1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WordPressCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		536BA8381F58633100DEB552 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E70FEEE71F88340500CB2B65 /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -128,8 +130,10 @@
 		E70FEEF31F8837A500CB2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7126CF51F890861002CE544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E75AB7891F88F4A70098E6F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E7932A8D1F7FDD9900A34184 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E7932A8E1F7FDD9900A34184 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E78F66261F8D7FFA003F833F /* Author+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E78F66271F8D7FFA003F833F /* Author+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E78F66281F8D7FFA003F833F /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E78F66291F8D7FFA003F833F /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E798227E1F843A1A00DBC764 /* NVActivityIndicatorAnimationLineScaleParty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationLineScaleParty.swift; sourceTree = "<group>"; };
 		E798227F1F843A1A00DBC764 /* NVActivityIndicatorAnimationBallZigZag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallZigZag.swift; sourceTree = "<group>"; };
 		E79822801F843A1A00DBC764 /* NVActivityIndicatorAnimationBallScaleMultiple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallScaleMultiple.swift; sourceTree = "<group>"; };
@@ -280,7 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				1220CA061F71C90400A03D03 /* Reachability.swift */,
-				536BA82A1F58144300DEB552 /* PostObjectModel.swift */,
+				536BA82A1F58144300DEB552 /* Models.swift */,
 				12A5CDB81F561C3B00B98638 /* URLConstants.swift */,
 				12168DBD1F767223009EBB03 /* Convenience.swift */,
 				12A5CDBA1F561C4800B98638 /* APIService.swift */,
@@ -329,8 +333,10 @@
 		536BA8371F58614B00DEB552 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				E7932A8D1F7FDD9900A34184 /* Post+CoreDataClass.swift */,
-				E7932A8E1F7FDD9900A34184 /* Post+CoreDataProperties.swift */,
+				E78F66261F8D7FFA003F833F /* Author+CoreDataClass.swift */,
+				E78F66271F8D7FFA003F833F /* Author+CoreDataProperties.swift */,
+				E78F66281F8D7FFA003F833F /* Post+CoreDataClass.swift */,
+				E78F66291F8D7FFA003F833F /* Post+CoreDataProperties.swift */,
 				536BA82C1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld */,
 				536BA8381F58633100DEB552 /* CoreDataStack.swift */,
 			);
@@ -548,6 +554,7 @@
 				E79822B21F843B1400DBC764 /* NVActivityIndicatorPresenter.swift in Sources */,
 				E79822B31F843B1400DBC764 /* NVActivityIndicatorViewable.swift in Sources */,
 				E79822B71F843B1400DBC764 /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */,
+				E78F662A1F8D7FFA003F833F /* Author+CoreDataClass.swift in Sources */,
 				E79822B81F843B1400DBC764 /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
 				E79822B91F843B1400DBC764 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
 				E79822BA1F843B1400DBC764 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
@@ -555,6 +562,7 @@
 				E79822BC1F843B1400DBC764 /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,
 				E79822BD1F843B1400DBC764 /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
 				E79822BE1F843B1400DBC764 /* NVActivityIndicatorAnimationBallPulse.swift in Sources */,
+				E78F662D1F8D7FFA003F833F /* Post+CoreDataProperties.swift in Sources */,
 				E79822BF1F843B1400DBC764 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
 				E79822C01F843B1400DBC764 /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
 				E79822C11F843B1400DBC764 /* NVActivityIndicatorAnimationBallRotate.swift in Sources */,
@@ -564,11 +572,13 @@
 				E79822C51F843B1400DBC764 /* NVActivityIndicatorAnimationBallScaleRipple.swift in Sources */,
 				E79822C61F843B1400DBC764 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */,
 				E79822C71F843B1400DBC764 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */,
+				E78F662B1F8D7FFA003F833F /* Author+CoreDataProperties.swift in Sources */,
 				E79822C81F843B1400DBC764 /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */,
 				E79822C91F843B1400DBC764 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
 				E79822CA1F843B1400DBC764 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
 				E79822CB1F843B1400DBC764 /* NVActivityIndicatorAnimationBlank.swift in Sources */,
 				E79822CC1F843B1400DBC764 /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
+				E78F662C1F8D7FFA003F833F /* Post+CoreDataClass.swift in Sources */,
 				E79822CD1F843B1400DBC764 /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
 				E79822CE1F843B1400DBC764 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
 				E79822CF1F843B1400DBC764 /* NVActivityIndicatorAnimationLineScalePulseOut.swift in Sources */,
@@ -583,14 +593,12 @@
 				121D99FC1F60CA9800955CA9 /* SwiftPadawanLogo.swift in Sources */,
 				12A5CDBB1F561C4800B98638 /* APIService.swift in Sources */,
 				536BA8391F58633100DEB552 /* CoreDataStack.swift in Sources */,
-				536BA82B1F58144300DEB552 /* PostObjectModel.swift in Sources */,
+				536BA82B1F58144300DEB552 /* Models.swift in Sources */,
 				12A5CDB91F561C3B00B98638 /* URLConstants.swift in Sources */,
-				E7932A8F1F7FDD9900A34184 /* Post+CoreDataClass.swift in Sources */,
 				12AA393E1F57804700555493 /* MainTableViewController.swift in Sources */,
 				536BA82E1F585DC200DEB552 /* WordPressCoreDataModel.xcdatamodeld in Sources */,
 				127F55E01F6377E80071E14F /* Helpers.swift in Sources */,
 				129F9F381F5C329700778395 /* WebViewController.swift in Sources */,
-				E7932A901F7FDD9900A34184 /* Post+CoreDataProperties.swift in Sources */,
 				1212E1811F5CFEF600295122 /* ShadowView.swift in Sources */,
 				12AA39441F57840300555493 /* RegularPostTableViewCell.swift in Sources */,
 				12168DBE1F767223009EBB03 /* Convenience.swift in Sources */,

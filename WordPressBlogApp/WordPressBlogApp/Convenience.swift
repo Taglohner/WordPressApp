@@ -32,20 +32,22 @@ extension APIService {
     }
     
     func createPostEntityFrom(json: [String : AnyObject]) -> NSManagedObject? {
+        
+        var post = Post()
+        
         if let postEntity = NSEntityDescription.insertNewObject(forEntityName: "Post", into: coreDataStack.context) as? Post {
             
-            let object = PostObject(json: json)
-            
-            postEntity.id = object?.id ?? 1
-            postEntity.title = object?.title
-            postEntity.link = object?.link
-            postEntity.excerpt = object?.excerpt
-            postEntity.featuredImageURL = object?.imageURL
-            postEntity.cellType = object?.cellType
+            let postObject = PostObject(json: json)
+            postEntity.id = postObject?.id ?? 1
+            postEntity.title = postObject?.title
+            postEntity.link = postObject?.link
+            postEntity.excerpt = postObject?.excerpt
+            postEntity.featuredImageURL = postObject?.imageURL
+            postEntity.cellType = postObject?.cellType
             
             /* converting date format before saving to Core Data */
             DispatchQueue.main.async {
-                postEntity.date = object?.date.toDateString(inputFormat: "yyyy-MM-dd'T'HH:mm:ss", outputFormat: "EEEE, dd MMMM")
+                postEntity.date = postObject?.date.toDateString(inputFormat: "yyyy-MM-dd'T'HH:mm:ss", outputFormat: "EEEE, dd MMMM")
             }
 
             /* download the featured image */
@@ -60,9 +62,29 @@ extension APIService {
                     }
                 }
             }
-            return postEntity
+            post = postEntity
+            
+        } else {
+            return nil
         }
-        return nil
+        
+        if let authorEntity = NSEntityDescription.insertNewObject(forEntityName: "Author", into: coreDataStack.context) as? Author {
+             let authorObject = AuthorObject(json: json)
+            authorEntity.id = authorObject?.id ?? 0
+            authorEntity.firstName = authorObject?.firstName
+            authorEntity.lastName = authorObject?.lastName
+            authorEntity.nickName = authorObject?.nickName
+            authorEntity.displayName = authorObject?.displayName
+            authorEntity.emailAddress = authorObject?.emailAddress
+            authorEntity.summary = authorObject?.summary
+            authorEntity.avatarURL = authorObject?.avatarURL
+            
+            post.author = authorEntity
+            return post
+            
+        } else {
+            return nil
+        }
     }
     
     func saveInCoreDataWith(dictionary: [[String : AnyObject]]) {
