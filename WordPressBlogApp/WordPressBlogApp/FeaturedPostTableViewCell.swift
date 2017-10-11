@@ -16,9 +16,13 @@ class FeaturedPostTableViewCell: UITableViewCell {
     @IBOutlet weak var featuredImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var excerptLabel: UILabel!
+    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var authorNameLabel: UILabel!
     let lightGrayColor = UIColor(r: 236, g: 236, b: 236, alpha: 1)
     
-    func cellViewForFeaturedPost(cell: UITableViewCell) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
         self.selectionStyle = .none
         self.backgroundColor = lightGrayColor
         
@@ -38,5 +42,14 @@ class FeaturedPostTableViewCell: UITableViewCell {
         featuredImage.layer.cornerRadius = 10
         featuredImage.layer.borderColor = lightGrayColor.cgColor
         featuredImage.layer.borderWidth = 0.3
+        
+        avatarImage.makeRounded(2)
+        avatarImage.layer.borderWidth = 0.2
+        avatarImage.layer.borderColor = UIColor.orange.cgColor
+        
+        authorNameLabel.textColor = .orange
+        authorNameLabel.textAlignment = .left
+        authorNameLabel.font = UIFont(name: "Oxygen-Light", size: 10)
+        authorNameLabel.numberOfLines = 1
     }
 }

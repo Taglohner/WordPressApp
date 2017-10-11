@@ -94,6 +94,7 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         let yOffSet = tableView.contentOffset.y
         let tableHeight = tableView.contentSize.height - tableView.frame.size.height
         let scrolledPercentage = yOffSet / tableHeight
@@ -115,6 +116,9 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+//        tableView.estimatedRowHeight = 320
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: Notification.Name.reachabilityChanged,object: reachability)
         do{
             try reachability.startNotifier()
@@ -133,43 +137,79 @@ class MainTableViewController: CoreDataTableViewController, NVActivityIndicatorV
     // MARK: - TableView Data Source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let post = fetchedResultsController?.object(at: indexPath) as? Post, let postTitle = post.title, let postExcerpt = post.excerpt, let postImage = post.featuredImage else {
+        guard let post = fetchedResultsController?.object(at: indexPath) as? Post, let postTitle = post.title, let postExcerpt = post.excerpt, let postImage = post.featuredImage, let author = post.author else {
             return UITableViewCell()
         }
         
         if post.cellType == "featured" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "featuredPostCell", for: indexPath) as! FeaturedPostTableViewCell
+            
             DispatchQueue.main.async {
                 cell.featuredImage.image = UIImage(data: postImage)
                 cell.titleLabel.text = postTitle
                 cell.excerptLabel.text = postExcerpt
-                cell.cellViewForFeaturedPost(cell: cell)
+                
+                if let avatarImageData = author.avatarImageData {
+                    cell.avatarImage.image = UIImage(data: avatarImageData)
+                } else {
+                    cell.avatarImage.image = UIImage(named: "avatar")
+                }
+                
+                if let authorDisplayName = author.displayName {
+                    cell.authorNameLabel.text = authorDisplayName
+                } else {
+                    cell.authorNameLabel.text = "Unknown Author"
+                }
             }
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "regularPostCell", for: indexPath) as! RegularPostTableViewCell
+            
             DispatchQueue.main.async {
                 cell.postImage.image = UIImage(data: postImage)
                 cell.titleLabel.text = postTitle
                 cell.excerptLabel.text = postExcerpt
-                cell.cellViewForRegularPost(cell: cell)
+                
+                if let avatarImageData = author.avatarImageData {
+                    cell.avatarImage.image = UIImage(data: avatarImageData)
+                } else {
+                    cell.avatarImage.image = UIImage(named: "avatar")
+                }
+                
+                if let authorDisplayName = author.displayName {
+                    cell.authorNameLabel.text = authorDisplayName
+                } else {
+                    cell.authorNameLabel.text = "Unknown Author"
+                }
             }
             return cell
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let post = fetchedResultsController?.object(at: indexPath) as? Post, let cellType = post.cellType else {
             return 0
         }
         if cellType == "featured" {
-            return 356
+            return 400
         }
         else {
-            return 226
+            return 250
         }
     }
+    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        guard let post = fetchedResultsController?.object(at: indexPath) as? Post, let cellType = post.cellType else {
+//            return 0
+//        }
+//        if cellType == "featured" {
+//            return 440
+//        }
+//        else {
+//            return 237
+//        }
+//    }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 26

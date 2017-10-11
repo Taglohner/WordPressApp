@@ -35,6 +35,7 @@
 		E70FEEED1F88352400CB2B65 /* NVActivityIndicatorShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70FEEE81F88340500CB2B65 /* NVActivityIndicatorShape.swift */; };
 		E70FEEEE1F88352400CB2B65 /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70FEEE71F88340500CB2B65 /* NVActivityIndicatorView.swift */; };
 		E7126CF61F890865002CE544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7126CF51F890861002CE544 /* Assets.xcassets */; };
+		E75724281F8EBF35002E3AB0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75724271F8EBF35002E3AB0 /* TableViewCell.swift */; };
 		E75AB78A1F88F4A70098E6F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E75AB7891F88F4A70098E6F1 /* LaunchScreen.storyboard */; };
 		E78F662A1F8D7FFA003F833F /* Author+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78F66261F8D7FFA003F833F /* Author+CoreDataClass.swift */; };
 		E78F662B1F8D7FFA003F833F /* Author+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78F66271F8D7FFA003F833F /* Author+CoreDataProperties.swift */; };
@@ -129,6 +130,7 @@
 		E70FEEE91F88340500CB2B65 /* NVActivityIndicatorAnimationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationDelegate.swift; sourceTree = "<group>"; };
 		E70FEEF31F8837A500CB2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7126CF51F890861002CE544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E75724271F8EBF35002E3AB0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		E75AB7891F88F4A70098E6F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E78F66261F8D7FFA003F833F /* Author+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E78F66271F8D7FFA003F833F /* Author+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				12AA393D1F57804700555493 /* MainTableViewController.swift */,
 				12AA39431F57840300555493 /* RegularPostTableViewCell.swift */,
 				125A26871F79B60A0002AA22 /* FeaturedPostTableViewCell.swift */,
+				E75724271F8EBF35002E3AB0 /* TableViewCell.swift */,
 				127F55DF1F6377E80071E14F /* Helpers.swift */,
 			);
 			name = MainView;
@@ -557,6 +560,7 @@
 				E78F662A1F8D7FFA003F833F /* Author+CoreDataClass.swift in Sources */,
 				E79822B81F843B1400DBC764 /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
 				E79822B91F843B1400DBC764 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
+				E75724281F8EBF35002E3AB0 /* TableViewCell.swift in Sources */,
 				E79822BA1F843B1400DBC764 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
 				E79822BB1F843B1400DBC764 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,
 				E79822BC1F843B1400DBC764 /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,

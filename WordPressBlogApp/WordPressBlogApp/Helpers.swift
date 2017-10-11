@@ -32,10 +32,10 @@ extension String {
     }
 }
 
-extension UIImageView {
+extension UIView {
     
-    func makeRounded() {
-        let radius = self.frame.size.width / 2
+    func makeRounded(_ constant: CGFloat) {
+        let radius = self.frame.size.width / constant
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
     }
