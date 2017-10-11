@@ -33,7 +33,7 @@ extension APIService {
     
     func createPostEntityFrom(json: [String : AnyObject]) -> NSManagedObject? {
         
-        var post = Post()
+        var post: Post?
         
         if let postEntity = NSEntityDescription.insertNewObject(forEntityName: "Post", into: coreDataStack.context) as? Post {
             
@@ -45,12 +45,10 @@ extension APIService {
             postEntity.featuredImageURL = postObject?.imageURL
             postEntity.cellType = postObject?.cellType
             
-            /* converting date format before saving to Core Data */
             DispatchQueue.main.async {
                 postEntity.date = postObject?.date.toDateString(inputFormat: "yyyy-MM-dd'T'HH:mm:ss", outputFormat: "EEEE, dd MMMM")
             }
 
-            /* download the featured image */
             if let imageURL = postEntity.featuredImageURL {
                 imageDataFrom(imageURL) { (imageData, error) in
                     if error == nil {
@@ -69,7 +67,8 @@ extension APIService {
         }
         
         if let authorEntity = NSEntityDescription.insertNewObject(forEntityName: "Author", into: coreDataStack.context) as? Author {
-             let authorObject = AuthorObject(json: json)
+            
+            let authorObject = AuthorObject(json: json)
             authorEntity.id = authorObject?.id ?? 0
             authorEntity.firstName = authorObject?.firstName
             authorEntity.lastName = authorObject?.lastName
@@ -78,10 +77,27 @@ extension APIService {
             authorEntity.emailAddress = authorObject?.emailAddress
             authorEntity.summary = authorObject?.summary
             authorEntity.avatarURL = authorObject?.avatarURL
+
+            guard let imageURL = authorObject?.avatarURL, let url = getURLFromString(url: imageURL) else {
+                return nil
+            }
             
-            post.author = authorEntity
-            return post
+            imageDataFrom(String(describing: url)) { (imageData, error) in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        authorEntity.avatarImageData = imageData
+                    }
+                } else {
+                    print(error ?? "Could not download the featured image.")
+                }
+            }
             
+            if let post = post {
+                post.author = authorEntity
+                return post
+            } else {
+                return nil
+            }
         } else {
             return nil
         }
@@ -95,5 +111,4 @@ extension APIService {
             }
         }
     }
-
 }

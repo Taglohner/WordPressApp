@@ -100,6 +100,22 @@ class APIService {
         }
         return Singleton.sharedInstance
     }
+    
+    func getURLFromString(url: String) -> URL? {
+        
+        let types: NSTextCheckingResult.CheckingType = .link
+        let detector = try? NSDataDetector(types: types.rawValue)
+        let detectedMatches = detector?.matches(in: url, options: .reportCompletion, range: NSMakeRange(0, url.characters.count))
+        
+        guard let matches = detectedMatches else {
+            return nil
+        }
+        
+        for match in matches{
+            return match.url
+        }
+        return nil
+    }
 }
 
 
